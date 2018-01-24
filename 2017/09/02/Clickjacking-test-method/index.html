@@ -100,20 +100,22 @@
 
 
   
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Web security," />
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta name="description" content="how to test the clickjacking (POC gen)burp有一个功能能够生成POC  生成js文件 直接在web console复制执行 目标页面嵌入了其中  Ref linkhttps://support.portswigger.net/customer/en/portal/articles/2363105-using-burp-to-find-clickjacking">
+<meta name="keywords" content="Web security">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Clickjacking test method">
+<meta property="og:url" content="http://yoursite.com/2017/09/02/Clickjacking-test-method/index.html">
 <meta property="og:site_name" content="Rick7dology">
+<meta property="og:description" content="how to test the clickjacking (POC gen)burp有一个功能能够生成POC  生成js文件 直接在web console复制执行 目标页面嵌入了其中  Ref linkhttps://support.portswigger.net/customer/en/portal/articles/2363105-using-burp-to-find-clickjacking">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-06-19T15:04:16.000Z">
+<meta property="og:updated_time" content="2017-09-01T08:51:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
+<meta name="twitter:title" content="Clickjacking test method">
+<meta name="twitter:description" content="how to test the clickjacking (POC gen)burp有一个功能能够生成POC  生成js文件 直接在web console复制执行 目标页面嵌入了其中  Ref linkhttps://support.portswigger.net/customer/en/portal/articles/2363105-using-burp-to-find-clickjacking">
 
-
-  
 
 
   <link rel="alternate" href="/atom.xml" title="Rick7dology" type="application/atom+xml" />
@@ -121,10 +123,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/02/Clickjacking-test-method/"/>
 
 
-  <title>tags | Rick7dology</title>
+  <title>Clickjacking test method | Rick7dology</title>
   
 
 
@@ -251,58 +253,155 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/02/Clickjacking-test-method/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Rick7">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/Logo_new.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rick7dology">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">tags</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                4 tags in total
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/Android/" style="font-size: 12px; color: #ccc">Android</a> <a href="/tags/Python/" style="font-size: 30px; color: #111">Python</a> <a href="/tags/Web-security/" style="font-size: 21px; color: #6f6f6f">Web security</a> <a href="/tags/iOS/" style="font-size: 12px; color: #ccc">iOS</a>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">Clickjacking test method</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-02T00:48:19+08:00">2017-09-01</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h1 id="how-to-test-the-clickjacking-POC-gen"><a href="#how-to-test-the-clickjacking-POC-gen" class="headerlink" title="how to test the clickjacking (POC gen)"></a>how to test the clickjacking (POC gen)</h1><p>burp有一个功能能够生成POC</p>
+<ol>
+<li>生成js文件</li>
+<li>直接在web console复制执行</li>
+<li>目标页面嵌入了其中</li>
+</ol>
+<h1 id="Ref-link"><a href="#Ref-link" class="headerlink" title="Ref link"></a>Ref link</h1><p><a href="https://support.portswigger.net/customer/en/portal/articles/2363105-using-burp-to-find-clickjacking-vulnerabilities" target="_blank" rel="noopener">https://support.portswigger.net/customer/en/portal/articles/2363105-using-burp-to-find-clickjacking-vulnerabilities</a></p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Web-security/" rel="tag"># Web security</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/23/pyenv-virtualenv/" rel="next" title="Pyenv & virtualenv">
+                <i class="fa fa-chevron-left"></i> Pyenv & virtualenv
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/23/Python编码问题学习笔记/" rel="prev" title="Python编码问题学习笔记">
+                Python编码问题学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -332,8 +431,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -398,6 +506,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#how-to-test-the-clickjacking-POC-gen"><span class="nav-number">1.</span> <span class="nav-text">how to test the clickjacking (POC gen)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ref-link"><span class="nav-number">2.</span> <span class="nav-text">Ref link</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

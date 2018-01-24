@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_new.jpg?v=6.0.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/Logo_new.jpg?v=6.0.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/Logo_new.jpg?v=6.0.2">
+
+
+  <link rel="mask-icon" href="/images/Logo_new.jpg?v=6.0.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.0.2',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="Python," />
+
+
+<meta name="description" content="BS4库的基本用法1 简介,四大对象12345BeautifulSoup 就是 Python 的一个 HTML 或 XML 的解析库，我们可以用它来方便地从网页中提取数据，BeautifulSoup 在解析的时候实际上是依赖于解析器的，它除了支持 Python 标准库中的 HTML 解析器，还支持一些第三方的解析器比如 LXML,日常中推荐LXML ，这个解析器有解析 HTML 和 XML 的功能">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python BS4学习笔记">
+<meta property="og:url" content="http://yoursite.com/2018/01/23/Python-BS4学习笔记/index.html">
+<meta property="og:site_name" content="Rick7dology">
+<meta property="og:description" content="BS4库的基本用法1 简介,四大对象12345BeautifulSoup 就是 Python 的一个 HTML 或 XML 的解析库，我们可以用它来方便地从网页中提取数据，BeautifulSoup 在解析的时候实际上是依赖于解析器的，它除了支持 Python 标准库中的 HTML 解析器，还支持一些第三方的解析器比如 LXML,日常中推荐LXML ，这个解析器有解析 HTML 和 XML 的功能">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-01-23T06:52:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python BS4学习笔记">
+<meta name="twitter:description" content="BS4库的基本用法1 简介,四大对象12345BeautifulSoup 就是 Python 的一个 HTML 或 XML 的解析库，我们可以用它来方便地从网页中提取数据，BeautifulSoup 在解析的时候实际上是依赖于解析器的，它除了支持 Python 标准库中的 HTML 解析器，还支持一些第三方的解析器比如 LXML,日常中推荐LXML ，这个解析器有解析 HTML 和 XML 的功能">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Rick7dology" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/23/Python-BS4学习笔记/"/>
+
+
+  <title>Python BS4学习笔记 | Rick7dology</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Rick7dology</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-history"></i> <br />Archives</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/23/Python-BS4学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Rick7">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/Logo_new.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rick7dology">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python BS4学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-23T22:49:17+08:00">2018-01-23</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="BS4库的基本用法"><a href="#BS4库的基本用法" class="headerlink" title="BS4库的基本用法"></a>BS4库的基本用法</h1><h2 id="1-简介-四大对象"><a href="#1-简介-四大对象" class="headerlink" title="1 简介,四大对象"></a>1 简介,四大对象</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BeautifulSoup 就是 Python 的一个 HTML 或 XML 的解析库，我们可以用它来方便地从网页中提取数据，</span><br><span class="line"></span><br><span class="line">BeautifulSoup 在解析的时候实际上是依赖于解析器的，它除了支持 Python 标准库中的 HTML 解析器，还支持一些第三方的解析器比如 LXML,日常中推荐LXML ，这个解析器有解析 HTML 和 XML 的功能，而且速度快，容错能力强，所以推荐使用这个解析器来进行解析。</span><br><span class="line"></span><br><span class="line">BeautifulSoup将复杂的HTML文档装换成一个复杂的树形结构，每个节点都是python对象，可归纳为四种：Tag、Navigablestring、Comment、BeautifulSoup.</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">soupobj=BeautifulSoup(html,<span class="string">'lxml'</span>)</span><br><span class="line">print(type(soupobj)) </span><br><span class="line">print(type(soupobj.a))</span><br><span class="line">print(type(soupobj.p.string))</span><br><span class="line"></span><br><span class="line"><span class="comment">#output</span></span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">bs4</span>.<span class="title">BeautifulSoup</span>'&gt;</span></span><br><span class="line"><span class="class">&lt;<span class="title">class</span> '<span class="title">bs4</span>.<span class="title">element</span>.<span class="title">Tag</span>'&gt;</span></span><br><span class="line"><span class="class">&lt;<span class="title">class</span> '<span class="title">bs4</span>.<span class="title">element</span>.<span class="title">NavigableString</span>'&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-BeautifulSoup四大对象之Tag对象：html中的一个个标签，html标签加上里面的内容就是Tag。"><a href="#2-BeautifulSoup四大对象之Tag对象：html中的一个个标签，html标签加上里面的内容就是Tag。" class="headerlink" title="2 BeautifulSoup四大对象之Tag对象：html中的一个个标签，html标签加上里面的内容就是Tag。"></a>2 BeautifulSoup四大对象之Tag对象：html中的一个个标签，html标签加上里面的内容就是Tag。</h2><ol>
+<li>可以利用soup_obj加标签名获取这些标签内容，但它只返回所有内容中的第一个符合要求的标签。</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">soupobj=BeautifulSoup(html,<span class="string">'lxml'</span>)</span><br><span class="line">print(soupobj.head)</span><br><span class="line">print(soupobj.head.title) <span class="comment">#直接输出节点里面的内容，包括节点本身</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#output</span></span><br><span class="line">&lt;head&gt;&lt;title&gt;The HTML is for test BeautifulSoup&lt;/title&gt;&lt;/head&gt;</span><br><span class="line">&lt;title&gt;The HTML is for test BeautifulSoup&lt;/title&gt;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>Tag的两个重要属性name和attrs</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">soupobj=BeautifulSoup(html,<span class="string">'lxml'</span>)</span><br><span class="line">print(soupobj.a.name)</span><br><span class="line">print(soupobj.a.attrs) <span class="comment">#返回字典</span></span><br><span class="line">print(soupobj.a.attrs[<span class="string">'class'</span>])<span class="comment">#几种访问具体属性的方法</span></span><br><span class="line">print(soupobj.a[<span class="string">'class'</span>])</span><br><span class="line">print(soupobj.a.get(<span class="string">'class'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">#output</span></span><br><span class="line">a</span><br><span class="line">&#123;<span class="string">'id'</span>: <span class="string">'link1'</span>, <span class="string">'href'</span>: <span class="string">'http://www.baidu.com'</span>, <span class="string">'class'</span>: [<span class="string">'sister'</span>]&#125;</span><br><span class="line">[<span class="string">'sister'</span>]</span><br><span class="line">[<span class="string">'sister'</span>]</span><br><span class="line">[<span class="string">'sister'</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="3-NavigableString对象"><a href="#3-NavigableString对象" class="headerlink" title="3 NavigableString对象"></a>3 NavigableString对象</h2><p>已经得到了标签，如何获得标签内的文字。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">soupobj=BeautifulSoup(html,<span class="string">'lxml'</span>)</span><br><span class="line">print(soupobj.p.string)</span><br><span class="line">print(soupobj.p.get_text()) <span class="comment">#两种方法访问节点的字符串</span></span><br><span class="line">print(type(soupobj.p.string))</span><br><span class="line"><span class="comment">#output:</span></span><br><span class="line">this <span class="keyword">is</span> title</span><br><span class="line">this <span class="keyword">is</span> title</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">bs4</span>.<span class="title">element</span>.<span class="title">NavigableString</span>'&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-Comment对象-比较少用"><a href="#4-Comment对象-比较少用" class="headerlink" title="4 Comment对象,比较少用"></a>4 Comment对象,比较少用</h2><p>Tag , NavigableString , BeautifulSoup 几乎覆盖了html和xml中的所有内容,<br>但是还有一些特殊对象.容易让人担心的内容是文档的注释部分,Comment 对象是一个特殊类型的 NavigableString 对象:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">markup = <span class="string">"&lt;b&gt;&lt;!--Hey, buddy. Want to buy a used parser?--&gt;&lt;/b&gt;"</span></span><br><span class="line">soup = BeautifulSoup(markup,<span class="string">'lxml'</span>)</span><br><span class="line">comment = soup.b.string</span><br><span class="line">print(comment)</span><br><span class="line">print(type(comment))</span><br><span class="line"></span><br><span class="line"><span class="comment">#output</span></span><br><span class="line">Hey, buddy. Want to buy a used parser?</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">bs4</span>.<span class="title">element</span>.<span class="title">Comment</span>'&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="5-BeautifulSoup对象"><a href="#5-BeautifulSoup对象" class="headerlink" title="5 BeautifulSoup对象"></a>5 BeautifulSoup对象</h2><p>BeautifulSoup 对象表示的是一个文档的全部内容.大部分时候,可以把它当作 Tag 对象,它支持 遍历文档树 和 搜索文档树 中描述的大部分的方法.</p>
+<p>因为 BeautifulSoup 对象并不是真正的HTML或XML的tag,所以它没有name和attribute属性.但有时查看它的 .name 属性是很方便的,所以 BeautifulSoup 对象包含了一个值为 “[document]” 的特殊属性 .name</p>
+<h2 id="6-遍历文档树"><a href="#6-遍历文档树" class="headerlink" title="6 遍历文档树"></a>6 遍历文档树</h2><ol>
+<li>理解子节点</li>
+</ol>
+<p>一个Tag可能包含多个字符串或其它的Tag,这些都是这个Tag的子节点.Beautiful Soup提供了许多操作和遍历子节点的属性.</p>
+<p>注意: Beautiful Soup中字符串节点不支持这些属性,因为字符串没有子节点</p>
+<ol>
+<li>.contents 和 .children</li>
+</ol>
+<ul>
+<li>tag的 .contents 属性可以将tag的子节点以列表的方式输出:</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">soupobj=BeautifulSoup(html,<span class="string">'lxml'</span>)</span><br><span class="line"></span><br><span class="line">print(soupobj.body.contents) <span class="comment">#tag的 .contents 属性可以将tag的子节点以列表的方式输出:</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> soupobj.body.contents:</span><br><span class="line">    print(i.name)<span class="comment">#输出直接子节点,内嵌在子节点里面的节点不输出</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#output</span></span><br><span class="line"><span class="keyword">None</span></span><br><span class="line">p</span><br><span class="line"><span class="keyword">None</span></span><br><span class="line">p</span><br><span class="line"><span class="keyword">None</span></span><br><span class="line">p</span><br><span class="line"><span class="keyword">None</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>.children属性返回一个子节点的列表迭代器</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">soupobj=BeautifulSoup(html,<span class="string">'lxml'</span>)</span><br><span class="line">i=soupobj.body.children <span class="comment">#返回一个子节点的列表迭代器</span></span><br><span class="line">print(i)</span><br><span class="line"><span class="keyword">for</span> elem <span class="keyword">in</span> i:</span><br><span class="line">    print(elem.name)</span><br><span class="line"></span><br><span class="line"><span class="comment">#output:</span></span><br><span class="line">&lt;list_iterator object at <span class="number">0x101a88160</span>&gt;</span><br><span class="line"><span class="keyword">None</span></span><br><span class="line">p</span><br><span class="line"><span class="keyword">None</span></span><br><span class="line">p</span><br><span class="line"><span class="keyword">None</span></span><br><span class="line">p</span><br><span class="line"><span class="keyword">None</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>.contents 和 .children 属性仅包含tag的直接子节点.例如,<head>标签只有一个直接子节点<title></title></head></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">soupobj=BeautifulSoup(html,<span class="string">'lxml'</span>)</span><br><span class="line">i=soupobj.body.descendants <span class="comment">#返回一个子孙节点的生成器</span></span><br><span class="line">print(i)</span><br><span class="line"><span class="keyword">for</span> elem <span class="keyword">in</span> i:</span><br><span class="line">    print(elem.name)</span><br><span class="line"></span><br><span class="line"><span class="comment">#output</span></span><br><span class="line"></span><br><span class="line">&lt;generator object descendants at <span class="number">0x1041de728</span>&gt;</span><br><span class="line"><span class="keyword">None</span></span><br><span class="line">p</span><br><span class="line">b</span><br><span class="line"><span class="keyword">None</span></span><br><span class="line"><span class="keyword">None</span></span><br><span class="line">p</span><br><span class="line"><span class="keyword">None</span></span><br><span class="line">a</span><br><span class="line"><span class="keyword">None</span></span><br><span class="line"><span class="keyword">None</span></span><br><span class="line">a</span><br><span class="line"><span class="keyword">None</span></span><br><span class="line"><span class="keyword">None</span></span><br><span class="line"><span class="keyword">None</span></span><br><span class="line">p</span><br><span class="line"><span class="keyword">None</span></span><br><span class="line"><span class="keyword">None</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>兄弟节点的 .next_sibling, .previous_sibling属性,全部兄弟节点的.next_siblings, .previous_siblings属性</li>
+</ul>
+<h2 id="7-搜索文档树"><a href="#7-搜索文档树" class="headerlink" title="7 搜索文档树"></a>7 搜索文档树</h2><ol>
+<li>find_all(name,attrs,recursive,text,limit,**kwargs)方法</li>
+</ol>
+<p>搜索当前tag的所有tag子节点，并判断是否符合过滤器条件。</p>
+<ul>
+<li>name参数：可以查找所有名字为name的tag，字符串对象会被自动忽略掉,函数返回一个list,name参数可以是字符串，正则，列表，True，<br>还可以传方法等</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">soupobj=BeautifulSoup(html,<span class="string">'lxml'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> soupobj.find_all(re.compile(<span class="string">'e'</span>)):<span class="comment">#传入正则，调用search()方法</span></span><br><span class="line">    print(i.name)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> soupobj.find_all([<span class="string">'a'</span>,<span class="string">'b'</span>]):<span class="comment">#传入列表</span></span><br><span class="line">    print(i.name)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> soupobj.find_all(<span class="string">'title'</span>):<span class="comment">#传入字符串</span></span><br><span class="line">    print(i.name)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> soupobj.find_all(<span class="keyword">True</span>):<span class="comment">#传入TRUE</span></span><br><span class="line">    print(i.name)</span><br><span class="line"></span><br><span class="line"><span class="comment">#output:</span></span><br><span class="line">body</span><br><span class="line">b</span><br></pre></td></tr></table></figure>
+<ol>
+<li>**kwargs参数：关键字参数，如果一个关键字参数不是搜索内置的参数名,搜索时会把该参数当作tag的属性来搜索,如果包含一个名字为 id 的参数,Beautiful Soup会搜索每个tag的”id”属性.</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> soupobj.find_all(id=<span class="string">'link2'</span>): <span class="comment">#传入关键字参数，函数会搜索id属性等于link2的tag</span></span><br><span class="line">    print(i.name)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> soupobj.find_all(href=re.compile(<span class="string">'baidu'</span>),id=<span class="string">'link2'</span>):<span class="comment">#使用关键字参数过滤多个属性：href,id</span></span><br><span class="line">    print(i.name)</span><br><span class="line"><span class="comment">#output</span></span><br><span class="line">a</span><br><span class="line">a</span><br></pre></td></tr></table></figure>
+<ol>
+<li>按CSS搜索（其实是继续使用关键字参数），可以通过 class<em> 参数搜索有指定CSS类名的tag,class</em> 参数同样接受不同类型的 过滤器 ,字符串,正则表达式,方法或 True</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> soupobj.find_all(class_=<span class="string">'story'</span>): <span class="comment">#单一使用'class_'属性查询</span></span><br><span class="line">    print(i.name)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> soupobj.find_all(href=re.compile(<span class="string">'baidu'</span>),class_=<span class="string">'sister'</span>): <span class="comment">#联合多条件查询</span></span><br><span class="line">    print(i.name)</span><br></pre></td></tr></table></figure>
+<ol>
+<li>通过 text 参数可以搜搜文档中的字符串内容.与 name 参数的可选值一样, text 参数接受 字符串 , 正则表达式 , 列表, True . 看例子:</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(soupobj.find_all(text=re.compile(<span class="string">'this'</span>)))<span class="comment">#感觉用正则作为参数值效果最好</span></span><br><span class="line"><span class="comment">#output</span></span><br><span class="line">[<span class="string">'this is title'</span>, <span class="string">'this is the content\n\n'</span>, <span class="string">'this is herf to link baidu'</span>]</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>其余的参数包括limit,recursive,limit的作用是限制搜索结果的数目，recursive参数，调用tag的 find_all() 方法时,Beautiful Soup会检索当前tag的所有子孙节点,如果只想搜索tag的直接子节点,可以使用参数 recursive=False .</p>
+</li>
+<li><p>find_all()方法的简写：BeautifulSoup 对象和 tag 对象可以被当作一个方法来使用,这个方法的执行结果与调用这个对象的 find_all() 方法相同,下面两行代码是等价的:</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">oup.find_all(<span class="string">"a"</span>)</span><br><span class="line">soup(<span class="string">"a"</span>) <span class="comment">#通过Beautifulsoup对象直接调用find_all</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">soup.title.find_all(text=<span class="keyword">True</span>)<span class="comment">#通过tag对象直接调用</span></span><br><span class="line">soup.title(text=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<p>7.CSS选择器语法来查找Tag，soup.select()，返回类型是 list，用 get_text() 方法来获取它的内容</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> soup.select(<span class="string">'title'</span>)<span class="comment">#标签名查找</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> soup.select(<span class="string">'.sister'</span>)<span class="comment">#class名查找</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> soup.select(<span class="string">'#link1'</span>)<span class="comment">#id名查找</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> soup.select(<span class="string">"head &gt; title"</span>)<span class="comment">#直接子标签查找</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> soup.select(<span class="string">"#subject_list &gt; ul &gt; li &gt; div.info &gt; div.pub"</span>)  <span class="comment">#抓取作者，出版社信息，稍后我们用spite()</span></span><br><span class="line"></span><br><span class="line">注意：</span><br><span class="line"></span><br><span class="line"><span class="string">'nth-of-child'</span> <span class="keyword">is</span> simply <span class="keyword">not</span> implemented <span class="keyword">in</span> beautifulsoup4 (at time of writing), </span><br><span class="line"></span><br><span class="line"><span class="comment">#app &gt; div &gt; div &gt; div.main &gt; dl &gt; dd:nth-child(1) &gt; div &gt; div &gt; div.movie-item-info &gt; p.name &gt; a</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/23/Python编码问题学习笔记/" rel="next" title="Python编码问题学习笔记">
+                <i class="fa fa-chevron-left"></i> Python编码问题学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/23/Python-requests学习笔记/" rel="prev" title="Python requests学习笔记">
+                Python requests学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/Logo_new.jpg"
+                alt="Rick7" />
+            
+              <p class="site-author-name" itemprop="name">Rick7</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#BS4库的基本用法"><span class="nav-number">1.</span> <span class="nav-text">BS4库的基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-简介-四大对象"><span class="nav-number">1.1.</span> <span class="nav-text">1 简介,四大对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-BeautifulSoup四大对象之Tag对象：html中的一个个标签，html标签加上里面的内容就是Tag。"><span class="nav-number">1.2.</span> <span class="nav-text">2 BeautifulSoup四大对象之Tag对象：html中的一个个标签，html标签加上里面的内容就是Tag。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-NavigableString对象"><span class="nav-number">1.3.</span> <span class="nav-text">3 NavigableString对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Comment对象-比较少用"><span class="nav-number">1.4.</span> <span class="nav-text">4 Comment对象,比较少用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-BeautifulSoup对象"><span class="nav-number">1.5.</span> <span class="nav-text">5 BeautifulSoup对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-遍历文档树"><span class="nav-number">1.6.</span> <span class="nav-text">6 遍历文档树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-搜索文档树"><span class="nav-number">1.7.</span> <span class="nav-text">7 搜索文档树</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rick7</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.0.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.2"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

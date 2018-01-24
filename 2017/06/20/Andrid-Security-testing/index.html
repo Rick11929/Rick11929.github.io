@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_new.jpg?v=6.0.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/Logo_new.jpg?v=6.0.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/Logo_new.jpg?v=6.0.2">
+
+
+  <link rel="mask-icon" href="/images/Logo_new.jpg?v=6.0.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.0.2',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="Android," />
+
+
+<meta name="description" content="基础知识Android 基本机构 安卓分4层吧，底层为linux，上层是安卓本地库，主要为C或者C++，有sqllite，webkit (The Webkit rendering engine was used prior to Android version 4.4 to load these web pages. On the latest versions (after 4.4) of An">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android security testing">
+<meta property="og:url" content="http://yoursite.com/2017/06/20/Andrid-Security-testing/index.html">
+<meta property="og:site_name" content="Rick7dology">
+<meta property="og:description" content="基础知识Android 基本机构 安卓分4层吧，底层为linux，上层是安卓本地库，主要为C或者C++，有sqllite，webkit (The Webkit rendering engine was used prior to Android version 4.4 to load these web pages. On the latest versions (after 4.4) of An">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-01-23T06:39:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android security testing">
+<meta name="twitter:description" content="基础知识Android 基本机构 安卓分4层吧，底层为linux，上层是安卓本地库，主要为C或者C++，有sqllite，webkit (The Webkit rendering engine was used prior to Android version 4.4 to load these web pages. On the latest versions (after 4.4) of An">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Rick7dology" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/20/Andrid-Security-testing/"/>
+
+
+  <title>Android security testing | Rick7dology</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Rick7dology</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-history"></i> <br />Archives</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/20/Andrid-Security-testing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Rick7">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/Logo_new.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rick7dology">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android security testing</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-20T07:16:36+08:00">2017-06-19</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="Android-基本机构"><a href="#Android-基本机构" class="headerlink" title="Android 基本机构"></a>Android 基本机构</h2><ul>
+<li>安卓分4层吧，底层为linux，上层是安卓本地库，主要为C或者C++，有sqllite，webkit <strong>(The Webkit rendering engine was used prior to Android version 4.4 to load these web pages. On the latest versions (after 4.4) of Android, it is done using Chromium)</strong> 之类的东西，通过安卓应用程序框架展示为程序员，同时这一层还有安卓运行时，以核心java和Dalvik虚拟机，再上面就是应用程序与框架，程序员使用此框架API开发更加复杂的应用程序</li>
+</ul>
+<h2 id="Android-app-包结构"><a href="#Android-app-包结构" class="headerlink" title="Android app 包结构"></a>Android app 包结构</h2><ul>
+<li>AndroidManifest.xml: </li>
+</ul>
+<blockquote>
+<p>The AndroidManifest.xml file is the control file that tells the system what to do with all the top-level components (specifically activities, services, broadcast receivers, and content providers described below) in an application. This also specifies which permissions are required. This file may be in Android binary XML that can be converted into human-readable plaintext XML with tools such as android-apktool, or Androguard which we will cover in the upcoming post.</p>
+</blockquote>
+<ul>
+<li><p>META-INF directory:</p>
+<ul>
+<li>MANIFEST.MF: the Manifest File</li>
+<li>CERT.RSA: The certificate of the application.</li>
+<li>CERT.SF: The list of resources and SHA-1 digest of the corresponding lines in the MANIFEST.MF file.</li>
+</ul>
+</li>
+<li><p>lib: the directory containing the compiled code that is specific to a software layer of a processor, the directory is split into more directories within it:</p>
+<ul>
+<li>armeabi: compiled code for all ARM based processors only</li>
+<li>armeabi-v7a: compiled code for all ARMv7 and above based processors only</li>
+<li>x86: compiled code for X86</li>
+<li>mips: compiled code for MIPS processors only</li>
+</ul>
+</li>
+<li><p>res: the directory containing resources not compiled into resources.arsc (see below).</p>
+</li>
+<li><p>assets: a directory containing applications assets, which can be retrieved by AssetManager.</p>
+</li>
+<li><p>classes.dex: The classes compiled in the dex file format understandable by the Dalvik virtual machine</p>
+</li>
+<li><p>resources.arsc: a file containing precompiled resources, such as binary XML for example</p>
+</li>
+</ul>
+<h2 id="How-to-root-or-install-a-custom-Rom-in-your-device"><a href="#How-to-root-or-install-a-custom-Rom-in-your-device" class="headerlink" title="How to root or install a custom Rom in your device:"></a>How to root or install a custom Rom in your device:</h2><ul>
+<li>unlock bootloader </li>
+<li>Installing recovery softwares like <strong>TWRP</strong> or CF</li>
+<li>Installing the Super Su app.</li>
+<li>Flashing the custom ROM to the phone.</li>
+</ul>
+<h2 id="What-happens-when-an-app-is-run"><a href="#What-happens-when-an-app-is-run" class="headerlink" title="What happens when an app is run?"></a>What happens when an app is run?</h2><p>When the Android Operating System boots, a process called <strong>Zygote</strong> is started and<br>it listens for new app launch requests. Whenever a user clicks on an application, Zygote is used to launch it. Zygote creates a copy of itself using a fork system call when it receives a request to launch a new app. This process of launching a new app is considered more ef cient and faster. The newly launched app process loads all the code that is required for it to run. What we read earlier is that the classes. dex  le contains all the byte code compatible with Dalvik Virtual Machine. In the latest version of Android devices starting from Android 5.0, the default runtime environment is ART. In this new runtime environment, the classes.dex  le will be converted into something called OAT using a tool called dex2oat.</p>
+<h2 id="Sandbox"><a href="#Sandbox" class="headerlink" title="Sandbox"></a>Sandbox</h2><blockquote>
+<p>In the traditional linux system, we are able to see both the processes under the same User ID.<br>Now, it’s not true in the case of Android app. Every single app installed on your device will have a separate User ID (UID). This ensures that each application and its resources are being sand-boxed and will not be accessible to any other application.<br>Note: Applications signed with the same key (it is possible if two apps are developed by the same developer), can access each other’s data.<br>If you notice the  le permissions in the preceding output, each application’s directory is owned by itself and they are not readable/writeable by other users.</p>
+</blockquote>
+<h2 id="SSL-certificate-pinning"><a href="#SSL-certificate-pinning" class="headerlink" title="SSL certificate pinning"></a>SSL certificate pinning</h2><ul>
+<li><p>一些有用的参考：<br><a href="http://dieyidezui.com/talk-about-android-https/" target="_blank" rel="noopener">refer link</a><br><a href="http://www.jianshu.com/p/f725f63f8314" target="_blank" rel="noopener">refer link</a><br><a href="https://developer.android.com/reference/javax/net/ssl/HttpsURLConnection.html" target="_blank" rel="noopener">refer link</a><br><a href="https://developer.android.com/training/articles/security-ssl.html" target="_blank" rel="noopener">offical link</a></p>
+</li>
+<li><p>使用HttpURLConnection<br>首先，获取访问地址的URL对象；<br>然后，利用该url实例的openConnection()方法获取HttpURLConnection实例；<br>之后，利用HttpURLConnection实例，可以设置HTTP请求所使用的方法，主要有两种，GET和POST，分别是请求数据和提交数据；<br>之后，可以进行一些自由的设置，比如设置连接超时时间、请求超时时间等；<br>最后，调用getInputStream()方法即可获得服务器传输过来的输入流了。可以对该输入流进行读取。<br>读取完之后，需要关闭HTTP连接，调用disconnect()方法。</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">String result = <span class="keyword">null</span>;</span><br><span class="line">HttpURLConnection urlConnection =<span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    URL requestedUrl = <span class="keyword">new</span> URL(url);</span><br><span class="line">    urlConnection = (HttpURLConnection)requestedUrl.openConnection();</span><br><span class="line">    <span class="keyword">if</span>(urlConnection <span class="keyword">instanceof</span> HttpsURLConnection) &#123;  </span><br><span class="line">        ((HttpsURLConnection)urlConnection).setSSLSocketFactory(sslContext.getSocketFactory());</span><br><span class="line">    &#125;</span><br><span class="line">    urlConnection.setRequestMethod(<span class="string">"GET"</span>);   </span><br><span class="line">    urlConnection.setConnectTimeout(<span class="number">1500</span>);</span><br><span class="line">    urlConnection.setReadTimeout(<span class="number">1500</span>);</span><br><span class="line">    lastResponseCode = urlConnection.getResponseCode();</span><br><span class="line">    result = IOUtil.readFully(urlConnection.getInputStream());</span><br><span class="line">    lastContentType = urlConnection.getContentType();</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">    result = ex.toString();</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123; </span><br><span class="line">    <span class="keyword">if</span> (urlConnection != <span class="keyword">null</span>) &#123;</span><br><span class="line">        urlConnection.disconnect();    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>但我们的证书是自签名的,这意味着SSLContext中默认的TrustManager是不会信任服务端证书的,并且也无法达成SSL连接。<br>如果你尝试着在网络上搜索如何实现自信任证书的HTTPS连接,可能会得到很多错误的建议,绝大多数的答案都是教给开发者直接信任任何证书就可以了。这当然算是一个误导了,也是不安全的,因为这样做会有被中间人攻击[译注1]的风险。<br>我们真正想做的是创建一个自定义的TrustManager,这个TrustManager可以信任我们的自签名证书,并且能被我们的自定义SSLContext使用.因此我们需要一份服务端证书链的副本,这个副本必须包括CA的自签名证书,至少也是CA签署的中级证书。如果你正常地导出服务器的证书,你会得到一个文件,这个文件包含有三个证书- CA认证的证书,中级证书和服务器的证书。这是OK的,额外的证书不是必须的,但也不会有坏处</p>
+</blockquote>
+<ul>
+<li>如何使用HttpsURLConnection</li>
+</ul>
+<p>我们把证书装载到KeyStore中,使用KeyStore来生成一个TrustManger的数组,然后使用这些TrustManager来创建SSLContext。</p>
+<h1 id="Test-methodology"><a href="#Test-methodology" class="headerlink" title="Test methodology"></a>Test methodology</h1><h2 id="1-利用Qark，Mobsf等综合性扫描软件对APP进行一次全面扫描"><a href="#1-利用Qark，Mobsf等综合性扫描软件对APP进行一次全面扫描" class="headerlink" title="1 利用Qark，Mobsf等综合性扫描软件对APP进行一次全面扫描"></a>1 利用Qark，Mobsf等综合性扫描软件对APP进行一次全面扫描</h2><h2 id="2-利用Burp等工具分析应用数据，检查certificate-pinning和各种传输问题和服务器端问题，例如session，xss，injection，logic-flow等"><a href="#2-利用Burp等工具分析应用数据，检查certificate-pinning和各种传输问题和服务器端问题，例如session，xss，injection，logic-flow等" class="headerlink" title="2 利用Burp等工具分析应用数据，检查certificate pinning和各种传输问题和服务器端问题，例如session，xss，injection，logic flow等"></a>2 利用Burp等工具分析应用数据，检查certificate pinning和各种传输问题和服务器端问题，例如session，xss，injection，logic flow等</h2><p>With SSL pinning, it is assumed that the app knows which servers it communicates with. We take the SSL certificate of this server and add it to the application. Now the application doesn’t need to rely on the device’s trust store, rather it makes its own checks verifying if it is communicating with the server whose certificate is already stored inside this application（看机制，不一定存在本地，可能从远处下载）. This is how SSL pinning works.</p>
+<h2 id="3-检查手机data-data目录各种存储数据，看看有没有敏感数据-再检查unintend数据泄露问题"><a href="#3-检查手机data-data目录各种存储数据，看看有没有敏感数据-再检查unintend数据泄露问题" class="headerlink" title="3 检查手机data/data目录各种存储数据，看看有没有敏感数据,再检查unintend数据泄露问题"></a>3 检查手机data/data目录各种存储数据，看看有没有敏感数据,再检查unintend数据泄露问题</h2><p>• Shared preferences<br>• SQLite databases<br>• Internal storage<br>• External storage</p>
+<p>Example Scenarios for Unintended Data Leakage</p>
+<p>Leaking content providers<br>Copy/paste buffer caching<br>Logging  adb logcat &gt; output.txt<br>URL caching<br>Browser cookie objects<br>Analytics data sent to third parties</p>
+<h2 id="4-使用Drozer检查攻击面，重点查看四大组件各种export，进行各种扫描，检查有无注入，目录遍历等漏洞"><a href="#4-使用Drozer检查攻击面，重点查看四大组件各种export，进行各种扫描，检查有无注入，目录遍历等漏洞" class="headerlink" title="4 使用Drozer检查攻击面，重点查看四大组件各种export，进行各种扫描，检查有无注入，目录遍历等漏洞"></a>4 使用Drozer检查攻击面，重点查看四大组件各种export，进行各种扫描，检查有无注入，目录遍历等漏洞</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">- Listing out all the modules : dz&gt; list</span><br><span class="line">- Retrieving package information : dz&gt; run app.package.list</span><br><span class="line">- Finding out the package name of your target application : dz&gt; run app.package.list --filter **notes**</span><br><span class="line">- Getting information about a package : dz&gt; run app.package.info -a **com.sonyericsson.notes**</span><br><span class="line">- Dumping the AndroidManifes.xml file : dz&gt; run app.package.manifest **com.sonyericsson.notes**</span><br><span class="line">- Finding out the attack surface : dz&gt; run app.package.attacksurface **com.sonyericsson.notes**</span><br><span class="line">                                   dz&gt; run app.package.attacksurface **org.owasp.goatdroid.fourgoats**</span><br><span class="line"></span><br><span class="line">- Attacks on activities :   dz&gt; run app.service.info -a org.owasp.goatdroid.fourgoats -u</span><br><span class="line">                            dz&gt; run app.activity.start --component org.owasp.goatdroid.fourgoats org.</span><br><span class="line">owasp.goatdroid.fourgoats.activities.ViewProfile  </span><br><span class="line"></span><br><span class="line">- Attacks on services : dz&gt; run app.service.info -a org.owasp.goatdroid.fourgoats</span><br><span class="line">                        dz&gt; run app.service.start --component org.owasp.goatdroid.fourgoats org.</span><br><span class="line">owasp.goatdroid.fourgoats.services.LocationService</span><br><span class="line"></span><br><span class="line">- Attacks on broadcast receivers : dz&gt; run app.broadcast.info -a org.owasp.goatdroid.fourgoats</span><br><span class="line">                                    </span><br><span class="line">- Running the following command will tell us if there are any injection vulnerabilities in the content providers:</span><br><span class="line">dz&gt; run scanner.provider.injection -a com.sonyericsson.notes</span><br><span class="line"></span><br><span class="line">- Path traversal attacks in content providers : dz&gt; run scanner.provider.traversal -a **com.adobe.reader**</span><br><span class="line">                                                dz&gt; run app.provider.read content://com.adobe.reader.fileprovider/../../../../etc/hosts</span><br></pre></td></tr></table></figure>
+<h2 id="5-使用各种hook工具进行动态测试"><a href="#5-使用各种hook工具进行动态测试" class="headerlink" title="5 使用各种hook工具进行动态测试"></a>5 使用各种hook工具进行动态测试</h2><ul>
+<li>Xposed</li>
+<li>Cydia </li>
+<li>Frida</li>
+<li>Magisk v8 (systemless) 「解鎖 -&gt; 安裝 Magisk -&gt; 安裝 Systemless phh’s SuperUser -&gt; 安裝 Systemless Xposed -&gt; 重新上鎖」<br><strong>Frida 和 Xposed 都是非常出色的框架，后面会增加一些相关博文</strong></li>
+</ul>
+<h2 id="6-Root-Dectection-（systemless-root）"><a href="#6-Root-Dectection-（systemless-root）" class="headerlink" title="6 Root Dectection （systemless root）"></a>6 Root Dectection （systemless root）</h2><ul>
+<li><p>可以使用xposed或者Magisk去bypass root checking</p>
+</li>
+<li><p>Superuser.apk is the most common package many apps look for in root detection. This application allows other applications to run as root on the device.</p>
+</li>
+<li><p>Many applications look for applications with specific package names. An example is show below.</p>
+</li>
+<li><p>There are some specific applications which run only on rooted devices. Checking for those applications would also be a good idea to detect if the device is rooted.<br>Example: Busybox.</p>
+</li>
+<li><p>Executing “su” and “id” commands and looking at the UID to see if it is root.</p>
+</li>
+<li><p>Checking the BUILD tag for test-keys: This check is generally to see if the device is running with a custom ROM. By default, Google gives ‘release-keys’ as its tag for stock ROMs. If it is something like “test-keys”, then it is most likely built with a custom ROM.</p>
+</li>
+</ul>
+<h2 id="7-关于Debug"><a href="#7-关于Debug" class="headerlink" title="7 关于Debug"></a>7 关于Debug</h2><p><strong>JDB is a Java debugger, a simple command line debugger for Java classes. It comes preinstalled with JDK.如果是native开发，要用gdb</strong></p>
+<p><a href="http://resources.infosecinstitute.com/android-hacking-security-part-5-debugging-java-applications-using-jdb/#article" target="_blank" rel="noopener">Refer link</a></p>
+<p>Checking for Vulnerability</p>
+<p>In fact, this is the easiest part of the entire article.</p>
+<ol>
+<li>Decompile the application using APKTOOL to get the AndroidManifest.xml file using the following command.</li>
+</ol>
+<p>apktool d vulnerableapp.apk</p>
+<ol>
+<li>Inspect Androidmanifest.xml file for the following line.</li>
+</ol>
+<p>android:debuggable=”true”</p>
+<p>If you find the above line in the AndroidManifest.xml file, the application is debuggable and it can be exploited.</p>
+<h2 id="8-Backup-techniques"><a href="#8-Backup-techniques" class="headerlink" title="8 Backup techniques"></a>8 Backup techniques</h2><p>Now let’s use the backup technique of android to find security issues by following these steps:</p>
+<ol>
+<li>Backup the app data using the adb backup command.<br> adb backup –f backup.ab com.whatsapplock</li>
+<li>Convert the .ab format to the .tar format using the android backup extractor.<br> Android backup extractor, to convert our .ab  le into .tar format.<br> <code>C:\backup&gt;java -jar abe.jar -debug unpack backup.ab backup.tar</code></li>
+<li>Extract the TAR file using the pax or star utility.</li>
+<li>Analyze the extracted content from the previous step for security issues.</li>
+</ol>
+<p>How to protect our apps</p>
+<p>If your app holds sensitive data, you can stop allowing users from making a backup of the app. This can be done by placing the following line in the AndroidManifest.xml file</p>
+<p>android:allowBackup=”false”</p>
+<h2 id="9-检查webview相关问题"><a href="#9-检查webview相关问题" class="headerlink" title="9 检查webview相关问题"></a>9 检查webview相关问题</h2><p><a href="http://resources.infosecinstitute.com/android-hacking-security-part-7-attacks-android-webviews/#article" target="_blank" rel="noopener">Refer link</a></p>
+<p>As mentioned in the beginning, WebView supports usage of JavaScript. If the application being loaded into WebView requires JavaScript support, it can be enabled by using the following line.</p>
+<p>WebView webview = (WebView) findViewById(R.id.mywebview);</p>
+<p>WebSettings webSettings = myWebView.getSettings();</p>
+<p>webSettings.setJavaScriptEnabled(true);</p>
+<p>Another powerful feature in WebView is exposing a Java object’s methods to be accessed from JavaScript.</p>
+<p>This is one of the important features which requires a keen eye when implementing, as it can be exploited by passing malicious JavaScript to the application’s interface. </p>
+<p>Below is a sample code snippet by @jduck on how it can be implemented and exploited.</p>
+<p><a href="https://github.com/jduck/VulnWebView/" target="_blank" rel="noopener">https://github.com/jduck/VulnWebView/</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/22/iOS-security-testing/" rel="prev" title="iOS security testing">
+                iOS security testing <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/Logo_new.jpg"
+                alt="Rick7" />
+            
+              <p class="site-author-name" itemprop="name">Rick7</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-基本机构"><span class="nav-number">1.1.</span> <span class="nav-text">Android 基本机构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-app-包结构"><span class="nav-number">1.2.</span> <span class="nav-text">Android app 包结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-root-or-install-a-custom-Rom-in-your-device"><span class="nav-number">1.3.</span> <span class="nav-text">How to root or install a custom Rom in your device:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-happens-when-an-app-is-run"><span class="nav-number">1.4.</span> <span class="nav-text">What happens when an app is run?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sandbox"><span class="nav-number">1.5.</span> <span class="nav-text">Sandbox</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSL-certificate-pinning"><span class="nav-number">1.6.</span> <span class="nav-text">SSL certificate pinning</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Test-methodology"><span class="nav-number">2.</span> <span class="nav-text">Test methodology</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-利用Qark，Mobsf等综合性扫描软件对APP进行一次全面扫描"><span class="nav-number">2.1.</span> <span class="nav-text">1 利用Qark，Mobsf等综合性扫描软件对APP进行一次全面扫描</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-利用Burp等工具分析应用数据，检查certificate-pinning和各种传输问题和服务器端问题，例如session，xss，injection，logic-flow等"><span class="nav-number">2.2.</span> <span class="nav-text">2 利用Burp等工具分析应用数据，检查certificate pinning和各种传输问题和服务器端问题，例如session，xss，injection，logic flow等</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-检查手机data-data目录各种存储数据，看看有没有敏感数据-再检查unintend数据泄露问题"><span class="nav-number">2.3.</span> <span class="nav-text">3 检查手机data/data目录各种存储数据，看看有没有敏感数据,再检查unintend数据泄露问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-使用Drozer检查攻击面，重点查看四大组件各种export，进行各种扫描，检查有无注入，目录遍历等漏洞"><span class="nav-number">2.4.</span> <span class="nav-text">4 使用Drozer检查攻击面，重点查看四大组件各种export，进行各种扫描，检查有无注入，目录遍历等漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-使用各种hook工具进行动态测试"><span class="nav-number">2.5.</span> <span class="nav-text">5 使用各种hook工具进行动态测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Root-Dectection-（systemless-root）"><span class="nav-number">2.6.</span> <span class="nav-text">6 Root Dectection （systemless root）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-关于Debug"><span class="nav-number">2.7.</span> <span class="nav-text">7 关于Debug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Backup-techniques"><span class="nav-number">2.8.</span> <span class="nav-text">8 Backup techniques</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-检查webview相关问题"><span class="nav-number">2.9.</span> <span class="nav-text">9 检查webview相关问题</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rick7</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.0.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.2"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
