@@ -369,7 +369,7 @@
 </ul>
 <p>pyenv 的美好之处在于，它并没有使用将不同的 $PATH 植入不同的 shell 这种高耦合的工作方式，而是简单地在 $PATH 的最前面插入了一个垫片路径（shims）：~/.pyenv/shims:/usr/local/bin:/usr/bin:/bin。所有对 Python 可执行文件的查找都会首先被这个 shims 路径截获，从而架空了后面的系统路径。</p>
 <p>作者原文如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Understanding Shims</span><br><span class="line"></span><br><span class="line">pyenv works by inserting a directory of shims at the front of your PATH:</span><br><span class="line"></span><br><span class="line">$(pyenv root)/shims:/usr/local/bin:/usr/bin:/bin</span><br><span class="line">Through a process called rehashing, pyenv maintains shims <span class="keyword">in</span> that directory to match every Python command across every installed version of Python—python, pip, <span class="keyword">and</span> so on.</span><br><span class="line"></span><br><span class="line">Shims are lightweight executables that simply <span class="keyword">pass</span> your command along to pyenv. So <span class="keyword">with</span> pyenv installed, when you run, say, pip, your operating system will do the following:</span><br><span class="line"></span><br><span class="line">Search your PATH <span class="keyword">for</span> an executable file named pip</span><br><span class="line">Find the pyenv shim named pip at the beginning of your PATH</span><br><span class="line">Run the shim named pip, which <span class="keyword">in</span> turn passes the command along to pyenv</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Understanding Shims</span><br><span class="line"></span><br><span class="line">pyenv works by inserting a directory of shims at the front of your PATH:</span><br><span class="line"></span><br><span class="line">$(pyenv root)/shims:/usr/local/bin:/usr/bin:/bin</span><br><span class="line">Through a process called rehashing, pyenv maintains shims <span class="keyword">in</span> that directory to match every Python command across every installed version of Python—python, pip, <span class="keyword">and</span> so on.</span><br><span class="line"></span><br><span class="line">Shims are lightweight executables that simply <span class="keyword">pass</span> your command along to pyenv. So <span class="keyword">with</span> pyenv installed, when you run, say, pip, your operating system will do the following:</span><br><span class="line"></span><br><span class="line">Search your PATH <span class="keyword">for</span> an executable file named pip</span><br><span class="line">Find the pyenv shim named pip at the beginning of your PATH</span><br><span class="line">Run the shim named pip, which <span class="keyword">in</span> turn passes the command along to pyenv</span><br></pre></td></tr></table></figure>
 <p><a href="https://github.com/pyenv/pyenv#how-it-works" target="_blank" rel="noopener">具体的下载和使用教程请点击我！！！</a><br><a href="http://python.jobbole.com/85587/" target="_blank" rel="noopener">具体的命令使用详解请点击我！！！</a></p>
 <h2 id="python切换"><a href="#python切换" class="headerlink" title="python切换"></a>python切换</h2><ol>
 <li><p>pyenv global 3.4.0 — 设置全局的 Python 版本，通过将版本号写入 ~/.pyenv/version 文件的方式。</p>
@@ -607,7 +607,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">46k</span>
+    <span title="Symbols count total">45k</span>
   
 
   
@@ -616,7 +616,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">0:46</span>
+    <span title="Reading time total">0:45</span>
   
 </div>
 
