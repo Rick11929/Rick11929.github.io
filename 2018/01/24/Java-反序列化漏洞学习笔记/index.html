@@ -111,7 +111,7 @@
 <meta property="og:site_name" content="Rick7dology">
 <meta property="og:description" content="1 什么是Java序列化和反序列化: Java 序列化是指把 Java 对象转换为字节序列的过程便于保存在内存、文件、数据库中，ObjectOutputStream类的 writeObject() 方法可以实现序列化。  Java 反序列化是指把字节序列恢复为 Java 对象的过程，ObjectInputStream 类的 readObject() 方法用于反序列化。  网络上传输和本地硬盘中存储">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-01-24T10:23:05.000Z">
+<meta property="og:updated_time" content="2018-01-25T09:43:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 反序列化漏洞学习笔记">
 <meta name="twitter:description" content="1 什么是Java序列化和反序列化: Java 序列化是指把 Java 对象转换为字节序列的过程便于保存在内存、文件、数据库中，ObjectOutputStream类的 writeObject() 方法可以实现序列化。  Java 反序列化是指把字节序列恢复为 Java 对象的过程，ObjectInputStream 类的 readObject() 方法用于反序列化。  网络上传输和本地硬盘中存储">
@@ -327,7 +327,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article&#58;</span>
                 
-                <span title="Symbols count in article">2.4k</span>
+                <span title="Symbols count in article">2.6k</span>
               
 
               
@@ -341,7 +341,7 @@
                 
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
-                <span title="Reading time">0:02</span>
+                <span title="Reading time">0:03</span>
               
             </div>
           
@@ -382,8 +382,14 @@
 <ul>
 <li><p>三个关键类：AnnotationInvocationHandler，TransformedMap.decorate，InvokerTransformer</p>
 </li>
-<li><p>nvokerTransformer函数只需要传入方法名，参数类型，参数即可调用任意函数。通过这个函数构造调用链能够执行Runtime.exec()。而InvokerTransformer存在于Apache Commons Collections的库中，因此目标应用中需要有这个库，函数才能得到执行</p>
+<li><p>Apache Commons Collections 序列化 RCE 漏洞问题主要出现在 org.apache.commons.collections.Transformer 接口上，<br>在 Apache Commons Collections 中有一个 InvokerTransformer 类实现了 Transformer 接口，主要作用是调用 Java 的反射机制来调用任意函数，只需要传入方法名、参数类型和参数，即可调用任意函数</p>
 </li>
+</ul>
+<ol>
+<li>2016 年的 Spring 框架的反序列化漏洞，该漏洞是利用了 RMI 以及 JNDI：</li>
+</ol>
+<ul>
+<li>问题的关键点在JtaTransactionManager 类的 readObject() 方法，然后一大堆调用，反正其中有个函数lookup()使用了用户的可控输入属性：userTransactionName ， 攻击者构造userTransactionName就ok</li>
 </ul>
 <h1 id="4-利用工具："><a href="#4-利用工具：" class="headerlink" title="4 利用工具："></a>4 利用工具：</h1><p><a href="https://github.com/frohoff/ysoserial" target="_blank" rel="noopener">https://github.com/frohoff/ysoserial</a></p>
 <h1 id="5-发现漏洞："><a href="#5-发现漏洞：" class="headerlink" title="5 发现漏洞："></a>5 发现漏洞：</h1><blockquote>
@@ -395,9 +401,9 @@
 </blockquote>
 <p>Refer link:</p>
 <ul>
-<li>[1][ <a href="https://paper.seebug.org/312/" target="_blank" rel="noopener">https://paper.seebug.org/312/</a>]</li>
-<li>[2][ <a href="http://www.cnblogs.com/alert123/p/5124637.html" target="_blank" rel="noopener">http://www.cnblogs.com/alert123/p/5124637.html</a>]</li>
-<li>[3][ <a href="https://blog.chaitin.cn/2015-11-11_java_unserialize_rce/" target="_blank" rel="noopener">https://blog.chaitin.cn/2015-11-11_java_unserialize_rce/</a>]</li>
+<li>[<a href="https://paper.seebug.org/312/" target="_blank" rel="noopener">https://paper.seebug.org/312/</a>]</li>
+<li>[<a href="http://www.cnblogs.com/alert123/p/5124637.html" target="_blank" rel="noopener">http://www.cnblogs.com/alert123/p/5124637.html</a>]</li>
+<li>[<a href="https://blog.chaitin.cn/2015-11-11_java_unserialize_rce/" target="_blank" rel="noopener">https://blog.chaitin.cn/2015-11-11_java_unserialize_rce/</a>]</li>
 </ul>
 
       
