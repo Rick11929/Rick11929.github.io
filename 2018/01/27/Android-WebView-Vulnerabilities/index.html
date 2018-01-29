@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_new.jpg?v=6.0.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/Logo_new.jpg?v=6.0.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/Logo_new.jpg?v=6.0.2">
+
+
+  <link rel="mask-icon" href="/images/Logo_new.jpg?v=6.0.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.0.2',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="Android," />
+
+
+<meta name="description" content="今天专门总结一下Android Webview漏洞，因为这是一个安全大坑，我也被坑了…郁闷，平时复习一下就好了 1 基本开发知识：If you want to deliver a web application (or just a web page) as a part of a client application, you can do it using WebView。顾名思义就是开发we">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android WebView Vulnerabilities">
+<meta property="og:url" content="http://yoursite.com/2018/01/27/Android-WebView-Vulnerabilities/index.html">
+<meta property="og:site_name" content="Rick7dology">
+<meta property="og:description" content="今天专门总结一下Android Webview漏洞，因为这是一个安全大坑，我也被坑了…郁闷，平时复习一下就好了 1 基本开发知识：If you want to deliver a web application (or just a web page) as a part of a client application, you can do it using WebView。顾名思义就是开发we">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-01-29T10:27:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android WebView Vulnerabilities">
+<meta name="twitter:description" content="今天专门总结一下Android Webview漏洞，因为这是一个安全大坑，我也被坑了…郁闷，平时复习一下就好了 1 基本开发知识：If you want to deliver a web application (or just a web page) as a part of a client application, you can do it using WebView。顾名思义就是开发we">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Rick7dology" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/27/Android-WebView-Vulnerabilities/"/>
+
+
+  <title>Android WebView Vulnerabilities | Rick7dology</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Rick7dology</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-history"></i> <br />Archives</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/27/Android-WebView-Vulnerabilities/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Rick7">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/Logo_new.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rick7dology">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android WebView Vulnerabilities</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-27T01:29:30+08:00">2018-01-26</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Symbols count in article&#58;</span>
+                
+                <span title="Symbols count in article">5.7k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">0:06</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>今天专门总结一下Android Webview漏洞，因为这是一个安全大坑，我也被坑了…郁闷，平时复习一下就好了</p>
+<h1 id="1-基本开发知识："><a href="#1-基本开发知识：" class="headerlink" title="1 基本开发知识："></a>1 基本开发知识：</h1><p>If you want to deliver a web application (or just a web page) as a part of a client application, you can do it using WebView。顾名思义就是开发web app之类的，用处很多，不详细讲了，看开发文档写得很清楚</p>
+<ul>
+<li>添加Webview,步骤为写配置文件到layout，建立Webview类，然后取得Internet权限，一目了然</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">写配置文件：</span><br><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span>?&gt;</span><br><span class="line">&lt;WebView  xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:id=<span class="string">"@+id/webview"</span></span><br><span class="line">    android:layout_width=<span class="string">"fill_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"fill_parent"</span></span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">新建类：</span><br><span class="line">WebView myWebView = (WebView) findViewById(R.id.webview);</span><br><span class="line">myWebView.loadUrl(&quot;http://www.example.com&quot;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">申请Internet权限：</span><br><span class="line">&lt;manifest ... &gt;</span><br><span class="line">    &lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;</span><br><span class="line">    ...</span><br><span class="line">&lt;/manifest&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用JavaScript（JavaScript is disabled in a WebView by default）</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">通过Websettings开启JavaScript</span><br><span class="line">WebView myWebView = (WebView) findViewById(R.id.webview);</span><br><span class="line">WebSettings webSettings = myWebView.getSettings();</span><br><span class="line">webSettings.setJavaScriptEnabled(<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过绑定JavaScript和你指定的android代码,让JavaScript可以调用你指定的代码，例如你定义了一个WebAppInterface类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebAppInterface</span> </span>&#123;</span><br><span class="line">    Context mContext;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Instantiate the interface and set the context */</span></span><br><span class="line">    WebAppInterface(Context c) &#123;</span><br><span class="line">        mContext = c;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Show a toast from the web page */</span></span><br><span class="line">    <span class="meta">@JavascriptInterface</span>  <span class="comment">/*新的要求，加注解,API17以上*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showToast</span><span class="params">(String toast)</span> </span>&#123;</span><br><span class="line">        Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">WebView webView = (WebView) findViewById(R.id.webview);</span><br><span class="line">webView.addJavascriptInterface(<span class="keyword">new</span> WebAppInterface(<span class="keyword">this</span>), <span class="string">"Android"</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>到此，JavaScript就可以调用你定义的函数了</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"Say hello"</span> <span class="attr">onClick</span>=<span class="string">"showAndroidToast('Hello Android!')"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    function showAndroidToast(toast) &#123;</span></span><br><span class="line"><span class="undefined">        Android.showToast(toast); /*There's no need to initialize the Android interface from JavaScript. The WebView automatically makes it available to your web page</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="2-存在的安全问题："><a href="#2-存在的安全问题：" class="headerlink" title="2 存在的安全问题："></a>2 存在的安全问题：</h1><h2 id="1-Webview-任意代码执行漏洞"><a href="#1-Webview-任意代码执行漏洞" class="headerlink" title="1 Webview 任意代码执行漏洞"></a>1 Webview 任意代码执行漏洞</h2><ol>
+<li>问题方法”addJavascriptInterface()”,上文基础部分中提到这个方法让JavaScript调用你定义的JAVA函数</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">mWebView.addJavascriptInterface(<span class="keyword">new</span> TestAddJsInterface(), “myjs”);</span><br></pre></td></tr></table></figure>
+<ol>
+<li>在API17之前，上面的“addJavascriptInterface()”方法会导致出现问题，网页中的JS脚本可以利用接口“myjs”调用App中的Java代码，而Java对象继承关系会导致很多Public的函数及getClass函数都可以在JS中被访问，结合Java的反射机制，攻击者还可以获得系统类的函数，进而可以进行任意代码执行</li>
+</ol>
+<p>类似的攻击代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function">function <span class="title">execute</span><span class="params">(cmdArgs)</span>  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="comment">// 步骤1：遍历 window 对象</span></span><br><span class="line">    <span class="comment">// 目的是为了找到包含 getClass()的对象</span></span><br><span class="line">    <span class="comment">// 因为Android映射的"myjs"对象也在window中，所以肯定会遍历到</span></span><br><span class="line">    <span class="keyword">for</span> (var obj in window) &#123;  </span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"getClass"</span> in window[obj]) &#123;  </span><br><span class="line"></span><br><span class="line">      <span class="comment">// 步骤2：利用反射调用forName（）得到Runtime类对象</span></span><br><span class="line">            alert(obj);          </span><br><span class="line">            <span class="keyword">return</span>  window[obj].getClass().forName(<span class="string">"java.lang.Runtime"</span>)  </span><br><span class="line"></span><br><span class="line">      <span class="comment">// 步骤3：以后，就可以调用静态方法来执行一些命令，比如访问文件的命令</span></span><br><span class="line">getMethod(<span class="string">"getRuntime"</span>,<span class="keyword">null</span>).invoke(<span class="keyword">null</span>,<span class="keyword">null</span>).exec(cmdArgs);  </span><br><span class="line"></span><br><span class="line"><span class="comment">// 从执行命令后返回的输入流中得到字符串，有很严重暴露隐私的危险。</span></span><br><span class="line"><span class="comment">// 如执行完访问文件的命令之后，就可以得到文件名的信息了。</span></span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>当一些 APP 通过扫描二维码打开一个外部网页时，攻击者就可以执行这段 js 代码进行漏洞攻击</p>
+</li>
+<li><p>关键的JAVA反射思路如下：</p>
+</li>
+</ol>
+<ul>
+<li>JAVA中的对象有一公共的方法：getClass() ；</li>
+<li>该方法可以获取到当前类的Class对象</li>
+<li>该类有一关键的方法： Class.forName；</li>
+<li>该方法可以加载一个类（可加载 java.lang.Runtime 类）</li>
+<li>而该类是可以执行本地命令的</li>
+</ul>
+<ol>
+<li>解决方案：</li>
+</ol>
+<p>Google在API_17中规定允许被调用的函数必须以@JavascriptInterface进行注解，理论上如果APP依赖的API为17或者以上，就不会受该问题的影响。所以检查API的版本和关键函数的注解可以有效识别漏洞</p>
+<h2 id="2-WebView域控制不严格漏洞"><a href="#2-WebView域控制不严格漏洞" class="headerlink" title="2 WebView域控制不严格漏洞"></a>2 WebView域控制不严格漏洞</h2><p>这个漏洞主要出现在了对file协议的控制不当上，通过4个API来理解WebView中file协议的安全性，下面的代码是新建一个Webview，通过发送Intent调用这个export的activity，把intent中的data作为url传入Webview，这个data是攻击者可控的</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebViewActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> WebView webView;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_webview);</span><br><span class="line">        webView = (WebView) findViewById(R.id.webView1);</span><br><span class="line">        <span class="comment">//webView.getSettings().setAllowFileAccess(false);                    (1)</span></span><br><span class="line">        <span class="comment">//webView.getSettings().setJavaScriptEnabled(true);                   (2)</span></span><br><span class="line">        <span class="comment">//webView.getSettings().setAllowFileAccessFromFileURLs(true);       (3)</span></span><br><span class="line">        <span class="comment">//webView.getSettings().setAllowUniversalAccessFromFileURLs(true); (4)</span></span><br><span class="line">        Intent i = getIntent();</span><br><span class="line">        String url = i.getData().toString();</span><br><span class="line">        webView.loadUrl(url);</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>/<strong>Mainifest.xml</strong>/<br>// 将该 WebViewActivity 在Mainifest.xml设置exported属性<br>// 表示：当前Activity是否可以被另一个Application的组件启动<br>android:exported=”true”</p>
+<ol>
+<li>setAllowFileAccess</li>
+</ol>
+<p>设置是否允许 WebView 使用 File 协议 ,默认设置为true，即允许在 File 域下执行任意 JavaScript 代码 ,使用 file 域加载的 js代码能够使用进行同源策略跨域访问，从而导致隐私信息泄露,如果不允许使用 file 协议，则不会存在上述的威胁；但同时也限制了 WebView 的功能，使其不能加载本地的 html 文件</p>
+<ol>
+<li>setAllowFileAccessFromFileURLs</li>
+</ol>
+<p>设置是否允许通过 file url 加载的 Js代码读取其他的本地文件,当这个方法为true时，攻击者可以读取本地敏感文件<br>在Android 4.1前默认允许<br>在Android 4.1后默认禁止</p>
+<ol>
+<li><p>setAllowUniversalAccessFromFileURLs<br>设置是否允许通过 file url 加载的 Javascript 可以访问其他的源(包括http、https等源)<br>在Android 4.1前默认允许（setAllowFileAccessFromFileURLs（）不起作用）<br>在Android 4.1后默认禁止</p>
+</li>
+<li><p>setJavaScriptEnabled</p>
+</li>
+</ol>
+<p>设置是否允许 WebView 使用 JavaScript（默认是不允许）<br>但很多应用（包括移动浏览器）为了让 WebView 执行 http 协议中的 JavaScript，都会主动设置为true，不区别对待是非常危险的。</p>
+<ol>
+<li><p>符号链接跨源攻击 (不看)</p>
+</li>
+<li><p>最佳设置</p>
+</li>
+</ol>
+<ul>
+<li><p>对于不需要使用 file 协议的应用，禁用 file 协议；</p>
+</li>
+<li><p>对于需要使用 file 协议的应用，禁止 file 协议加载 JavaScript。</p>
+</li>
+</ul>
+<h2 id="明文保存密码"><a href="#明文保存密码" class="headerlink" title="明文保存密码"></a>明文保存密码</h2><ol>
+<li>WebView默认开启密码保存功能 ：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">mWebView.setSavePassword(<span class="keyword">true</span>)</span><br></pre></td></tr></table></figure>
+<p>开启后，在用户输入密码时，会弹出提示框：询问用户是否保存密码；<br>如果选择”是”，密码会被明文保到 /data/data/com.package.name/databases/webview.db 中，这样就有被盗取密码的危险</p>
+<ol>
+<li>关闭密码保存提醒</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">WebSettings.setSavePassword(<span class="keyword">false</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="SSL-Error-Handling"><a href="#SSL-Error-Handling" class="headerlink" title="SSL Error Handling"></a>SSL Error Handling</h2><p>直接忽略了SSL错误的处理方法，让程序继续运行，让程序有机会收到Mitm</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceivedSslError</span><span class="params">(WebView view, SslErrorHandler handler,</span></span></span><br><span class="line"><span class="function"><span class="params">SslError error)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">handler.proceed();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="refer-link"><a href="#refer-link" class="headerlink" title="refer link:"></a>refer link:</h1><p><a href="https://pentestlab.blog/2017/02/12/android-webview-vulnerabilities/" target="_blank" rel="noopener">https://pentestlab.blog/2017/02/12/android-webview-vulnerabilities/</a></p>
+<p><a href="https://developer.android.com/guide/webapps/webview.html" target="_blank" rel="noopener">https://developer.android.com/guide/webapps/webview.html</a></p>
+<p><a href="https://www.jianshu.com/p/3a345d27cd42" target="_blank" rel="noopener">https://www.jianshu.com/p/3a345d27cd42</a></p>
+<p><a href="https://www.jianshu.com/p/5b3acad0f025" target="_blank" rel="noopener">https://www.jianshu.com/p/5b3acad0f025</a></p>
+<p><a href="http://blogs.360.cn/360mobile/2014/09/22/webview%E8%B7%A8%E6%BA%90%E6%94%BB%E5%87%BB%E5%88%86%E6%9E%90/" target="_blank" rel="noopener">http://blogs.360.cn/360mobile/2014/09/22/webview%E8%B7%A8%E6%BA%90%E6%94%BB%E5%87%BB%E5%88%86%E6%9E%90/</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/27/Hexo-奇怪的错误/" rel="next" title="Hexo 奇怪的错误">
+                <i class="fa fa-chevron-left"></i> Hexo 奇怪的错误
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/Logo_new.jpg"
+                alt="Rick7" />
+            
+              <p class="site-author-name" itemprop="name">Rick7</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-基本开发知识："><span class="nav-number">1.</span> <span class="nav-text">1 基本开发知识：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-存在的安全问题："><span class="nav-number">2.</span> <span class="nav-text">2 存在的安全问题：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Webview-任意代码执行漏洞"><span class="nav-number">2.1.</span> <span class="nav-text">1 Webview 任意代码执行漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-WebView域控制不严格漏洞"><span class="nav-number">2.2.</span> <span class="nav-text">2 WebView域控制不严格漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#明文保存密码"><span class="nav-number">2.3.</span> <span class="nav-text">明文保存密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSL-Error-Handling"><span class="nav-number">2.4.</span> <span class="nav-text">SSL Error Handling</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#refer-link"><span class="nav-number">3.</span> <span class="nav-text">refer link:</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rick7</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="Symbols count total">51k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="Reading time total">0:51</span>
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.0.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.2"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
