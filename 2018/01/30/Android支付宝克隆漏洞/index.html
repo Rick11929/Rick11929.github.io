@@ -100,21 +100,21 @@
 
 
   
-  <meta name="keywords" content="Python," />
+  <meta name="keywords" content="Android," />
 
 
-<meta name="description" content="Pyenv pyenv 是针对 python 版本的管理，通过修改环境变量的方式实现；  pyenv 原理   pyenv 的美好之处在于，它并没有使用将不同的 $PATH 植入不同的 shell 这种高耦合的工作方式，而是简单地在 $PATH 的最前面插入了一个垫片路径（shims）：~/.pyenv/shims:/usr/local/bin:/usr/bin:/bin。所有对 Python 可">
-<meta name="keywords" content="Python">
+<meta name="description" content="上一篇文章介绍了Android Webview组件的安全问题，其中一个就是file域访问限制不严格导致数据泄露，前段时间很火的支付宝克隆漏洞也是基于file协议的权限设置不当造成的，参考了很多文章总结一下攻击流程： 1 克隆漏洞基本原理解释： Step 1 ：通过 URL Scheme 的方式唤起打开 App 里暴露出去的(export=true)带 WebView 组件的 Activity ,">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Pyenv &amp; virtualenv">
-<meta property="og:url" content="http://yoursite.com/2017/06/23/pyenv-virtualenv/index.html">
+<meta property="og:title" content="Android支付宝克隆漏洞">
+<meta property="og:url" content="http://yoursite.com/2018/01/30/Android支付宝克隆漏洞/index.html">
 <meta property="og:site_name" content="Rick7dology">
-<meta property="og:description" content="Pyenv pyenv 是针对 python 版本的管理，通过修改环境变量的方式实现；  pyenv 原理   pyenv 的美好之处在于，它并没有使用将不同的 $PATH 植入不同的 shell 这种高耦合的工作方式，而是简单地在 $PATH 的最前面插入了一个垫片路径（shims）：~/.pyenv/shims:/usr/local/bin:/usr/bin:/bin。所有对 Python 可">
+<meta property="og:description" content="上一篇文章介绍了Android Webview组件的安全问题，其中一个就是file域访问限制不严格导致数据泄露，前段时间很火的支付宝克隆漏洞也是基于file协议的权限设置不当造成的，参考了很多文章总结一下攻击流程： 1 克隆漏洞基本原理解释： Step 1 ：通过 URL Scheme 的方式唤起打开 App 里暴露出去的(export=true)带 WebView 组件的 Activity ,">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-01-23T06:39:44.000Z">
+<meta property="og:updated_time" content="2018-01-30T09:28:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Pyenv &amp; virtualenv">
-<meta name="twitter:description" content="Pyenv pyenv 是针对 python 版本的管理，通过修改环境变量的方式实现；  pyenv 原理   pyenv 的美好之处在于，它并没有使用将不同的 $PATH 植入不同的 shell 这种高耦合的工作方式，而是简单地在 $PATH 的最前面插入了一个垫片路径（shims）：~/.pyenv/shims:/usr/local/bin:/usr/bin:/bin。所有对 Python 可">
+<meta name="twitter:title" content="Android支付宝克隆漏洞">
+<meta name="twitter:description" content="上一篇文章介绍了Android Webview组件的安全问题，其中一个就是file域访问限制不严格导致数据泄露，前段时间很火的支付宝克隆漏洞也是基于file协议的权限设置不当造成的，参考了很多文章总结一下攻击流程： 1 克隆漏洞基本原理解释： Step 1 ：通过 URL Scheme 的方式唤起打开 App 里暴露出去的(export=true)带 WebView 组件的 Activity ,">
 
 
 
@@ -123,10 +123,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/06/23/pyenv-virtualenv/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/30/Android支付宝克隆漏洞/"/>
 
 
-  <title>Pyenv & virtualenv | Rick7dology</title>
+  <title>Android支付宝克隆漏洞 | Rick7dology</title>
   
 
 
@@ -267,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/23/pyenv-virtualenv/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/30/Android支付宝克隆漏洞/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Rick7">
@@ -284,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Pyenv & virtualenv</h1>
+          <h1 class="post-title" itemprop="name headline">Android支付宝克隆漏洞</h1>
         
 
         <div class="post-meta">
@@ -296,7 +296,7 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-23T22:41:14+08:00">2017-06-23</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-30T23:54:33+08:00">2018-01-30</time>
             
 
             
@@ -327,7 +327,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article&#58;</span>
                 
-                <span title="Symbols count in article">2.1k</span>
+                <span title="Symbols count in article">1.9k</span>
               
 
               
@@ -361,44 +361,53 @@
       
 
       
-        <h1 id="Pyenv"><a href="#Pyenv" class="headerlink" title="Pyenv"></a>Pyenv</h1><ul>
-<li><p>pyenv 是针对 python 版本的管理，通过修改环境变量的方式实现；</p>
+        <p>上一篇文章介绍了Android Webview组件的安全问题，其中一个就是file域访问限制不严格导致数据泄露，前段时间很火的支付宝克隆漏洞也是基于file协议的权限设置不当造成的，参考了很多文章总结一下攻击流程：</p>
+<h1 id="1-克隆漏洞基本原理解释："><a href="#1-克隆漏洞基本原理解释：" class="headerlink" title="1 克隆漏洞基本原理解释："></a>1 克隆漏洞基本原理解释：</h1><ul>
+<li><p>Step 1 ：通过 URL Scheme 的方式唤起打开 App 里暴露出去的(export=true)带 WebView 组件的 Activity , 这里需要得到支付宝的Scheme，然后通过这些Scheme打开Webview</p>
 </li>
-<li><p>pyenv 原理</p>
+<li><p>Step 2 ：在发送给目标的网页中通过a标签调用支付宝带 WebView 组件的 Activity，从而实现在支付宝中打开Webview</p>
+</li>
+<li><p>Step 3 ：Webview加载攻击者的攻击脚本到本地SD卡的download目录：</p>
+</li>
+<li><p>Step 4 ：再利用file协议加载攻击者存在本地的脚本</p>
+</li>
+<li><p>Step 5 ：由于这个Webview是通过支付宝打开的，再通过file协议读取本地攻击脚本，所以本地攻击脚本实际是支付宝打开的，可以读取支付宝沙盒进程的个人用户数据，并上传回服务器，到此，攻击完成，成功得到用户的支付宝数据</p>
+</li>
+<li><p>Step 6 ：攻击者加载目标用户的支付宝数据，支付宝没有二次验证机器指纹直接默认登录成功，攻击者可以使用用户的支付宝进行支付</p>
 </li>
 </ul>
-<p>pyenv 的美好之处在于，它并没有使用将不同的 $PATH 植入不同的 shell 这种高耦合的工作方式，而是简单地在 $PATH 的最前面插入了一个垫片路径（shims）：~/.pyenv/shims:/usr/local/bin:/usr/bin:/bin。所有对 Python 可执行文件的查找都会首先被这个 shims 路径截获，从而架空了后面的系统路径。</p>
-<p>作者原文如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Understanding Shims</span><br><span class="line"></span><br><span class="line">pyenv works by inserting a directory of shims at the front of your PATH:</span><br><span class="line"></span><br><span class="line">$(pyenv root)/shims:/usr/local/bin:/usr/bin:/bin</span><br><span class="line">Through a process called rehashing, pyenv maintains shims <span class="keyword">in</span> that directory to match every Python command across every installed version of Python—python, pip, <span class="keyword">and</span> so on.</span><br><span class="line"></span><br><span class="line">Shims are lightweight executables that simply <span class="keyword">pass</span> your command along to pyenv. So <span class="keyword">with</span> pyenv installed, when you run, say, pip, your operating system will do the following:</span><br><span class="line"></span><br><span class="line">Search your PATH <span class="keyword">for</span> an executable file named pip</span><br><span class="line">Find the pyenv shim named pip at the beginning of your PATH</span><br><span class="line">Run the shim named pip, which <span class="keyword">in</span> turn passes the command along to pyenv</span><br></pre></td></tr></table></figure>
-<p><a href="https://github.com/pyenv/pyenv#how-it-works" target="_blank" rel="noopener">具体的下载和使用教程请点击我！！！</a><br><a href="http://python.jobbole.com/85587/" target="_blank" rel="noopener">具体的命令使用详解请点击我！！！</a></p>
-<h2 id="python切换"><a href="#python切换" class="headerlink" title="python切换"></a>python切换</h2><ol>
-<li><p>pyenv global 3.4.0 — 设置全局的 Python 版本，通过将版本号写入 ~/.pyenv/version 文件的方式。</p>
-</li>
-<li><p>pyenv local 2.7.3 — 设置面向程序的本地版本，通过将版本号写入当前目录下的 .python-version 文件的方式。通过这种方式设置的 Python 版本优先级较 global 高。</p>
-</li>
+<h1 id="2-漏洞利用的关键点："><a href="#2-漏洞利用的关键点：" class="headerlink" title="2 漏洞利用的关键点："></a>2 漏洞利用的关键点：</h1><ol>
+<li>Step 1：</li>
 </ol>
-<p>pyenv 会从当前目录开始向上逐级查找 .python-version 文件，直到根目录为止。若找不到，就用 global 版本。<br>$ pyenv shell pypy-2.2.1 — 设置面向 shell 的 Python 版本，通过设置当前 shell 的 PYENV_VERSION<br>环境变量的方式。这个版本的优先级比 local 和 global 都要高。–unset 参数可以用于取消当前 shell 设定的版本。</p>
+<p>这里使用了支付宝定义的URL Scheme，如何得到有效的Scheme，使得可以通过a标签启动支付宝的Webview，这是一个关键点</p>
 <ol>
-<li><p>pyenv shell –unset</p>
+<li><p>Step 2：<br>构造一个网页，网页代码要包含：1.启动支付宝的Webview  2.下载攻击脚本到本地SD卡的download目录 3.利用file协议加载本地攻击脚本</p>
 </li>
-<li><p>python优先级</p>
+<li><p>Step 5：<br>下载到本地的攻击脚本再一次利用file协议读取支付宝的个人数据，并上传到攻击者的服务器或者设备中</p>
+</li>
+<li><p>攻击成功的两个关键点：</p>
 </li>
 </ol>
-<p>shell &gt; local &gt; global</p>
-<h1 id="virtualenv"><a href="#virtualenv" class="headerlink" title="virtualenv"></a>virtualenv</h1><ul>
-<li>virtualenv 用处</li>
-</ul>
-<p>处理python环境的多版本和模块依赖，以及相应的权限是一个很常见的问题。比如，你有个应用使用的是LibFoo V1.0，但另一个应用却要用到LibFoo V2.0。 如何处理呢？如果把所有模块都安装到 /usr/lib/python2.7/site-packages (或是你本机python默认的模块安装目录)，那你极有可能无意中升级一些不该升级的模块。</p>
 <ul>
-<li>在Pyenv中有相应插件：pyenv-virtualenv 或者使用virtualenvwrapper，这是 virtualenv 的扩展工具，提供了一系列命令行命令</li>
+<li><p>WebView中setAllowFileAccessFromFileURLs 或setAllowUniversalAccessFromFileURLsAPI配置为true；</p>
+</li>
+<li><p>WebView可以直接被外部调用，并能够加载外部可控的HTML文件</p>
+</li>
 </ul>
-<p>使用pyenv来管理python，使用 pyenv-virtualenv 插件来管理多版本 python包。</p>
-<p><a href="http://virtualenv-chinese-docs.readthedocs.io/en/latest/#" target="_blank" rel="noopener">中文参考链接</a></p>
-<h1 id="关于环境变量"><a href="#关于环境变量" class="headerlink" title="关于环境变量"></a>关于环境变量</h1><p>OS X系统的环境变量，加载顺序为：</p>
-<p>/etc/profile<br>/etc/paths<br>~/.bash_profile<br>~/.bash_login<br>~/.profile<br>~/.bashrc<br>/etc/profile和/etc/paths是系统级别的，系统启动就会加载，<br>后面几个是当前用户级的环境变量。</p>
-<p>~/.bash_profile，~/.bash_login，~/.profile按照从前往后的顺序读取，<br>如果~/.bash_profile文件存在，则后面的几个文件就会被忽略不读了，<br>如果~/.bash_profile文件不存在，才会以此类推读取后面的文件。</p>
-<p>~/.bashrc没有上述规则，它是bash shell打开的时候载入的。</p>
-<p>修改完后记得source一下让其快速生效</p>
+<h1 id="3-相关技术介绍："><a href="#3-相关技术介绍：" class="headerlink" title="3 相关技术介绍："></a>3 相关技术介绍：</h1><ol>
+<li>什么是URL Scheme：</li>
+</ol>
+<blockquote>
+<p>android中的scheme是一种页面内跳转协议，是一种非常好的实现机制，通过定义自己的scheme协议，可以非常方便跳转app中的各个页面；通过scheme协议，服务器可以定制化告诉App跳转那个页面，可以通过通知栏消息定制化跳转页面，可以通过H5页面跳转页面等。</p>
+<p>客户端应用可以向操作系统注册一个 URL scheme，该 scheme 用于从浏览器或其他应用中启动本应用。通过指定的 URL 字段，可以让应用在被调起后直接打开某些特定页面，比如商品详情页、活动详情页等等。也可以执行某些指定动作，如完成支付等。也可以在应用内通过 html 页来直接调用显示 app 内的某个页面</p>
+</blockquote>
+<h1 id="4-总结："><a href="#4-总结：" class="headerlink" title="4 总结："></a>4 总结：</h1><p>这次的克隆漏洞利用的都是Android Webview的已知漏洞，但却玩出了新花样，但却引出了一些问题，例如Chrome打开网页自动下载没有一丁点提示，支付宝没有对用户进行二次设备验证等</p>
+<h1 id="5-refer-link："><a href="#5-refer-link：" class="headerlink" title="5 refer link："></a>5 refer link：</h1><p>关于Android平台WebView控件存在跨域访问高危漏洞的安全公告<br><a href="http://www.cnvd.org.cn/webinfo/show/4365?from=timeline&amp;isappinstalled=0" target="_blank" rel="noopener">http://www.cnvd.org.cn/webinfo/show/4365?from=timeline&amp;isappinstalled=0</a></p>
+<p>“应用克隆”攻击模型<br><a href="https://mp.weixin.qq.com/s/pQqOLQS_hWfv8btYpYK1xQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/pQqOLQS_hWfv8btYpYK1xQ</a></p>
+<p>Android安全开发之浅谈网页打开APP<br><a href="https://yq.aliyun.com/articles/57088" target="_blank" rel="noopener">https://yq.aliyun.com/articles/57088</a></p>
+<p>Webview跨源攻击分析<br><a href="http://blogs.360.cn/360mobile/2014/09/22/webview%E8%B7%A8%E6%BA%90%E6%94%BB%E5%87%BB%E5%88%86%E6%9E%90/" target="_blank" rel="noopener">http://blogs.360.cn/360mobile/2014/09/22/webview%E8%B7%A8%E6%BA%90%E6%94%BB%E5%87%BB%E5%88%86%E6%9E%90/</a></p>
+<p>Attack Your Android Apps By Webview<br><a href="http://blog.knownsec.com/2013/03/attack-your-android-apps-by-webview/" target="_blank" rel="noopener">http://blog.knownsec.com/2013/03/attack-your-android-apps-by-webview/</a></p>
+<p>Andorid Intent 与 Chrome<br><a href="https://developer.chrome.com/multidevice/android/intents?spm=5176.100239.blogcont57088.9.1c29be50KIPvAG" target="_blank" rel="noopener">https://developer.chrome.com/multidevice/android/intents?spm=5176.100239.blogcont57088.9.1c29be50KIPvAG</a></p>
 
       
     </div>
@@ -416,7 +425,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
+            <a href="/tags/Android/" rel="tag"># Android</a>
           
         </div>
       
@@ -429,8 +438,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/22/iOS-security-testing/" rel="next" title="iOS security testing">
-                <i class="fa fa-chevron-left"></i> iOS security testing
+              <a href="/2018/01/27/Android-WebView-Vulnerabilities/" rel="next" title="Android WebView Vulnerabilities">
+                <i class="fa fa-chevron-left"></i> Android WebView Vulnerabilities
               </a>
             
           </div>
@@ -438,10 +447,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/02/Clickjacking-test-method/" rel="prev" title="Clickjacking test method">
-                Clickjacking test method <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -575,7 +580,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Pyenv"><span class="nav-number">1.</span> <span class="nav-text">Pyenv</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#python切换"><span class="nav-number">1.1.</span> <span class="nav-text">python切换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#virtualenv"><span class="nav-number">2.</span> <span class="nav-text">virtualenv</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于环境变量"><span class="nav-number">3.</span> <span class="nav-text">关于环境变量</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-克隆漏洞基本原理解释："><span class="nav-number">1.</span> <span class="nav-text">1 克隆漏洞基本原理解释：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-漏洞利用的关键点："><span class="nav-number">2.</span> <span class="nav-text">2 漏洞利用的关键点：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-相关技术介绍："><span class="nav-number">3.</span> <span class="nav-text">3 相关技术介绍：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-总结："><span class="nav-number">4.</span> <span class="nav-text">4 总结：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-refer-link："><span class="nav-number">5.</span> <span class="nav-text">5 refer link：</span></a></li></ol></div>
             
 
           </div>

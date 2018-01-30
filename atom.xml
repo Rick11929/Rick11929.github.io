@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-01-29T10:27:18.000Z</updated>
+  <updated>2018-01-30T09:28:00.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android支付宝克隆漏洞</title>
+    <link href="http://yoursite.com/2018/01/30/Android%E6%94%AF%E4%BB%98%E5%AE%9D%E5%85%8B%E9%9A%86%E6%BC%8F%E6%B4%9E/"/>
+    <id>http://yoursite.com/2018/01/30/Android支付宝克隆漏洞/</id>
+    <published>2018-01-30T15:54:33.000Z</published>
+    <updated>2018-01-30T09:28:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>上一篇文章介绍了Android Webview组件的安全问题，其中一个就是file域访问限制不严格导致数据泄露，前段时间很火的支付宝克隆漏洞也是基于file协议的权限设置不当造成的，参考了很多文章总结一下攻击流程：</p><h1 id="1-克隆漏洞基本原理解释："><a href="#1-克隆漏洞基本原理解释：" class="headerlink" title="1 克隆漏洞基本原理解释："></a>1 克隆漏洞基本原理解释：</h1><ul><li><p>Step 1 ：通过 URL Scheme 的方式唤起打开 App 里暴露出去的(export=true)带 WebView 组件的 Activity , 这里需要得到支付宝的Scheme，然后通过这些Scheme打开Webview</p></li><li><p>Step 2 ：在发送给目标的网页中通过a标签调用支付宝带 WebView 组件的 Activity，从而实现在支付宝中打开Webview</p></li><li><p>Step 3 ：Webview加载攻击者的攻击脚本到本地SD卡的download目录：</p></li><li><p>Step 4 ：再利用file协议加载攻击者存在本地的脚本</p></li><li><p>Step 5 ：由于这个Webview是通过支付宝打开的，再通过file协议读取本地攻击脚本，所以本地攻击脚本实际是支付宝打开的，可以读取支付宝沙盒进程的个人用户数据，并上传回服务器，到此，攻击完成，成功得到用户的支付宝数据</p></li><li><p>Step 6 ：攻击者加载目标用户的支付宝数据，支付宝没有二次验证机器指纹直接默认登录成功，攻击者可以使用用户的支付宝进行支付</p></li></ul><h1 id="2-漏洞利用的关键点："><a href="#2-漏洞利用的关键点：" class="headerlink" title="2 漏洞利用的关键点："></a>2 漏洞利用的关键点：</h1><ol><li>Step 1：</li></ol><p>这里使用了支付宝定义的URL Scheme，如何得到有效的Scheme，使得可以通过a标签启动支付宝的Webview，这是一个关键点</p><ol><li><p>Step 2：<br>构造一个网页，网页代码要包含：1.启动支付宝的Webview  2.下载攻击脚本到本地SD卡的download目录 3.利用file协议加载本地攻击脚本</p></li><li><p>Step 5：<br>下载到本地的攻击脚本再一次利用file协议读取支付宝的个人数据，并上传到攻击者的服务器或者设备中</p></li><li><p>攻击成功的两个关键点：</p></li></ol><ul><li><p>WebView中setAllowFileAccessFromFileURLs 或setAllowUniversalAccessFromFileURLsAPI配置为true；</p></li><li><p>WebView可以直接被外部调用，并能够加载外部可控的HTML文件</p></li></ul><h1 id="3-相关技术介绍："><a href="#3-相关技术介绍：" class="headerlink" title="3 相关技术介绍："></a>3 相关技术介绍：</h1><ol><li>什么是URL Scheme：</li></ol><blockquote><p>android中的scheme是一种页面内跳转协议，是一种非常好的实现机制，通过定义自己的scheme协议，可以非常方便跳转app中的各个页面；通过scheme协议，服务器可以定制化告诉App跳转那个页面，可以通过通知栏消息定制化跳转页面，可以通过H5页面跳转页面等。</p><p>客户端应用可以向操作系统注册一个 URL scheme，该 scheme 用于从浏览器或其他应用中启动本应用。通过指定的 URL 字段，可以让应用在被调起后直接打开某些特定页面，比如商品详情页、活动详情页等等。也可以执行某些指定动作，如完成支付等。也可以在应用内通过 html 页来直接调用显示 app 内的某个页面</p></blockquote><h1 id="4-总结："><a href="#4-总结：" class="headerlink" title="4 总结："></a>4 总结：</h1><p>这次的克隆漏洞利用的都是Android Webview的已知漏洞，但却玩出了新花样，但却引出了一些问题，例如Chrome打开网页自动下载没有一丁点提示，支付宝没有对用户进行二次设备验证等</p><h1 id="5-refer-link："><a href="#5-refer-link：" class="headerlink" title="5 refer link："></a>5 refer link：</h1><p>关于Android平台WebView控件存在跨域访问高危漏洞的安全公告<br><a href="http://www.cnvd.org.cn/webinfo/show/4365?from=timeline&amp;isappinstalled=0" target="_blank" rel="noopener">http://www.cnvd.org.cn/webinfo/show/4365?from=timeline&amp;isappinstalled=0</a></p><p>“应用克隆”攻击模型<br><a href="https://mp.weixin.qq.com/s/pQqOLQS_hWfv8btYpYK1xQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/pQqOLQS_hWfv8btYpYK1xQ</a></p><p>Android安全开发之浅谈网页打开APP<br><a href="https://yq.aliyun.com/articles/57088" target="_blank" rel="noopener">https://yq.aliyun.com/articles/57088</a></p><p>Webview跨源攻击分析<br><a href="http://blogs.360.cn/360mobile/2014/09/22/webview%E8%B7%A8%E6%BA%90%E6%94%BB%E5%87%BB%E5%88%86%E6%9E%90/" target="_blank" rel="noopener">http://blogs.360.cn/360mobile/2014/09/22/webview%E8%B7%A8%E6%BA%90%E6%94%BB%E5%87%BB%E5%88%86%E6%9E%90/</a></p><p>Attack Your Android Apps By Webview<br><a href="http://blog.knownsec.com/2013/03/attack-your-android-apps-by-webview/" target="_blank" rel="noopener">http://blog.knownsec.com/2013/03/attack-your-android-apps-by-webview/</a></p><p>Andorid Intent 与 Chrome<br><a href="https://developer.chrome.com/multidevice/android/intents?spm=5176.100239.blogcont57088.9.1c29be50KIPvAG" target="_blank" rel="noopener">https://developer.chrome.com/multidevice/android/intents?spm=5176.100239.blogcont57088.9.1c29be50KIPvAG</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;上一篇文章介绍了Android Webview组件的安全问题，其中一个就是file域访问限制不严格导致数据泄露，前段时间很火的支付宝克隆漏洞也是基于file协议的权限设置不当造成的，参考了很多文章总结一下攻击流程：&lt;/p&gt;
+&lt;h1 id=&quot;1-克隆漏洞基本原理解释：&quot;&gt;&lt;a
+      
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title>Android WebView Vulnerabilities</title>
