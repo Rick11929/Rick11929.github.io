@@ -111,7 +111,7 @@
 <meta property="og:site_name" content="Rick7dology">
 <meta property="og:description" content="上一篇文章介绍了Android Webview组件的安全问题，其中一个就是file域访问限制不严格导致数据泄露，前段时间很火的支付宝克隆漏洞也是基于file协议的权限设置不当造成的，参考了很多文章总结一下攻击流程： 1 克隆漏洞基本原理解释： Step 1 ：通过 URL Scheme 的方式唤起打开 App 里暴露出去的(export=true)带 WebView 组件的 Activity ,">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-01-30T09:28:00.000Z">
+<meta property="og:updated_time" content="2018-01-30T09:32:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android支付宝克隆漏洞">
 <meta name="twitter:description" content="上一篇文章介绍了Android Webview组件的安全问题，其中一个就是file域访问限制不严格导致数据泄露，前段时间很火的支付宝克隆漏洞也是基于file协议的权限设置不当造成的，参考了很多文章总结一下攻击流程： 1 克隆漏洞基本原理解释： Step 1 ：通过 URL Scheme 的方式唤起打开 App 里暴露出去的(export=true)带 WebView 组件的 Activity ,">
@@ -211,13 +211,13 @@
         
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-history"></i> <br />Archiv</a>
+            <i class="menu-item-icon fa fa-fw fa-history"></i> <br />Archives</a>
         </li>
       
         
@@ -294,7 +294,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-30T23:54:33+08:00">2018-01-30</time>
             
@@ -327,7 +327,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article&#58;</span>
                 
-                <span title="Symbols count in article">1.9k</span>
+                <span title="Symbols count in article">2k</span>
               
 
               
@@ -377,13 +377,13 @@
 </li>
 </ul>
 <h1 id="2-漏洞利用的关键点："><a href="#2-漏洞利用的关键点：" class="headerlink" title="2 漏洞利用的关键点："></a>2 漏洞利用的关键点：</h1><ol>
-<li>Step 1：</li>
+<li>在 Step 1 中：</li>
 </ol>
 <p>这里使用了支付宝定义的URL Scheme，如何得到有效的Scheme，使得可以通过a标签启动支付宝的Webview，这是一个关键点</p>
 <ol>
-<li><p>Step 2：<br>构造一个网页，网页代码要包含：1.启动支付宝的Webview  2.下载攻击脚本到本地SD卡的download目录 3.利用file协议加载本地攻击脚本</p>
+<li><p>在 Step 2 中：<br>构造一个网页，网页代码要包含：1.启动支付宝的Webview  2.下载攻击脚本到本地SD卡的download目录 3.利用file协议加载本地攻击脚本</p>
 </li>
-<li><p>Step 5：<br>下载到本地的攻击脚本再一次利用file协议读取支付宝的个人数据，并上传到攻击者的服务器或者设备中</p>
+<li><p>在 Step 5 中：<br>下载到本地的攻击脚本再一次利用file协议读取支付宝的个人数据，并上传到攻击者的服务器或者设备中</p>
 </li>
 <li><p>攻击成功的两个关键点：</p>
 </li>
@@ -394,9 +394,9 @@
 <li><p>WebView可以直接被外部调用，并能够加载外部可控的HTML文件</p>
 </li>
 </ul>
-<h1 id="3-相关技术介绍："><a href="#3-相关技术介绍：" class="headerlink" title="3 相关技术介绍："></a>3 相关技术介绍：</h1><ol>
+<h1 id="3-相关技术介绍："><a href="#3-相关技术介绍：" class="headerlink" title="3 相关技术介绍："></a>3 相关技术介绍：</h1><ul>
 <li>什么是URL Scheme：</li>
-</ol>
+</ul>
 <blockquote>
 <p>android中的scheme是一种页面内跳转协议，是一种非常好的实现机制，通过定义自己的scheme协议，可以非常方便跳转app中的各个页面；通过scheme协议，服务器可以定制化告诉App跳转那个页面，可以通过通知栏消息定制化跳转页面，可以通过H5页面跳转页面等。</p>
 <p>客户端应用可以向操作系统注册一个 URL scheme，该 scheme 用于从浏览器或其他应用中启动本应用。通过指定的 URL 字段，可以让应用在被调起后直接打开某些特定页面，比如商品详情页、活动详情页等等。也可以执行某些指定动作，如完成支付等。也可以在应用内通过 html 页来直接调用显示 app 内的某个页面</p>
@@ -408,6 +408,7 @@
 <p>Webview跨源攻击分析<br><a href="http://blogs.360.cn/360mobile/2014/09/22/webview%E8%B7%A8%E6%BA%90%E6%94%BB%E5%87%BB%E5%88%86%E6%9E%90/" target="_blank" rel="noopener">http://blogs.360.cn/360mobile/2014/09/22/webview%E8%B7%A8%E6%BA%90%E6%94%BB%E5%87%BB%E5%88%86%E6%9E%90/</a></p>
 <p>Attack Your Android Apps By Webview<br><a href="http://blog.knownsec.com/2013/03/attack-your-android-apps-by-webview/" target="_blank" rel="noopener">http://blog.knownsec.com/2013/03/attack-your-android-apps-by-webview/</a></p>
 <p>Andorid Intent 与 Chrome<br><a href="https://developer.chrome.com/multidevice/android/intents?spm=5176.100239.blogcont57088.9.1c29be50KIPvAG" target="_blank" rel="noopener">https://developer.chrome.com/multidevice/android/intents?spm=5176.100239.blogcont57088.9.1c29be50KIPvAG</a></p>
+<p>克隆攻击分析与复现<br><a href="https://xianzhi.aliyun.com/forum/topic/1952" target="_blank" rel="noopener">https://xianzhi.aliyun.com/forum/topic/1952</a></p>
 
       
     </div>
@@ -497,10 +498,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -525,7 +526,7 @@
                   <a href="/archives/">
                 
                     <span class="site-state-item-count">15</span>
-                    <span class="site-state-item-name">Artikel</span>
+                    <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
               
@@ -538,7 +539,7 @@
                 <div class="site-state-item site-state-tags">
                   <a href="/tags/index.html">
                     <span class="site-state-item-count">5</span>
-                    <span class="site-state-item-name">Tags</span>
+                    <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
               
@@ -628,7 +629,7 @@
 
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
