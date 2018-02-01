@@ -103,19 +103,19 @@
   <meta name="keywords" content="Java," />
 
 
-<meta name="description" content="1 什么是Java反射和应用场景 详细的反射教程可以参考下面的链接，讲得超级详细，简单讲就是在程序运行时动态获得类的属性和方法，并可以动态创建对象  http://www.sczyh30.com/posts/Java/java-reflection-1/#%E4%B8%80%E3%80%81%E5%9B%9E%E9%A1%BE%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF">
+<meta name="description" content="1 什么是Java反射和应用场景 详细的反射教程可以参考下面的链接，讲得超级详细，简单讲就是在程序运行时动态获得类的属性和方法，并可以动态创建对象  关于反射的详解教程请点我  应用场景   当我们在使用IDE(如Eclipse，IDEA)时，当我们输入一个对象或类并想调用它的属性或方法时，一按点号，编译器就会自动列出它的属性或方法，这里就会用到反射。反射最重要的用途就是开发各种通用框架。很多框架">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java由反射到命令执行">
 <meta property="og:url" content="http://yoursite.com/2018/02/01/Java由反射到命令执行/index.html">
 <meta property="og:site_name" content="Rick7dology">
-<meta property="og:description" content="1 什么是Java反射和应用场景 详细的反射教程可以参考下面的链接，讲得超级详细，简单讲就是在程序运行时动态获得类的属性和方法，并可以动态创建对象  http://www.sczyh30.com/posts/Java/java-reflection-1/#%E4%B8%80%E3%80%81%E5%9B%9E%E9%A1%BE%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF">
+<meta property="og:description" content="1 什么是Java反射和应用场景 详细的反射教程可以参考下面的链接，讲得超级详细，简单讲就是在程序运行时动态获得类的属性和方法，并可以动态创建对象  关于反射的详解教程请点我  应用场景   当我们在使用IDE(如Eclipse，IDEA)时，当我们输入一个对象或类并想调用它的属性或方法时，一按点号，编译器就会自动列出它的属性或方法，这里就会用到反射。反射最重要的用途就是开发各种通用框架。很多框架">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/RCE.jpg">
-<meta property="og:updated_time" content="2018-02-01T06:48:03.000Z">
+<meta property="og:updated_time" content="2018-02-01T09:55:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java由反射到命令执行">
-<meta name="twitter:description" content="1 什么是Java反射和应用场景 详细的反射教程可以参考下面的链接，讲得超级详细，简单讲就是在程序运行时动态获得类的属性和方法，并可以动态创建对象  http://www.sczyh30.com/posts/Java/java-reflection-1/#%E4%B8%80%E3%80%81%E5%9B%9E%E9%A1%BE%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF">
+<meta name="twitter:description" content="1 什么是Java反射和应用场景 详细的反射教程可以参考下面的链接，讲得超级详细，简单讲就是在程序运行时动态获得类的属性和方法，并可以动态创建对象  关于反射的详解教程请点我  应用场景   当我们在使用IDE(如Eclipse，IDEA)时，当我们输入一个对象或类并想调用它的属性或方法时，一按点号，编译器就会自动列出它的属性或方法，这里就会用到反射。反射最重要的用途就是开发各种通用框架。很多框架">
 <meta name="twitter:image" content="http://yoursite.com/images/RCE.jpg">
 
 
@@ -329,7 +329,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article&#58;</span>
                 
-                <span title="Symbols count in article">4.2k</span>
+                <span title="Symbols count in article">5k</span>
               
 
               
@@ -343,7 +343,7 @@
                 
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
-                <span title="Reading time">0:04</span>
+                <span title="Reading time">0:05</span>
               
             </div>
           
@@ -366,10 +366,28 @@
         <h1 id="1-什么是Java反射和应用场景"><a href="#1-什么是Java反射和应用场景" class="headerlink" title="1 什么是Java反射和应用场景"></a>1 什么是Java反射和应用场景</h1><ul>
 <li>详细的反射教程可以参考下面的链接，讲得超级详细，简单讲就是在程序运行时动态获得类的属性和方法，并可以动态创建对象</li>
 </ul>
-<p><a href="http://www.sczyh30.com/posts/Java/java-reflection-1/#%E4%B8%80%E3%80%81%E5%9B%9E%E9%A1%BE%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%8D%E5%B0%84%EF%BC%9F" target="_blank" rel="noopener">http://www.sczyh30.com/posts/Java/java-reflection-1/#%E4%B8%80%E3%80%81%E5%9B%9E%E9%A1%BE%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%8D%E5%B0%84%EF%BC%9F</a></p>
+<p><a href="http://www.sczyh30.com/posts/Java/java-reflection-1/#%E4%B8%80%E3%80%81%E5%9B%9E%E9%A1%BE%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%8D%E5%B0%84%EF%BC%9F" target="_blank" rel="noopener">关于反射的详解教程请点我</a></p>
 <ul>
-<li>应用场景<br>当我们在使用IDE(如Eclipse，IDEA)时，当我们输入一个对象或类并想调用它的属性或方法时，一按点号，编译器就会自动列出它的属性或方法，这里就会用到反射。反射最重要的用途就是开发各种通用框架。<br>很多框架（比如Spring）都是配置化的（比如通过XML文件配置JavaBean,Action之类的），为了保证框架的通用性，它们可能需要根据配置文件加载不同的对象或类，调用不同的方法，这个时候就必须用到反射——运行时动态加载需要加载的对象。</li>
+<li>应用场景</li>
 </ul>
+<blockquote>
+<p>当我们在使用IDE(如Eclipse，IDEA)时，当我们输入一个对象或类并想调用它的属性或方法时，一按点号，编译器就会自动列出它的属性或方法，这里就会用到反射。反射最重要的用途就是开发各种通用框架。<br>很多框架（比如Spring）都是配置化的（比如通过XML文件配置JavaBean,Action之类的），为了保证框架的通用性，它们可能需要根据配置文件加载不同的对象或类，调用不同的方法，这个时候就必须用到反射——运行时动态加载需要加载的对象。</p>
+</blockquote>
+<ul>
+<li>简单介绍几个主要方法，详解的用法可以参考我上面给的链接</li>
+</ul>
+<ol>
+<li>加载类，得到指定类的Class对象</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Class clazz = Class.forName(<span class="string">"com.yano.reflect.Consumer"</span>);</span><br><span class="line">Class clazz1 = <span class="keyword">new</span> Consumer().getClass();</span><br><span class="line">Class class2 = Person.class;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>创建实例</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">方法一：</span><br><span class="line">Class&lt;?&gt; c = String.class;</span><br><span class="line">Object str = c.newInstance();</span><br><span class="line">方法二：</span><br><span class="line"><span class="comment">//获取String所对应的Class对象</span></span><br><span class="line">Class&lt;?&gt; c = String.class;</span><br><span class="line"><span class="comment">//获取String类带一个String参数的构造器</span></span><br><span class="line">Constructor constructor = c.getConstructor(String.class);</span><br><span class="line"><span class="comment">//根据构造器创建实例</span></span><br><span class="line">Object obj = constructor.newInstance(<span class="string">"23333"</span>);</span><br><span class="line">System.out.println(obj);</span><br></pre></td></tr></table></figure>
+<ol>
+<li>获取方法</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">getMethod方法返回一个特定的方法，其中第一个参数为方法名称，后面的参数为方法的参数对应Class的对象</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> Method <span class="title">getMethod</span><span class="params">(String name, Class&lt;?&gt;... parameterTypes)</span></span></span><br></pre></td></tr></table></figure>
 <h1 id="2-Java的命令执行类："><a href="#2-Java的命令执行类：" class="headerlink" title="2 Java的命令执行类："></a>2 Java的命令执行类：</h1><ul>
 <li>java.lang.Runtime类,下面是官方文档解释</li>
 </ul>
@@ -386,7 +404,10 @@
 <li>最后综合使用,在我的mac打开了计算器程序</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, IllegalAccessException, InstantiationException, IOException </span>&#123;</span><br><span class="line">        Runtime.getRuntime().exec(<span class="string">"open /Applications/Calculator.app/"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="3-命令执行漏洞的实现，如何取得Runtime类是关键，其中一种常用方式就是通过反射"><a href="#3-命令执行漏洞的实现，如何取得Runtime类是关键，其中一种常用方式就是通过反射" class="headerlink" title="3 命令执行漏洞的实现，如何取得Runtime类是关键，其中一种常用方式就是通过反射"></a>3 命令执行漏洞的实现，如何取得Runtime类是关键，其中一种常用方式就是通过反射</h1><h2 id="场景一-Android-API17-前的Webview加了addJavascriptInterface-方法，映射了一个Java对象到js中"><a href="#场景一-Android-API17-前的Webview加了addJavascriptInterface-方法，映射了一个Java对象到js中" class="headerlink" title="场景一 Android API17 前的Webview加了addJavascriptInterface()方法，映射了一个Java对象到js中"></a>场景一 Android API17 前的Webview加了addJavascriptInterface()方法，映射了一个Java对象到js中</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebAppInterface</span> </span>&#123;</span><br><span class="line">    Context mContext;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Instantiate the interface and set the context */</span></span><br><span class="line">    WebAppInterface(Context c) &#123;</span><br><span class="line">        mContext = c;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*Show a toast from the web page */</span></span><br><span class="line">    <span class="comment">/*@JavascriptInterface  /*新的要求，加注解,API17以上*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showToast</span><span class="params">(String toast)</span> </span>&#123;</span><br><span class="line">        Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">WebView webView = (WebView) findViewById(R.id.webview);</span><br><span class="line">webView.addJavascriptInterface(<span class="keyword">new</span> WebAppInterface(<span class="keyword">this</span>), <span class="string">"Android"</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="3-命令执行漏洞的实现，如何取得Runtime类是关键，其中一种常用方式就是通过反射"><a href="#3-命令执行漏洞的实现，如何取得Runtime类是关键，其中一种常用方式就是通过反射" class="headerlink" title="3 命令执行漏洞的实现，如何取得Runtime类是关键，其中一种常用方式就是通过反射"></a>3 命令执行漏洞的实现，如何取得Runtime类是关键，其中一种常用方式就是通过反射</h1><ol>
+<li>场景一 Android API17 前的Webview加了addJavascriptInterface()方法，映射了一个Java对象到js中</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebAppInterface</span> </span>&#123;</span><br><span class="line">    Context mContext;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Instantiate the interface and set the context */</span></span><br><span class="line">    WebAppInterface(Context c) &#123;</span><br><span class="line">        mContext = c;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*Show a toast from the web page */</span></span><br><span class="line">    <span class="comment">/*@JavascriptInterface  /*新的要求，加注解,API17以上*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showToast</span><span class="params">(String toast)</span> </span>&#123;</span><br><span class="line">        Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">WebView webView = (WebView) findViewById(R.id.webview);</span><br><span class="line">webView.addJavascriptInterface(<span class="keyword">new</span> WebAppInterface(<span class="keyword">this</span>), <span class="string">"Android"</span>);</span><br></pre></td></tr></table></figure>
 <ul>
 <li>上面这段Android代码中，把WebAppInterface类映射到了js中的的Android对象上，所以可以在js中调用WebAppInterface类的方法</li>
 </ul>
@@ -397,9 +418,19 @@
 <ul>
 <li>结合前面的Java反射知识，既然暴露了Java对象给JavaScript操作，首先可以通过这个这个对象的“getClass()”方法获得对应类的Class对象，然后调用Class对象的”forname()”方法加载指定的“Runtime”类，这个特殊的“Runtime”类再调用”getmethod()”方法调用类里面的getruntime方法，返回一个Method对象，最后调用”invoke()”方法执行Runtime类的exec()方法。。。这就是整个思路了</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WebAppInterface</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showToast</span><span class="params">(String toast)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"just a test class"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, IllegalAccessException,</span></span><br><span class="line"><span class="function">            InstantiationException, IOException, NoSuchMethodException, InvocationTargetException </span>&#123;</span><br><span class="line">        WebAppInterface Android = <span class="keyword">new</span> WebAppInterface();<span class="comment">/* 模拟一个可以被js调用的实例 */</span></span><br><span class="line">        Method method = Android.getClass().forName(<span class="string">"java.lang.Runtime"</span>).getMethod(<span class="string">"getRuntime"</span>,<span class="keyword">null</span>);</span><br><span class="line">        System.out.println(method);</span><br><span class="line">        Runtime run = (Runtime) method.invoke(<span class="keyword">null</span>,<span class="keyword">null</span>);</span><br><span class="line">        run.exec(<span class="string">"open /Applications/Calculator.app/"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.company.test;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.*;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WebAppInterface</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showToast</span><span class="params">(String toast)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"just a test class"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, IllegalAccessException,</span></span><br><span class="line"><span class="function">            InstantiationException, IOException, NoSuchMethodException, InvocationTargetException </span>&#123;</span><br><span class="line">        WebAppInterface Android = <span class="keyword">new</span> WebAppInterface();<span class="comment">/* 模拟一个可以被js调用的实例 */</span></span><br><span class="line">        Method method = Android.getClass().forName(<span class="string">"java.lang.Runtime"</span>).getMethod(<span class="string">"getRuntime"</span>,<span class="keyword">null</span>);</span><br><span class="line">        Runtime run = (Runtime) method.invoke(<span class="keyword">null</span>,<span class="keyword">null</span>);</span><br><span class="line">        run.exec(<span class="string">"open /Applications/Calculator.app/"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="/images/RCE.jpg" alt="效果图"></p>
-
+<h1 id="Bonus"><a href="#Bonus" class="headerlink" title="Bonus"></a>Bonus</h1><p>关于Java泛型的一点讲解：泛型的本质是参数化类型，也就是说所操作的数据类型被指定为一个参数。</p>
+<p><a href="https://www.jianshu.com/p/95f349258afb" target="_blank" rel="noopener">详细的Java 泛型讲解请点击我</a></p>
+<ol>
+<li>不用泛型直接通过反射创建类的实例，需要进行强制类型转换</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Consumer clazz;</span><br><span class="line">clazz = (Consumer) Class.forName(<span class="string">"com.company.hsbc.Consumer"</span>).newInstance();</span><br></pre></td></tr></table></figure>
+<ol>
+<li>用object类型可以解决问题</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Object clazz;</span><br><span class="line">clazz = Class.forName(<span class="string">"com.company.hsbc.Consumer"</span>).newInstance();</span><br></pre></td></tr></table></figure>
+<h1 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h1>
       
     </div>
     
@@ -571,7 +602,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-什么是Java反射和应用场景"><span class="nav-number">1.</span> <span class="nav-text">1 什么是Java反射和应用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Java的命令执行类："><span class="nav-number">2.</span> <span class="nav-text">2 Java的命令执行类：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-命令执行漏洞的实现，如何取得Runtime类是关键，其中一种常用方式就是通过反射"><span class="nav-number">3.</span> <span class="nav-text">3 命令执行漏洞的实现，如何取得Runtime类是关键，其中一种常用方式就是通过反射</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#场景一-Android-API17-前的Webview加了addJavascriptInterface-方法，映射了一个Java对象到js中"><span class="nav-number">3.1.</span> <span class="nav-text">场景一 Android API17 前的Webview加了addJavascriptInterface()方法，映射了一个Java对象到js中</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-什么是Java反射和应用场景"><span class="nav-number">1.</span> <span class="nav-text">1 什么是Java反射和应用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Java的命令执行类："><span class="nav-number">2.</span> <span class="nav-text">2 Java的命令执行类：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-命令执行漏洞的实现，如何取得Runtime类是关键，其中一种常用方式就是通过反射"><span class="nav-number">3.</span> <span class="nav-text">3 命令执行漏洞的实现，如何取得Runtime类是关键，其中一种常用方式就是通过反射</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Bonus"><span class="nav-number">4.</span> <span class="nav-text">Bonus</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接："><span class="nav-number">5.</span> <span class="nav-text">参考链接：</span></a></li></ol></div>
             
 
           </div>
@@ -603,7 +634,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">57k</span>
+    <span title="Symbols count total">58k</span>
   
 
   
@@ -612,7 +643,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">0:57</span>
+    <span title="Reading time total">0:58</span>
   
 </div>
 
