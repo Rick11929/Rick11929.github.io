@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-02-01T09:55:53.000Z</updated>
+  <updated>2018-02-05T07:11:57.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Jekins security related</title>
+    <link href="http://yoursite.com/2018/02/05/Jekins-security-related-doc/"/>
+    <id>http://yoursite.com/2018/02/05/Jekins-security-related-doc/</id>
+    <published>2018-02-05T15:08:20.000Z</published>
+    <updated>2018-02-05T07:11:57.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>一些Jekins安全配置和漏洞的文章：</p><p><a href="https://www.blackhat.com/docs/eu-15/materials/eu-15-Mittal-Continuous-Intrusion-Why-CI-Tools-Are-An-Attackers-Best-Friend.pdf" target="_blank" rel="noopener">https://www.blackhat.com/docs/eu-15/materials/eu-15-Mittal-Continuous-Intrusion-Why-CI-Tools-Are-An-Attackers-Best-Friend.pdf</a></p><p><a href="https://www.sans.org/reading-room/whitepapers/bestprac/securing-jenkins-ci-systems-36872" target="_blank" rel="noopener">https://www.sans.org/reading-room/whitepapers/bestprac/securing-jenkins-ci-systems-36872</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;一些Jekins安全配置和漏洞的文章：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.blackhat.com/docs/eu-15/materials/eu-15-Mittal-Continuous-Intrusion-Why-CI-Tools-Are-An-A
+      
+    
+    </summary>
+    
+    
+      <category term="Jekins" scheme="http://yoursite.com/tags/Jekins/"/>
+    
+  </entry>
   
   <entry>
     <title>Java由反射到命令执行</title>
