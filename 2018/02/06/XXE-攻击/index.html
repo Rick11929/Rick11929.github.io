@@ -100,21 +100,21 @@
 
 
   
-  <meta name="keywords" content="Python," />
+  <meta name="keywords" content="Web security," />
 
 
-<meta name="description" content="1 MongoDB 常用函数实例代码 连接 MongoDB 我们需要使用 PyMongo 库里面的 MongoClient，一般来说传入 MongoDB 的 IP 及端口即可，第一个参数为地址 host，第二个参数为端口 port，端口如果不传默认是 27017  MongoDB 中还分为一个个数据库，我们接下来的一步就是指定要操作哪个数据库，在这里我以 test 数据库为例进行说明，所以下一步我">
-<meta name="keywords" content="Python">
+<meta name="description" content="x01 什么是 XXEXXE：XML External Entity，即外部实体攻击,其本质是利用应用过滤不严格进行xml语句的注入攻击，感觉应该属于注入攻击的一种， x02 XML 文档的DTD文档类型定义（DTD）可定义合法的XML文档构建模块。它使用一系列合法的元素来定义文档的结构，包括定义了XML文档的元素(!ELEMENT)，属性(!ATTLIST)，实体(!ENTITY),其中实体的定">
+<meta name="keywords" content="Web security">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python MongoDB学习笔记">
-<meta property="og:url" content="http://yoursite.com/2018/01/23/Python-MongoDB学习笔记/index.html">
+<meta property="og:title" content="XXE 攻击">
+<meta property="og:url" content="http://yoursite.com/2018/02/06/XXE-攻击/index.html">
 <meta property="og:site_name" content="Rick7dology">
-<meta property="og:description" content="1 MongoDB 常用函数实例代码 连接 MongoDB 我们需要使用 PyMongo 库里面的 MongoClient，一般来说传入 MongoDB 的 IP 及端口即可，第一个参数为地址 host，第二个参数为端口 port，端口如果不传默认是 27017  MongoDB 中还分为一个个数据库，我们接下来的一步就是指定要操作哪个数据库，在这里我以 test 数据库为例进行说明，所以下一步我">
+<meta property="og:description" content="x01 什么是 XXEXXE：XML External Entity，即外部实体攻击,其本质是利用应用过滤不严格进行xml语句的注入攻击，感觉应该属于注入攻击的一种， x02 XML 文档的DTD文档类型定义（DTD）可定义合法的XML文档构建模块。它使用一系列合法的元素来定义文档的结构，包括定义了XML文档的元素(!ELEMENT)，属性(!ATTLIST)，实体(!ENTITY),其中实体的定">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-01-24T06:57:49.000Z">
+<meta property="og:updated_time" content="2018-02-06T15:24:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python MongoDB学习笔记">
-<meta name="twitter:description" content="1 MongoDB 常用函数实例代码 连接 MongoDB 我们需要使用 PyMongo 库里面的 MongoClient，一般来说传入 MongoDB 的 IP 及端口即可，第一个参数为地址 host，第二个参数为端口 port，端口如果不传默认是 27017  MongoDB 中还分为一个个数据库，我们接下来的一步就是指定要操作哪个数据库，在这里我以 test 数据库为例进行说明，所以下一步我">
+<meta name="twitter:title" content="XXE 攻击">
+<meta name="twitter:description" content="x01 什么是 XXEXXE：XML External Entity，即外部实体攻击,其本质是利用应用过滤不严格进行xml语句的注入攻击，感觉应该属于注入攻击的一种， x02 XML 文档的DTD文档类型定义（DTD）可定义合法的XML文档构建模块。它使用一系列合法的元素来定义文档的结构，包括定义了XML文档的元素(!ELEMENT)，属性(!ATTLIST)，实体(!ENTITY),其中实体的定">
 
 
 
@@ -123,10 +123,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/23/Python-MongoDB学习笔记/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/02/06/XXE-攻击/"/>
 
 
-  <title>Python MongoDB学习笔记 | Rick7dology</title>
+  <title>XXE 攻击 | Rick7dology</title>
   
 
 
@@ -267,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/23/Python-MongoDB学习笔记/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/06/XXE-攻击/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Rick7">
@@ -284,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Python MongoDB学习笔记</h1>
+          <h1 class="post-title" itemprop="name headline">XXE 攻击</h1>
         
 
         <div class="post-meta">
@@ -296,7 +296,7 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-23T22:51:08+08:00">2018-01-23</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-06T19:14:30+08:00">2018-02-06</time>
             
 
             
@@ -327,7 +327,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article&#58;</span>
                 
-                <span title="Symbols count in article">1.3k</span>
+                <span title="Symbols count in article">1.4k</span>
               
 
               
@@ -361,17 +361,27 @@
       
 
       
-        <h1 id="1-MongoDB-常用函数实例代码"><a href="#1-MongoDB-常用函数实例代码" class="headerlink" title="1 MongoDB 常用函数实例代码"></a>1 MongoDB 常用函数实例代码</h1><ol>
-<li><p>连接 MongoDB 我们需要使用 PyMongo 库里面的 MongoClient，一般来说传入 MongoDB 的 IP 及端口即可，第一个参数为地址 host，第二个参数为端口 port，端口如果不传默认是 27017</p>
+        <h1 id="x01-什么是-XXE"><a href="#x01-什么是-XXE" class="headerlink" title="x01 什么是 XXE"></a>x01 什么是 XXE</h1><p>XXE：XML External Entity，即外部实体攻击,其本质是利用应用过滤不严格进行xml语句的注入攻击，感觉应该属于注入攻击的一种，</p>
+<h1 id="x02-XML-文档的DTD"><a href="#x02-XML-文档的DTD" class="headerlink" title="x02 XML 文档的DTD"></a>x02 XML 文档的DTD</h1><p>文档类型定义（DTD）可定义合法的XML文档构建模块。它使用一系列合法的元素来定义文档的结构，包括定义了XML文档的元素(!ELEMENT)，属性(!ATTLIST)，实体(!ENTITY),<strong>其中实体的定义为：实体是用于定义引用普通文本或特殊字符的快捷方式的变量。类似于定义了一个变量</strong></p>
+<p>详细的DTD定义可以参考下面的链接：</p>
+<p><a href="http://www.runoob.com/dtd/dtd-building.html" target="_blank" rel="noopener">http://www.runoob.com/dtd/dtd-building.html</a></p>
+<h1 id="x03-内部实体和外部实体"><a href="#x03-内部实体和外部实体" class="headerlink" title="x03 内部实体和外部实体"></a>x03 内部实体和外部实体</h1><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">DTD 定义内部实体</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">!ENTITY</span> <span class="attr">writer</span> "<span class="attr">Donald</span> <span class="attr">Duck.</span>"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">!ENTITY</span> <span class="attr">copyright</span> "<span class="attr">Copyright</span> <span class="attr">runoob.com</span>"&gt;</span></span><br><span class="line"></span><br><span class="line">XML引用上面实体的内部定义：</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">author</span>&gt;</span>&amp;writer;&amp;copyright;<span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">DTD 定义外部实体，加了一个SYSTEM关键字</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">!ENTITY</span> <span class="attr">writer</span> <span class="attr">SYSTEM</span> "<span class="attr">http:</span>//<span class="attr">www.runoob.com</span>/<span class="attr">entities.dtd</span>"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">!ENTITY</span> <span class="attr">copyright</span> <span class="attr">SYSTEM</span> "<span class="attr">http:</span>//<span class="attr">www.runoob.com</span>/<span class="attr">entities.dtd</span>"&gt;</span></span><br><span class="line"></span><br><span class="line">XML引用上面定义的外部实体</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">author</span>&gt;</span>&amp;writer;&amp;copyright;<span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="x04-XXE-攻击PAYLOAD"><a href="#x04-XXE-攻击PAYLOAD" class="headerlink" title="x04 XXE 攻击PAYLOAD"></a>x04 XXE 攻击PAYLOAD</h1><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE foo [</span></span><br><span class="line"><span class="meta">    &lt;!ELEMENT foo ANY &gt;</span></span><br><span class="line"><span class="meta">    &lt;!ENTITY  xxe SYSTEM "file:///c:/windows/win.ini" &gt; #定义了外部实体引用</span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">foo</span>&gt;</span>&amp;xxe;<span class="tag">&lt;/<span class="name">foo</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="x05-XXE攻击原理"><a href="#x05-XXE攻击原理" class="headerlink" title="x05 XXE攻击原理"></a>x05 XXE攻击原理</h1><p>在 XML1.0 标准里，XML文档里的实体的标识符可以访问本地远程内容，如果在外部实体引用的过程中，注入恶意代码，即可引发信息泄露等安全问题。</p>
+<p>比如上述示例中所演示的 URI，即可读取 passwd 中的敏感信息。</p>
+<h1 id="x06-攻击方式"><a href="#x06-攻击方式" class="headerlink" title="x06 攻击方式"></a>x06 攻击方式</h1><ul>
+<li><p>有回显</p>
 </li>
-<li><p>MongoDB 中还分为一个个数据库，我们接下来的一步就是指定要操作哪个数据库，在这里我以 test 数据库为例进行说明，所以下一步我们需要在程序中指定要使用的数据库</p>
+<li><p>无回显</p>
 </li>
-<li><p>MongoDB 的每个数据库又包含了许多集合 Collection，也就类似与关系型数据库中的表，下一步我们需要指定要操作的集合</p>
-</li>
-<li><p>在 MongoDB 中，每条数据其实都有一个 _id 属性来唯一标识，如果没有显式指明 _id，MongoDB 会自动产生一个 ObjectId 类型的 _id 属性。insert() 方法会在执行后返回的 _id 值</p>
-</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pymongo</span><br><span class="line">client = pymongo.MongoClient(host=<span class="string">'localhost'</span>, port=<span class="number">27017</span>) <span class="comment"># 链接数据库，得到数据库对象“client"</span></span><br><span class="line">db = client.test <span class="comment"># 新建或者选择”test“数据库</span></span><br><span class="line"><span class="comment"># db = client['test']</span></span><br><span class="line">collection = db.students <span class="comment"># 新建或者选择”students“ collection对象</span></span><br><span class="line"><span class="comment"># collection = db['students']</span></span><br><span class="line"></span><br><span class="line">student1 = &#123;</span><br><span class="line">    <span class="string">'id'</span>: <span class="string">'20170101'</span>,</span><br><span class="line">    <span class="string">'name'</span>: <span class="string">'Jordan'</span>,</span><br><span class="line">    <span class="string">'age'</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">'gender'</span>: <span class="string">'male'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">student2 = &#123;</span><br><span class="line">    <span class="string">'id'</span>: <span class="string">'20170202'</span>,</span><br><span class="line">    <span class="string">'name'</span>: <span class="string">'Mike'</span>,</span><br><span class="line">    <span class="string">'age'</span>: <span class="number">21</span>,</span><br><span class="line">    <span class="string">'gender'</span>: <span class="string">'male'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># result = collection.insert(student) 官方不推荐用这个方法</span></span><br><span class="line"><span class="comment"># print(result)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># result = collection.insert_one(student) # 对collection对象进行数据插入</span></span><br><span class="line"><span class="comment"># print(result)</span></span><br><span class="line"><span class="comment"># print(result.inserted_id)</span></span><br><span class="line"></span><br><span class="line">result = collection.insert_many([student1, student2]) <span class="comment"># 对collection对象进行多个数据插入</span></span><br><span class="line">print(result)</span><br><span class="line">print(result.inserted_ids)</span><br><span class="line"></span><br><span class="line">result = collection.find_one(&#123;<span class="string">'name'</span>: <span class="string">'Mike'</span>&#125;) <span class="comment"># 对collection对象进行查找</span></span><br><span class="line">print(type(result))</span><br><span class="line">print(result) <span class="comment"># 可以发现它多了一个 _id 属性，这就是 MongoDB 在插入的过</span></span><br></pre></td></tr></table></figure>
+</ul>
+<p>具体就不继续了，网上一大堆文章，反正了解了核心概念就可以了，其他利用姿势自行Google</p>
+<h1 id="07-如何防御"><a href="#07-如何防御" class="headerlink" title="07 如何防御"></a>07 如何防御</h1><p>可以将 libxml 版本升级到 2.9.0 以后，因为 libxml 2.9.0 以后默认是不解析外部实体的，还要做输入过滤，错误处理等，反正应对注入的措施都要有</p>
+<h1 id="Bonus"><a href="#Bonus" class="headerlink" title="Bonus"></a>Bonus</h1><p>XML Schema 很快会将 DTD 取而代之，但 XML Schema 也会存在注入的问题，这个后面再慢慢看，还有Xpath注入等，关于xml的安全问题还是由很多的</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a href="http://mp.weixin.qq.com/s/vkCdz6YCoiiJPI30KePD6g" target="_blank" rel="noopener">http://mp.weixin.qq.com/s/vkCdz6YCoiiJPI30KePD6g</a></p>
+<p><a href="http://www.runoob.com/dtd/dtd-summary.html" target="_blank" rel="noopener">http://www.runoob.com/dtd/dtd-summary.html</a></p>
+
       
     </div>
     
@@ -388,7 +398,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
+            <a href="/tags/Web-security/" rel="tag"># Web security</a>
           
         </div>
       
@@ -401,8 +411,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/23/Python-Selenium库学习笔记/" rel="next" title="Python Selenium库学习笔记">
-                <i class="fa fa-chevron-left"></i> Python Selenium库学习笔记
+              <a href="/2018/02/05/Jekins-security-related-doc/" rel="next" title="Jekins security related">
+                <i class="fa fa-chevron-left"></i> Jekins security related
               </a>
             
           </div>
@@ -410,10 +420,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/24/Java-反序列化漏洞学习笔记/" rel="prev" title="Java 反序列化漏洞学习笔记">
-                Java 反序列化漏洞学习笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -547,7 +553,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-MongoDB-常用函数实例代码"><span class="nav-number">1.</span> <span class="nav-text">1 MongoDB 常用函数实例代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#x01-什么是-XXE"><span class="nav-number">1.</span> <span class="nav-text">x01 什么是 XXE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#x02-XML-文档的DTD"><span class="nav-number">2.</span> <span class="nav-text">x02 XML 文档的DTD</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#x03-内部实体和外部实体"><span class="nav-number">3.</span> <span class="nav-text">x03 内部实体和外部实体</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#x04-XXE-攻击PAYLOAD"><span class="nav-number">4.</span> <span class="nav-text">x04 XXE 攻击PAYLOAD</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#x05-XXE攻击原理"><span class="nav-number">5.</span> <span class="nav-text">x05 XXE攻击原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#x06-攻击方式"><span class="nav-number">6.</span> <span class="nav-text">x06 攻击方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#07-如何防御"><span class="nav-number">7.</span> <span class="nav-text">07 如何防御</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Bonus"><span class="nav-number">8.</span> <span class="nav-text">Bonus</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">9.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
