@@ -100,17 +100,21 @@
 
 
   
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Web security," />
 
 
+<meta name="description" content="x01 什么是同源策略(SOP)在Web安全中，SOP是一个非常重要安全策略，必须要弄懂才能对很多攻击有更加清晰的理解，那什么是同源策略呢？下面是我本人的理解： 同源策略是一个浏览器中内建的安全策略，它确保不同源的网站不能互相作用或者互相交换。  不同源指的是协议(https,http,ftp…),不同端口(80,443,22,21),不同域名。  不能互相作用或者互相交换是指：A网站即使和B网站">
+<meta name="keywords" content="Web security">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring framework的培训小总结">
-<meta property="og:url" content="http://yoursite.com/2018/02/08/Spring-framework的培训小总结/index.html">
+<meta property="og:title" content="Same-Origin Protection (SOP)">
+<meta property="og:url" content="http://yoursite.com/2018/02/09/Same-Origin-Protection-SOP/index.html">
 <meta property="og:site_name" content="Rick7dology">
+<meta property="og:description" content="x01 什么是同源策略(SOP)在Web安全中，SOP是一个非常重要安全策略，必须要弄懂才能对很多攻击有更加清晰的理解，那什么是同源策略呢？下面是我本人的理解： 同源策略是一个浏览器中内建的安全策略，它确保不同源的网站不能互相作用或者互相交换。  不同源指的是协议(https,http,ftp…),不同端口(80,443,22,21),不同域名。  不能互相作用或者互相交换是指：A网站即使和B网站">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-02-07T10:27:24.000Z">
+<meta property="og:updated_time" content="2018-02-09T07:40:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring framework的培训小总结">
+<meta name="twitter:title" content="Same-Origin Protection (SOP)">
+<meta name="twitter:description" content="x01 什么是同源策略(SOP)在Web安全中，SOP是一个非常重要安全策略，必须要弄懂才能对很多攻击有更加清晰的理解，那什么是同源策略呢？下面是我本人的理解： 同源策略是一个浏览器中内建的安全策略，它确保不同源的网站不能互相作用或者互相交换。  不同源指的是协议(https,http,ftp…),不同端口(80,443,22,21),不同域名。  不能互相作用或者互相交换是指：A网站即使和B网站">
 
 
 
@@ -119,10 +123,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/02/08/Spring-framework的培训小总结/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/02/09/Same-Origin-Protection-SOP/"/>
 
 
-  <title>Spring framework的培训小总结 | Rick7dology</title>
+  <title>Same-Origin Protection (SOP) | Rick7dology</title>
   
 
 
@@ -263,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/08/Spring-framework的培训小总结/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/09/Same-Origin-Protection-SOP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Rick7">
@@ -280,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Spring framework的培训小总结</h1>
+          <h1 class="post-title" itemprop="name headline">Same-Origin Protection (SOP)</h1>
         
 
         <div class="post-meta">
@@ -292,7 +296,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-08T02:27:24+08:00">2018-02-07</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-09T18:39:27+08:00">2018-02-09</time>
             
 
             
@@ -323,7 +327,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article&#58;</span>
                 
-                <span title="Symbols count in article">0</span>
+                <span title="Symbols count in article">1.1k</span>
               
 
               
@@ -357,7 +361,29 @@
       
 
       
-        
+        <h1 id="x01-什么是同源策略-SOP"><a href="#x01-什么是同源策略-SOP" class="headerlink" title="x01 什么是同源策略(SOP)"></a>x01 什么是同源策略(SOP)</h1><p>在Web安全中，SOP是一个非常重要安全策略，必须要弄懂才能对很多攻击有更加清晰的理解，那什么是同源策略呢？下面是我本人的理解：</p>
+<p><strong>同源策略是一个浏览器中内建的安全策略，它确保不同源的网站不能互相作用或者互相交换。</strong></p>
+<ul>
+<li><p>不同源指的是协议(https,http,ftp…),不同端口(80,443,22,21),不同域名。</p>
+</li>
+<li><p>不能互相作用或者互相交换是指：A网站即使和B网站不同源，但仍然可以发送request到B网站，这个请求在B网站还是会处理的，但A网站不能读取response，总结一句就是：跨域请求是可以发去的，但是请求响应response被浏览器堵塞了，所以说同源策略是限制了不同源的读，但不限制不同源的写</p>
+</li>
+<li><p>由于同源策略的限制，跨域的ajax请求不会带cookie，然而script/iframe/img等标签却是支持跨域的，所以在请求的时候是会带上cookie的，这使得CSRF攻击有可乘之机</p>
+</li>
+</ul>
+<h1 id="x02-CSRF攻击"><a href="#x02-CSRF攻击" class="headerlink" title="x02 CSRF攻击"></a>x02 CSRF攻击</h1><ul>
+<li>由于同源策略的限制，跨域的ajax请求不会带cookie，然而script/iframe/img等标签却是支持跨域的，所以在请求的时候是会带上cookie的。如果用户登陆了Abank.com，那么cookie里面就有了tocken，同时又打开了另外一个标签页访问了evil.com，这个网页里面有一个iframe:</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">"http://Abank.com/app/transferFunds?amount=1500&amp;destinationAccount="</span><span class="attr">attackeraccountnumber</span>" &gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>防CSRF攻击的策略就是将token添加到请求的参数里面，也就是说每个需要验证身份的请求都要显式地带上token值,目的就是让请求不可预知，就算攻击者得到了你的登录token，也没有办法构造转账的请求，因为转账的请求带有一个不可预知的，随机的token作为保护，当然也可以加入一些人机交换，例如验证码之类的</li>
+</ul>
+<h1 id="x03-Cross-domain-和-Silverlight-的跨越配置文件"><a href="#x03-Cross-domain-和-Silverlight-的跨越配置文件" class="headerlink" title="x03 Cross-domain 和 Silverlight 的跨越配置文件"></a>x03 Cross-domain 和 Silverlight 的跨越配置文件</h1><p>这两个配置文件必须设置严格，防止不必要跨域</p>
+<p>Refer link</p>
+<p><a href="https://www.gracefulsecurity.com/cross-domain-flash-and-silverlight-crossdomain-xml/" target="_blank" rel="noopener">https://www.gracefulsecurity.com/cross-domain-flash-and-silverlight-crossdomain-xml/</a></p>
+<p><a href="https://www.gracefulsecurity.com/what-is-cross-site-request-forgery/" target="_blank" rel="noopener">https://www.gracefulsecurity.com/what-is-cross-site-request-forgery/</a></p>
+<p><a href="http://yincheng.site/cross-domain" target="_blank" rel="noopener">http://yincheng.site/cross-domain</a></p>
+
       
     </div>
     
@@ -372,6 +398,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Web-security/" rel="tag"># Web security</a>
+          
+        </div>
+      
 
       
       
@@ -381,8 +413,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/06/XXE-攻击/" rel="next" title="XXE 攻击">
-                <i class="fa fa-chevron-left"></i> XXE 攻击
+              <a href="/2018/02/08/XXE-攻击——2/" rel="next" title="XXE 攻击(2)">
+                <i class="fa fa-chevron-left"></i> XXE 攻击(2)
               </a>
             
           </div>
@@ -390,10 +422,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/08/XXE-攻击——2/" rel="prev" title="XXE 攻击(2)">
-                XXE 攻击(2) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -442,8 +470,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -509,6 +546,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#x01-什么是同源策略-SOP"><span class="nav-number">1.</span> <span class="nav-text">x01 什么是同源策略(SOP)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#x02-CSRF攻击"><span class="nav-number">2.</span> <span class="nav-text">x02 CSRF攻击</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#x03-Cross-domain-和-Silverlight-的跨越配置文件"><span class="nav-number">3.</span> <span class="nav-text">x03 Cross-domain 和 Silverlight 的跨越配置文件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -534,7 +587,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">62k</span>
+    <span title="Symbols count total">64k</span>
   
 
   
@@ -543,7 +596,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">1:02</span>
+    <span title="Reading time total">1:04</span>
   
 </div>
 
