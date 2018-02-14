@@ -100,21 +100,16 @@
 
 
   
-  <meta name="keywords" content="Python," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
-<meta name="description" content="Pyenv pyenv 是针对 python 版本的管理，通过修改环境变量的方式实现；  pyenv 原理   pyenv 的美好之处在于，它并没有使用将不同的 $PATH 植入不同的 shell 这种高耦合的工作方式，而是简单地在 $PATH 的最前面插入了一个垫片路径（shims）：~/.pyenv/shims:/usr/local/bin:/usr/bin:/bin。所有对 Python 可">
-<meta name="keywords" content="Python">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Pyenv &amp; virtualenv">
-<meta property="og:url" content="http://yoursite.com/2017/06/23/pyenv-virtualenv/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rick7dology">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="Rick7dology">
-<meta property="og:description" content="Pyenv pyenv 是针对 python 版本的管理，通过修改环境变量的方式实现；  pyenv 原理   pyenv 的美好之处在于，它并没有使用将不同的 $PATH 植入不同的 shell 这种高耦合的工作方式，而是简单地在 $PATH 的最前面插入了一个垫片路径（shims）：~/.pyenv/shims:/usr/local/bin:/usr/bin:/bin。所有对 Python 可">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-01-23T06:39:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Pyenv &amp; virtualenv">
-<meta name="twitter:description" content="Pyenv pyenv 是针对 python 版本的管理，通过修改环境变量的方式实现；  pyenv 原理   pyenv 的美好之处在于，它并没有使用将不同的 $PATH 植入不同的 shell 这种高耦合的工作方式，而是简单地在 $PATH 的最前面插入了一个垫片路径（shims）：~/.pyenv/shims:/usr/local/bin:/usr/bin:/bin。所有对 Python 可">
+<meta name="twitter:title" content="Rick7dology">
 
 
 
@@ -123,10 +118,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/06/23/pyenv-virtualenv/"/>
+  <link rel="canonical" href="http://yoursite.com/page/3/"/>
 
 
-  <title>Pyenv & virtualenv | Rick7dology</title>
+  <title>Rick7dology</title>
   
 
 
@@ -173,7 +168,8 @@
     
   
 
-  <div class="container sidebar-position-right page-post-detail">
+  <div class="container sidebar-position-right 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -250,9 +246,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -267,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/23/pyenv-virtualenv/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/20/Andrid-Security-testing/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Rick7">
@@ -284,7 +280,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Pyenv & virtualenv</h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/20/Andrid-Security-testing/" itemprop="url">Android security testing</a></h1>
         
 
         <div class="post-meta">
@@ -296,7 +294,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-23T22:41:14+08:00">2017-06-23</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-19T23:16:36Z">2017-06-19</time>
             
 
             
@@ -327,7 +325,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article&#58;</span>
                 
-                <span title="Symbols count in article">2.1k</span>
+                <span title="Symbols count in article">11k</span>
               
 
               
@@ -341,7 +339,7 @@
                 
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
-                <span title="Reading time">0:02</span>
+                <span title="Reading time">0:11</span>
               
             </div>
           
@@ -361,45 +359,19 @@
       
 
       
-        <h1 id="Pyenv"><a href="#Pyenv" class="headerlink" title="Pyenv"></a>Pyenv</h1><ul>
-<li><p>pyenv 是针对 python 版本的管理，通过修改环境变量的方式实现；</p>
-</li>
-<li><p>pyenv 原理</p>
-</li>
-</ul>
-<p>pyenv 的美好之处在于，它并没有使用将不同的 $PATH 植入不同的 shell 这种高耦合的工作方式，而是简单地在 $PATH 的最前面插入了一个垫片路径（shims）：~/.pyenv/shims:/usr/local/bin:/usr/bin:/bin。所有对 Python 可执行文件的查找都会首先被这个 shims 路径截获，从而架空了后面的系统路径。</p>
-<p>作者原文如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Understanding Shims</span><br><span class="line"></span><br><span class="line">pyenv works by inserting a directory of shims at the front of your PATH:</span><br><span class="line"></span><br><span class="line">$(pyenv root)/shims:/usr/local/bin:/usr/bin:/bin</span><br><span class="line">Through a process called rehashing, pyenv maintains shims <span class="keyword">in</span> that directory to match every Python command across every installed version of Python—python, pip, <span class="keyword">and</span> so on.</span><br><span class="line"></span><br><span class="line">Shims are lightweight executables that simply <span class="keyword">pass</span> your command along to pyenv. So <span class="keyword">with</span> pyenv installed, when you run, say, pip, your operating system will do the following:</span><br><span class="line"></span><br><span class="line">Search your PATH <span class="keyword">for</span> an executable file named pip</span><br><span class="line">Find the pyenv shim named pip at the beginning of your PATH</span><br><span class="line">Run the shim named pip, which <span class="keyword">in</span> turn passes the command along to pyenv</span><br></pre></td></tr></table></figure>
-<p><a href="https://github.com/pyenv/pyenv#how-it-works" target="_blank" rel="noopener">具体的下载和使用教程请点击我！！！</a><br><a href="http://python.jobbole.com/85587/" target="_blank" rel="noopener">具体的命令使用详解请点击我！！！</a></p>
-<h2 id="python切换"><a href="#python切换" class="headerlink" title="python切换"></a>python切换</h2><ol>
-<li><p>pyenv global 3.4.0 — 设置全局的 Python 版本，通过将版本号写入 ~/.pyenv/version 文件的方式。</p>
-</li>
-<li><p>pyenv local 2.7.3 — 设置面向程序的本地版本，通过将版本号写入当前目录下的 .python-version 文件的方式。通过这种方式设置的 Python 版本优先级较 global 高。</p>
-</li>
-</ol>
-<p>pyenv 会从当前目录开始向上逐级查找 .python-version 文件，直到根目录为止。若找不到，就用 global 版本。<br>$ pyenv shell pypy-2.2.1 — 设置面向 shell 的 Python 版本，通过设置当前 shell 的 PYENV_VERSION<br>环境变量的方式。这个版本的优先级比 local 和 global 都要高。–unset 参数可以用于取消当前 shell 设定的版本。</p>
-<ol>
-<li><p>pyenv shell –unset</p>
-</li>
-<li><p>python优先级</p>
-</li>
-</ol>
-<p>shell &gt; local &gt; global</p>
-<h1 id="virtualenv"><a href="#virtualenv" class="headerlink" title="virtualenv"></a>virtualenv</h1><ul>
-<li>virtualenv 用处</li>
-</ul>
-<p>处理python环境的多版本和模块依赖，以及相应的权限是一个很常见的问题。比如，你有个应用使用的是LibFoo V1.0，但另一个应用却要用到LibFoo V2.0。 如何处理呢？如果把所有模块都安装到 /usr/lib/python2.7/site-packages (或是你本机python默认的模块安装目录)，那你极有可能无意中升级一些不该升级的模块。</p>
-<ul>
-<li>在Pyenv中有相应插件：pyenv-virtualenv 或者使用virtualenvwrapper，这是 virtualenv 的扩展工具，提供了一系列命令行命令</li>
-</ul>
-<p>使用pyenv来管理python，使用 pyenv-virtualenv 插件来管理多版本 python包。</p>
-<p><a href="http://virtualenv-chinese-docs.readthedocs.io/en/latest/#" target="_blank" rel="noopener">中文参考链接</a></p>
-<h1 id="关于环境变量"><a href="#关于环境变量" class="headerlink" title="关于环境变量"></a>关于环境变量</h1><p>OS X系统的环境变量，加载顺序为：</p>
-<p>/etc/profile<br>/etc/paths<br>~/.bash_profile<br>~/.bash_login<br>~/.profile<br>~/.bashrc<br>/etc/profile和/etc/paths是系统级别的，系统启动就会加载，<br>后面几个是当前用户级的环境变量。</p>
-<p>~/.bash_profile，~/.bash_login，~/.profile按照从前往后的顺序读取，<br>如果~/.bash_profile文件存在，则后面的几个文件就会被忽略不读了，<br>如果~/.bash_profile文件不存在，才会以此类推读取后面的文件。</p>
-<p>~/.bashrc没有上述规则，它是bash shell打开的时候载入的。</p>
-<p>修改完后记得source一下让其快速生效</p>
-
+        
+          
+          基础知识Android 基本机构
+安卓分4层吧，底层为linux，上层是安卓本地库，主要为C或者C++，有sqllite，webkit (The Webkit rendering engine was used prior to Android version 4.4 to load these w
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/20/Andrid-Security-testing/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
       
     </div>
     
@@ -414,40 +386,14 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Python/" rel="tag"># Python</a>
-          
-        </div>
+
+      
+
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/06/22/iOS-security-testing/" rel="next" title="iOS security testing">
-                <i class="fa fa-chevron-left"></i> iOS security testing
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/02/Clickjacking-test-method/" rel="prev" title="Clickjacking test method">
-                Clickjacking test method <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -457,19 +403,18 @@
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
 
 
           </div>
           
-
-  
-
-
 
         </div>
         
@@ -490,17 +435,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -565,22 +501,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Pyenv"><span class="nav-number">1.</span> <span class="nav-text">Pyenv</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#python切换"><span class="nav-number">1.1.</span> <span class="nav-text">python切换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#virtualenv"><span class="nav-number">2.</span> <span class="nav-text">virtualenv</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于环境变量"><span class="nav-number">3.</span> <span class="nav-text">关于环境变量</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -721,10 +641,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.0.2"></script>
-
-
 
   
 
