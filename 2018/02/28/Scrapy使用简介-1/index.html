@@ -103,18 +103,21 @@
   <meta name="keywords" content="Python," />
 
 
-<meta name="description" content="1 现在计算机系统通用的字符编码工作方式：在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。python语言有两种不同的字符串，一个用于存储文本，一个用于存储原始字节。文本字符串(str)内部使用Unicode存储，字节字符串(byte)存储原始字节并显示ASCI 2 Python3中的​encode和decodePython3中字符编码经常会">
+<meta name="description" content="01x 前言上一篇笔记记录了学习Python爬虫的简单思路，然后就要对Python爬虫框架进行基本使用了，玩玩更健康 02x Scrapy基本介绍 基本数据流图解：    基本数据流程：   Spiders发送第一个URL给引擎 引擎从Spider中获取到第一个要爬取的URL后，在调度器(Scheduler)以Request调度 调度器把需要爬取的request返回给引擎 引擎将request通过">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python编码问题学习笔记">
-<meta property="og:url" content="http://yoursite.com/2018/01/23/Python编码问题学习笔记/index.html">
+<meta property="og:title" content="Scrapy使用简介_1">
+<meta property="og:url" content="http://yoursite.com/2018/02/28/Scrapy使用简介-1/index.html">
 <meta property="og:site_name" content="Rick7dology">
-<meta property="og:description" content="1 现在计算机系统通用的字符编码工作方式：在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。python语言有两种不同的字符串，一个用于存储文本，一个用于存储原始字节。文本字符串(str)内部使用Unicode存储，字节字符串(byte)存储原始字节并显示ASCI 2 Python3中的​encode和decodePython3中字符编码经常会">
+<meta property="og:description" content="01x 前言上一篇笔记记录了学习Python爬虫的简单思路，然后就要对Python爬虫框架进行基本使用了，玩玩更健康 02x Scrapy基本介绍 基本数据流图解：    基本数据流程：   Spiders发送第一个URL给引擎 引擎从Spider中获取到第一个要爬取的URL后，在调度器(Scheduler)以Request调度 调度器把需要爬取的request返回给引擎 引擎将request通过">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-01-23T06:38:51.000Z">
+<meta property="og:image" content="http://yoursite.com/images/scrapyworkflow.png">
+<meta property="og:image" content="http://yoursite.com/2018/02/28/Scrapy使用简介-1/images/structure.png">
+<meta property="og:updated_time" content="2018-02-27T10:35:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python编码问题学习笔记">
-<meta name="twitter:description" content="1 现在计算机系统通用的字符编码工作方式：在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。python语言有两种不同的字符串，一个用于存储文本，一个用于存储原始字节。文本字符串(str)内部使用Unicode存储，字节字符串(byte)存储原始字节并显示ASCI 2 Python3中的​encode和decodePython3中字符编码经常会">
+<meta name="twitter:title" content="Scrapy使用简介_1">
+<meta name="twitter:description" content="01x 前言上一篇笔记记录了学习Python爬虫的简单思路，然后就要对Python爬虫框架进行基本使用了，玩玩更健康 02x Scrapy基本介绍 基本数据流图解：    基本数据流程：   Spiders发送第一个URL给引擎 引擎从Spider中获取到第一个要爬取的URL后，在调度器(Scheduler)以Request调度 调度器把需要爬取的request返回给引擎 引擎将request通过">
+<meta name="twitter:image" content="http://yoursite.com/images/scrapyworkflow.png">
 
 
 
@@ -123,10 +126,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/23/Python编码问题学习笔记/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/02/28/Scrapy使用简介-1/"/>
 
 
-  <title>Python编码问题学习笔记 | Rick7dology</title>
+  <title>Scrapy使用简介_1 | Rick7dology</title>
   
 
 
@@ -267,7 +270,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/23/Python编码问题学习笔记/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/28/Scrapy使用简介-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Rick7">
@@ -284,7 +287,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Python编码问题学习笔记</h1>
+          <h1 class="post-title" itemprop="name headline">Scrapy使用简介_1</h1>
         
 
         <div class="post-meta">
@@ -296,7 +299,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-23T22:32:06+08:00">2018-01-23</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-28T01:22:12+08:00">2018-02-27</time>
             
 
             
@@ -327,7 +330,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article&#58;</span>
                 
-                <span title="Symbols count in article">1.4k</span>
+                <span title="Symbols count in article">2.7k</span>
               
 
               
@@ -341,7 +344,7 @@
                 
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
-                <span title="Reading time">0:01</span>
+                <span title="Reading time">0:03</span>
               
             </div>
           
@@ -361,15 +364,57 @@
       
 
       
-        <h2 id="1-现在计算机系统通用的字符编码工作方式："><a href="#1-现在计算机系统通用的字符编码工作方式：" class="headerlink" title="1 现在计算机系统通用的字符编码工作方式："></a>1 现在计算机系统通用的字符编码工作方式：</h2><p>在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。python语言有两种不同的字符串，一个用于存储文本，一个用于存储原始字节。文本字符串(str)内部使用Unicode存储，字节字符串(byte)存储原始字节并显示ASCI</p>
-<h2 id="2-Python3中的​encode和decode"><a href="#2-Python3中的​encode和decode" class="headerlink" title="2 Python3中的​encode和decode"></a>2 Python3中的​encode和decode</h2><p>Python3中字符编码经常会使用到decode和encode函数。特别是在抓取网页中，这两个函数用的熟练非常有好处。我的理解，encode的作用，使我们看到的直观的字符转换成计算机内的字节形式。decode刚好相反，把字节形式的字符转换成我们看的懂的、直观的、“人模人样”的形式</p>
-<h2 id="3-如何查看str在内存中的unicode码"><a href="#3-如何查看str在内存中的unicode码" class="headerlink" title="3 如何查看str在内存中的unicode码"></a>3 如何查看str在内存中的unicode码</h2><p>字符在计算机的内存中统一是以Unicode编码的。只有在字符要被写进文件、存进硬盘或者从服务器发送至客户端（例如网页前端的代码）时会变成utf-8。如何把字符以Unicode的字节形式表现出来，露出它在内存中的庐山正面目？这里有个照妖镜：</p>
-<p>xxxx.encode/decode(‘unicode-escape’),</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>s=<span class="string">"中文"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.encode(<span class="string">'unicode-escape'</span>) <span class="comment"># 通过encode得到了“中文”的unicode字节码</span></span><br><span class="line"><span class="string">b'\\u4e2d\\u6587'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b=<span class="string">"\u4e2d"</span> <span class="comment"># 把“中”的unicode码赋值给b，注意b是str，这就是str在内存的真实面目了</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(b)</span><br><span class="line">中</span><br></pre></td></tr></table></figure>
-<h2 id="4-unicode码在python里有两种表示方式："><a href="#4-unicode码在python里有两种表示方式：" class="headerlink" title="4 unicode码在python里有两种表示方式："></a>4 unicode码在python里有两种表示方式：</h2><p>u’字符串’或者’\u四位十六进制数’。它们是等价的，而且都是str对象。注意，’\u四位十六进制数’与’\u四位十六进制数’并不相等，’\u四位十六进制数’=’\’（斜杠本身是转义字符要经过转义表示）+’u四位十六进制数’。</p>
-<p>Unicode 只是一个符号集，它只规定了符号的二进制代码，却没有规定这个二进制代码应该如何存储。UTF-8 就是在互联网上使用最广的一种 Unicode 的实现方式,它定义了Unicode符号集的二进制代码如何保存，具体的保存方式参考下面的链接：</p>
-<p>[参考链接][<a href="http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html</a>]</p>
-<h2 id="5-import-chardet-这个模块可以帮助检测当前的字节流编码"><a href="#5-import-chardet-这个模块可以帮助检测当前的字节流编码" class="headerlink" title="5 import chardet 这个模块可以帮助检测当前的字节流编码"></a>5 import chardet 这个模块可以帮助检测当前的字节流编码</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>s=<span class="string">'abc'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.encode()</span><br><span class="line"><span class="string">b'abc'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>chardet.detect(s.encode())</span><br><span class="line">&#123;<span class="string">'encoding'</span>: <span class="string">'ascii'</span>, <span class="string">'language'</span>: <span class="string">''</span>, <span class="string">'confidence'</span>: <span class="number">1.0</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s=<span class="string">'中文'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>chardet.detect(s.encode())</span><br><span class="line">&#123;<span class="string">'encoding'</span>: <span class="string">'utf-8'</span>, <span class="string">'language'</span>: <span class="string">''</span>, <span class="string">'confidence'</span>: <span class="number">0.7525</span>&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="01x-前言"><a href="#01x-前言" class="headerlink" title="01x 前言"></a>01x 前言</h1><p>上一篇笔记记录了学习Python爬虫的简单思路，然后就要对Python爬虫框架进行基本使用了，玩玩更健康</p>
+<h1 id="02x-Scrapy基本介绍"><a href="#02x-Scrapy基本介绍" class="headerlink" title="02x Scrapy基本介绍"></a>02x Scrapy基本介绍</h1><ul>
+<li>基本数据流图解：</li>
+</ul>
+<p><img src="/images/scrapyworkflow.png" alt="数据流图"></p>
+<ul>
+<li>基本数据流程：</li>
+</ul>
+<ol>
+<li>Spiders发送第一个URL给引擎</li>
+<li>引擎从Spider中获取到第一个要爬取的URL后，在调度器(Scheduler)以Request调度</li>
+<li>调度器把需要爬取的request返回给引擎</li>
+<li>引擎将request通过下载中间件发给下载器(Downloader)去互联网下载数据</li>
+<li>一旦数据下载完毕，下载器获取由互联网服务器发回来的Response，并将其通过下载中间件发送给引擎</li>
+<li>引擎从下载器中接收到Response并通过Spider中间件发送给Spider处理</li>
+<li>Spider处理Response并从中返回匹配到的Item及(跟进的)新的Request给引擎</li>
+<li>引擎将(Spider返回的)爬取到的Item给Item Pipeline做数据处理或者入库保存，将(Spider返回的)Request给调度器入队列</li>
+<li>(从第三步)重复直到调度器中没有更多的request</li>
+</ol>
+<ul>
+<li>简单的说：</li>
+</ul>
+<p>引擎是大脑，负责在各组件中调度传递信息。我们要编写的几个主要组件就是spider，pipeline和中间件</p>
+<ul>
+<li>项目结构：</li>
+</ul>
+<p><img src="images/structure.png" alt="项目结构图"></p>
+<ul>
+<li>编程思路：</li>
+</ul>
+<p>还是以猫眼这个简单例子，这次使用了scrapy来实现，首先编写maoyan_top.py,实现爬虫主程序，也就是定义一个爬虫，然后编写items.py定义一个存储数据的数据结构，类似dict，最后编写pipelines.py实现数据存储，这就是最简单的scrapy实现思路</p>
+<ol>
+<li>首先编写maoyan_top.py，主要就是编写MaoyanTopSpider类，这个类继承scrapy.Spider，定义好基本URL的数据后，就是主力编写parse函数，这个函数就是负责解析数据的。注意这里我yield了item给pipelines.py处理，yield了scrapy.Request给调度器进行翻页爬取</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">from</span> ..items <span class="keyword">import</span> MaoyanItem</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MaoyanTopSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">'maoyan_top'</span></span><br><span class="line">    allowed_domains = [<span class="string">'maoyan.com'</span>]</span><br><span class="line">    base_url = <span class="string">"https://maoyan.com/board/4?offset="</span></span><br><span class="line">    offset = <span class="number">0</span></span><br><span class="line">    start_urls = [base_url + str(offset)]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line"></span><br><span class="line">        nodelist = response.xpath(<span class="string">"//div[@class='board-item-main']"</span>)</span><br><span class="line">        <span class="keyword">for</span> node <span class="keyword">in</span> nodelist:</span><br><span class="line">            item = MaoyanItem()</span><br><span class="line">            item[<span class="string">'name'</span>] = node.xpath(<span class="string">".//a/text()"</span>).extract()[<span class="number">0</span>]</span><br><span class="line">            item[<span class="string">'actors'</span>] = node.xpath(<span class="string">".//p[@class='star']/text()"</span>).extract()[<span class="number">0</span>].split()</span><br><span class="line">            integer = node.xpath(<span class="string">".//i[@class='integer']/text()"</span>).extract()[<span class="number">0</span>]</span><br><span class="line">            fraction = node.xpath(<span class="string">".//i[@class='fraction']/text()"</span>).extract()[<span class="number">0</span>]</span><br><span class="line">            item[<span class="string">'score'</span>] = integer+fraction</span><br><span class="line">            <span class="keyword">yield</span> item</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> self.offset &lt; <span class="number">100</span>:</span><br><span class="line">            self.offset += <span class="number">10</span></span><br><span class="line">            url = self.base_url+str(self.offset)</span><br><span class="line">            <span class="keyword">yield</span> scrapy.Request(url,callback = self.parse)</span><br></pre></td></tr></table></figure>
+<ol>
+<li>然后编写items.py定义一个存储数据的数据结构给上面的parse函数使用,非常简单我就定义了三个字段，分别为电影的名字，评分和演员</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MaoyanItem</span><span class="params">(scrapy.Item)</span>:</span></span><br><span class="line">    <span class="comment"># define the fields for your item here like:</span></span><br><span class="line">    name = scrapy.Field()</span><br><span class="line">    actors = scrapy.Field()</span><br><span class="line">    score = scrapy.Field()</span><br></pre></td></tr></table></figure>
+<ol>
+<li>最好编写pipelines.py进行存储数据，这里要注意parse函数yield出来的item会到达这里处理</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MaoyanPipeline</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">open_spider</span><span class="params">(self,spider)</span>:</span></span><br><span class="line">        print(type(spider))</span><br><span class="line">        print(<span class="string">"open file"</span>)</span><br><span class="line"></span><br><span class="line">        self.f = open(<span class="string">'/Users/Rick7/Desktop/items.json'</span>, <span class="string">'w+'</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self, item, spider)</span>:</span></span><br><span class="line"></span><br><span class="line">        line = json.dumps(dict(item),ensure_ascii=<span class="keyword">False</span>) + <span class="string">"\n"</span></span><br><span class="line">        self.f.write(line)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> item</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">close_spider</span><span class="params">(self,spider)</span>:</span></span><br><span class="line"></span><br><span class="line">        self.f.close()</span><br><span class="line">        print(<span class="string">"close file"</span>)</span><br></pre></td></tr></table></figure>
+<ol>
+<li>最好配置好setting文件激活管道，程序完成</li>
+</ol>
+<h1 id="03x-总结"><a href="#03x-总结" class="headerlink" title="03x 总结"></a>03x 总结</h1><ul>
+<li>要学scrapy首先要搞清楚这个框架的数据流</li>
+<li>建议阅读官方文档了解其中的类和方法</li>
+<li>后面还会继续学习高级一点点的知识，例如url去重，中间件的使用等</li>
+</ul>
 
       
     </div>
@@ -400,8 +445,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/02/Clickjacking-test-method/" rel="next" title="Clickjacking test method">
-                <i class="fa fa-chevron-left"></i> Clickjacking test method
+              <a href="/2018/02/28/Python爬虫小总结/" rel="next" title="Python爬虫小总结">
+                <i class="fa fa-chevron-left"></i> Python爬虫小总结
               </a>
             
           </div>
@@ -409,10 +454,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/23/Python-BS4学习笔记/" rel="prev" title="Python BS4学习笔记">
-                Python BS4学习笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -546,7 +587,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-现在计算机系统通用的字符编码工作方式："><span class="nav-number">1.</span> <span class="nav-text">1 现在计算机系统通用的字符编码工作方式：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Python3中的​encode和decode"><span class="nav-number">2.</span> <span class="nav-text">2 Python3中的​encode和decode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-如何查看str在内存中的unicode码"><span class="nav-number">3.</span> <span class="nav-text">3 如何查看str在内存中的unicode码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-unicode码在python里有两种表示方式："><span class="nav-number">4.</span> <span class="nav-text">4 unicode码在python里有两种表示方式：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-import-chardet-这个模块可以帮助检测当前的字节流编码"><span class="nav-number">5.</span> <span class="nav-text">5 import chardet 这个模块可以帮助检测当前的字节流编码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#01x-前言"><span class="nav-number">1.</span> <span class="nav-text">01x 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#02x-Scrapy基本介绍"><span class="nav-number">2.</span> <span class="nav-text">02x Scrapy基本介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#03x-总结"><span class="nav-number">3.</span> <span class="nav-text">03x 总结</span></a></li></ol></div>
             
 
           </div>
