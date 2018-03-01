@@ -103,18 +103,18 @@
   <meta name="keywords" content="Web security," />
 
 
-<meta name="description" content="x01 什么是 XXEXXE：XML External Entity，即外部实体攻击,其本质是利用应用过滤不严格进行xml语句的注入攻击，感觉应该属于注入攻击的一种， x02 XML 文档的DTD文档类型定义（DTD）可定义合法的XML文档构建模块。它使用一系列合法的元素来定义文档的结构，包括定义了XML文档的元素(!ELEMENT)，属性(!ATTLIST)，实体(!ENTITY),其中实体的定">
+<meta name="description" content="0x00 什么是 XXEXXE：XML External Entity，即外部实体攻击,其本质是利用应用过滤不严格进行xml语句的注入攻击，感觉应该属于注入攻击的一种， 0x01 XML 文档的DTD文档类型定义（DTD）可定义合法的XML文档构建模块。它使用一系列合法的元素来定义文档的结构，包括定义了XML文档的元素(!ELEMENT)，属性(!ATTLIST)，实体(!ENTITY),其中实体">
 <meta name="keywords" content="Web security">
 <meta property="og:type" content="article">
 <meta property="og:title" content="XXE 攻击">
 <meta property="og:url" content="http://yoursite.com/2018/02/06/XXE-攻击/index.html">
 <meta property="og:site_name" content="Rick7dology">
-<meta property="og:description" content="x01 什么是 XXEXXE：XML External Entity，即外部实体攻击,其本质是利用应用过滤不严格进行xml语句的注入攻击，感觉应该属于注入攻击的一种， x02 XML 文档的DTD文档类型定义（DTD）可定义合法的XML文档构建模块。它使用一系列合法的元素来定义文档的结构，包括定义了XML文档的元素(!ELEMENT)，属性(!ATTLIST)，实体(!ENTITY),其中实体的定">
+<meta property="og:description" content="0x00 什么是 XXEXXE：XML External Entity，即外部实体攻击,其本质是利用应用过滤不严格进行xml语句的注入攻击，感觉应该属于注入攻击的一种， 0x01 XML 文档的DTD文档类型定义（DTD）可定义合法的XML文档构建模块。它使用一系列合法的元素来定义文档的结构，包括定义了XML文档的元素(!ELEMENT)，属性(!ATTLIST)，实体(!ENTITY),其中实体">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-02-06T15:24:02.000Z">
+<meta property="og:updated_time" content="2018-02-28T03:47:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XXE 攻击">
-<meta name="twitter:description" content="x01 什么是 XXEXXE：XML External Entity，即外部实体攻击,其本质是利用应用过滤不严格进行xml语句的注入攻击，感觉应该属于注入攻击的一种， x02 XML 文档的DTD文档类型定义（DTD）可定义合法的XML文档构建模块。它使用一系列合法的元素来定义文档的结构，包括定义了XML文档的元素(!ELEMENT)，属性(!ATTLIST)，实体(!ENTITY),其中实体的定">
+<meta name="twitter:description" content="0x00 什么是 XXEXXE：XML External Entity，即外部实体攻击,其本质是利用应用过滤不严格进行xml语句的注入攻击，感觉应该属于注入攻击的一种， 0x01 XML 文档的DTD文档类型定义（DTD）可定义合法的XML文档构建模块。它使用一系列合法的元素来定义文档的结构，包括定义了XML文档的元素(!ELEMENT)，属性(!ATTLIST)，实体(!ENTITY),其中实体">
 
 
 
@@ -361,23 +361,23 @@
       
 
       
-        <h1 id="x01-什么是-XXE"><a href="#x01-什么是-XXE" class="headerlink" title="x01 什么是 XXE"></a>x01 什么是 XXE</h1><p>XXE：XML External Entity，即外部实体攻击,其本质是利用应用过滤不严格进行xml语句的注入攻击，感觉应该属于注入攻击的一种，</p>
-<h1 id="x02-XML-文档的DTD"><a href="#x02-XML-文档的DTD" class="headerlink" title="x02 XML 文档的DTD"></a>x02 XML 文档的DTD</h1><p>文档类型定义（DTD）可定义合法的XML文档构建模块。它使用一系列合法的元素来定义文档的结构，包括定义了XML文档的元素(!ELEMENT)，属性(!ATTLIST)，实体(!ENTITY),<strong>其中实体的定义为：实体是用于定义引用普通文本或特殊字符的快捷方式的变量。类似于定义了一个变量</strong></p>
+        <h1 id="0x00-什么是-XXE"><a href="#0x00-什么是-XXE" class="headerlink" title="0x00 什么是 XXE"></a>0x00 什么是 XXE</h1><p>XXE：XML External Entity，即外部实体攻击,其本质是利用应用过滤不严格进行xml语句的注入攻击，感觉应该属于注入攻击的一种，</p>
+<h1 id="0x01-XML-文档的DTD"><a href="#0x01-XML-文档的DTD" class="headerlink" title="0x01 XML 文档的DTD"></a>0x01 XML 文档的DTD</h1><p>文档类型定义（DTD）可定义合法的XML文档构建模块。它使用一系列合法的元素来定义文档的结构，包括定义了XML文档的元素(!ELEMENT)，属性(!ATTLIST)，实体(!ENTITY),<strong>其中实体的定义为：实体是用于定义引用普通文本或特殊字符的快捷方式的变量。类似于定义了一个变量</strong></p>
 <p>详细的DTD定义可以参考下面的链接：</p>
 <p><a href="http://www.runoob.com/dtd/dtd-building.html" target="_blank" rel="noopener">http://www.runoob.com/dtd/dtd-building.html</a></p>
 <h1 id="x03-内部实体和外部实体"><a href="#x03-内部实体和外部实体" class="headerlink" title="x03 内部实体和外部实体"></a>x03 内部实体和外部实体</h1><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">DTD 定义内部实体</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">!ENTITY</span> <span class="attr">writer</span> "<span class="attr">Donald</span> <span class="attr">Duck.</span>"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">!ENTITY</span> <span class="attr">copyright</span> "<span class="attr">Copyright</span> <span class="attr">runoob.com</span>"&gt;</span></span><br><span class="line"></span><br><span class="line">XML引用上面实体的内部定义：</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">author</span>&gt;</span>&amp;writer;&amp;copyright;<span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">DTD 定义外部实体，加了一个SYSTEM关键字</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">!ENTITY</span> <span class="attr">writer</span> <span class="attr">SYSTEM</span> "<span class="attr">http:</span>//<span class="attr">www.runoob.com</span>/<span class="attr">entities.dtd</span>"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">!ENTITY</span> <span class="attr">copyright</span> <span class="attr">SYSTEM</span> "<span class="attr">http:</span>//<span class="attr">www.runoob.com</span>/<span class="attr">entities.dtd</span>"&gt;</span></span><br><span class="line"></span><br><span class="line">XML引用上面定义的外部实体</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">author</span>&gt;</span>&amp;writer;&amp;copyright;<span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="x04-XXE-攻击PAYLOAD"><a href="#x04-XXE-攻击PAYLOAD" class="headerlink" title="x04 XXE 攻击PAYLOAD"></a>x04 XXE 攻击PAYLOAD</h1><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE foo [</span></span><br><span class="line"><span class="meta">    &lt;!ELEMENT foo ANY &gt;</span></span><br><span class="line"><span class="meta">    &lt;!ENTITY  xxe SYSTEM "file:///c:/windows/win.ini" &gt; #定义了外部实体引用</span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">foo</span>&gt;</span>&amp;xxe;<span class="tag">&lt;/<span class="name">foo</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="x05-XXE攻击原理"><a href="#x05-XXE攻击原理" class="headerlink" title="x05 XXE攻击原理"></a>x05 XXE攻击原理</h1><p>在 XML1.0 标准里，XML文档里的实体的标识符可以访问本地远程内容，如果在外部实体引用的过程中，注入恶意代码，即可引发信息泄露等安全问题。</p>
+<h1 id="0x02-XXE-攻击PAYLOAD"><a href="#0x02-XXE-攻击PAYLOAD" class="headerlink" title="0x02 XXE 攻击PAYLOAD"></a>0x02 XXE 攻击PAYLOAD</h1><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE foo [</span></span><br><span class="line"><span class="meta">    &lt;!ELEMENT foo ANY &gt;</span></span><br><span class="line"><span class="meta">    &lt;!ENTITY  xxe SYSTEM "file:///c:/windows/win.ini" &gt; #定义了外部实体引用</span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">foo</span>&gt;</span>&amp;xxe;<span class="tag">&lt;/<span class="name">foo</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="0x02-XXE攻击原理"><a href="#0x02-XXE攻击原理" class="headerlink" title="0x02 XXE攻击原理"></a>0x02 XXE攻击原理</h1><p>在 XML1.0 标准里，XML文档里的实体的标识符可以访问本地远程内容，如果在外部实体引用的过程中，注入恶意代码，即可引发信息泄露等安全问题。</p>
 <p>比如上述示例中所演示的 URI，即可读取 passwd 中的敏感信息。</p>
-<h1 id="x06-攻击方式"><a href="#x06-攻击方式" class="headerlink" title="x06 攻击方式"></a>x06 攻击方式</h1><ul>
+<h1 id="0x03-攻击方式"><a href="#0x03-攻击方式" class="headerlink" title="0x03 攻击方式"></a>0x03 攻击方式</h1><ul>
 <li><p>有回显</p>
 </li>
 <li><p>无回显</p>
 </li>
 </ul>
 <p>具体就不继续了，网上一大堆文章，反正了解了核心概念就可以了，其他利用姿势自行Google</p>
-<h1 id="07-如何防御"><a href="#07-如何防御" class="headerlink" title="07 如何防御"></a>07 如何防御</h1><p>可以将 libxml 版本升级到 2.9.0 以后，因为 libxml 2.9.0 以后默认是不解析外部实体的，还要做输入过滤，错误处理等，反正应对注入的措施都要有</p>
+<h1 id="0x04-如何防御"><a href="#0x04-如何防御" class="headerlink" title="0x04 如何防御"></a>0x04 如何防御</h1><p>可以将 libxml 版本升级到 2.9.0 以后，因为 libxml 2.9.0 以后默认是不解析外部实体的，还要做输入过滤，错误处理等，反正应对注入的措施都要有</p>
 <h1 id="Bonus"><a href="#Bonus" class="headerlink" title="Bonus"></a>Bonus</h1><p>XML Schema 很快会将 DTD 取而代之，但 XML Schema 也会存在注入的问题，这个后面再慢慢看，还有Xpath注入等，关于xml的安全问题还是由很多的</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a href="http://mp.weixin.qq.com/s/vkCdz6YCoiiJPI30KePD6g" target="_blank" rel="noopener">http://mp.weixin.qq.com/s/vkCdz6YCoiiJPI30KePD6g</a></p>
 <p><a href="http://www.runoob.com/dtd/dtd-summary.html" target="_blank" rel="noopener">http://www.runoob.com/dtd/dtd-summary.html</a></p>
@@ -501,7 +501,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -557,7 +557,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#x01-什么是-XXE"><span class="nav-number">1.</span> <span class="nav-text">x01 什么是 XXE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#x02-XML-文档的DTD"><span class="nav-number">2.</span> <span class="nav-text">x02 XML 文档的DTD</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#x03-内部实体和外部实体"><span class="nav-number">3.</span> <span class="nav-text">x03 内部实体和外部实体</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#x04-XXE-攻击PAYLOAD"><span class="nav-number">4.</span> <span class="nav-text">x04 XXE 攻击PAYLOAD</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#x05-XXE攻击原理"><span class="nav-number">5.</span> <span class="nav-text">x05 XXE攻击原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#x06-攻击方式"><span class="nav-number">6.</span> <span class="nav-text">x06 攻击方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#07-如何防御"><span class="nav-number">7.</span> <span class="nav-text">07 如何防御</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Bonus"><span class="nav-number">8.</span> <span class="nav-text">Bonus</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">9.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-什么是-XXE"><span class="nav-number">1.</span> <span class="nav-text">0x00 什么是 XXE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-XML-文档的DTD"><span class="nav-number">2.</span> <span class="nav-text">0x01 XML 文档的DTD</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#x03-内部实体和外部实体"><span class="nav-number">3.</span> <span class="nav-text">x03 内部实体和外部实体</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-XXE-攻击PAYLOAD"><span class="nav-number">4.</span> <span class="nav-text">0x02 XXE 攻击PAYLOAD</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-XXE攻击原理"><span class="nav-number">5.</span> <span class="nav-text">0x02 XXE攻击原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03-攻击方式"><span class="nav-number">6.</span> <span class="nav-text">0x03 攻击方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04-如何防御"><span class="nav-number">7.</span> <span class="nav-text">0x04 如何防御</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Bonus"><span class="nav-number">8.</span> <span class="nav-text">Bonus</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">9.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
@@ -589,7 +589,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">71k</span>
+    <span title="Symbols count total">72k</span>
   
 
   
@@ -598,7 +598,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">1:11</span>
+    <span title="Reading time total">1:12</span>
   
 </div>
 

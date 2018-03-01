@@ -103,18 +103,18 @@
   <meta name="keywords" content="Python," />
 
 
-<meta name="description" content="01x 前言最近玩了一下Python的爬虫，感觉这个东西对Python初学者还是挺友好的，适合入门Python 02x 简单编程套路 requests 库发送请求 Beautifulsoap,Xpath,Pyquiry,正则，等解释库提取数据 储存数据到文件或者数据库  下面通过一个简单的对猫眼榜单的爬取代码体现上面的思路：  get_onepage(url)函数发送请求，主要使用requests">
+<meta name="description" content="0x00 前言最近玩了一下Python的爬虫，感觉这个东西对Python初学者还是挺友好的，适合入门Python 0x01 简单编程套路 requests 库发送请求 Beautifulsoap,Xpath,Pyquiry,正则，等解释库提取数据 储存数据到文件或者数据库  下面通过一个简单的对猫眼榜单的爬取代码体现上面的思路：  get_onepage(url)函数发送请求，主要使用reques">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python爬虫小总结">
 <meta property="og:url" content="http://yoursite.com/2018/02/28/Python爬虫小总结/index.html">
 <meta property="og:site_name" content="Rick7dology">
-<meta property="og:description" content="01x 前言最近玩了一下Python的爬虫，感觉这个东西对Python初学者还是挺友好的，适合入门Python 02x 简单编程套路 requests 库发送请求 Beautifulsoap,Xpath,Pyquiry,正则，等解释库提取数据 储存数据到文件或者数据库  下面通过一个简单的对猫眼榜单的爬取代码体现上面的思路：  get_onepage(url)函数发送请求，主要使用requests">
+<meta property="og:description" content="0x00 前言最近玩了一下Python的爬虫，感觉这个东西对Python初学者还是挺友好的，适合入门Python 0x01 简单编程套路 requests 库发送请求 Beautifulsoap,Xpath,Pyquiry,正则，等解释库提取数据 储存数据到文件或者数据库  下面通过一个简单的对猫眼榜单的爬取代码体现上面的思路：  get_onepage(url)函数发送请求，主要使用reques">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-02-27T09:15:51.000Z">
+<meta property="og:updated_time" content="2018-02-28T03:44:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python爬虫小总结">
-<meta name="twitter:description" content="01x 前言最近玩了一下Python的爬虫，感觉这个东西对Python初学者还是挺友好的，适合入门Python 02x 简单编程套路 requests 库发送请求 Beautifulsoap,Xpath,Pyquiry,正则，等解释库提取数据 储存数据到文件或者数据库  下面通过一个简单的对猫眼榜单的爬取代码体现上面的思路：  get_onepage(url)函数发送请求，主要使用requests">
+<meta name="twitter:description" content="0x00 前言最近玩了一下Python的爬虫，感觉这个东西对Python初学者还是挺友好的，适合入门Python 0x01 简单编程套路 requests 库发送请求 Beautifulsoap,Xpath,Pyquiry,正则，等解释库提取数据 储存数据到文件或者数据库  下面通过一个简单的对猫眼榜单的爬取代码体现上面的思路：  get_onepage(url)函数发送请求，主要使用reques">
 
 
 
@@ -361,8 +361,8 @@
       
 
       
-        <h1 id="01x-前言"><a href="#01x-前言" class="headerlink" title="01x 前言"></a>01x 前言</h1><p>最近玩了一下Python的爬虫，感觉这个东西对Python初学者还是挺友好的，适合入门Python</p>
-<h1 id="02x-简单编程套路"><a href="#02x-简单编程套路" class="headerlink" title="02x 简单编程套路"></a>02x 简单编程套路</h1><ul>
+        <h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>最近玩了一下Python的爬虫，感觉这个东西对Python初学者还是挺友好的，适合入门Python</p>
+<h1 id="0x01-简单编程套路"><a href="#0x01-简单编程套路" class="headerlink" title="0x01 简单编程套路"></a>0x01 简单编程套路</h1><ul>
 <li>requests 库发送请求</li>
 <li>Beautifulsoap,Xpath,Pyquiry,正则，等解释库提取数据</li>
 <li>储存数据到文件或者数据库</li>
@@ -374,7 +374,7 @@
 <li>save_csv(content)函数就是把数据保存到CSV文件</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_onepage</span><span class="params">(url)</span>:</span></span><br><span class="line">    headers = &#123;<span class="string">'user-agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '</span></span><br><span class="line">                             <span class="string">'Chrome/60.0.3112.113 Safari/537.36'</span>&#125;</span><br><span class="line">    raw_content = requests.get(url,headers=headers)</span><br><span class="line">    raw_content.encoding = <span class="string">'utf-8'</span></span><br><span class="line">    <span class="comment"># print(raw_content.text)</span></span><br><span class="line">    <span class="keyword">return</span> raw_content.text</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_onepage</span><span class="params">(content)</span>:</span></span><br><span class="line">    soup = BeautifulSoup(content,<span class="string">'lxml'</span>)</span><br><span class="line">    movie_item = soup.find_all(<span class="string">'dd'</span>)</span><br><span class="line">    <span class="keyword">for</span> items <span class="keyword">in</span> movie_item:</span><br><span class="line">        dict = &#123;<span class="string">'index'</span>: <span class="string">''</span>, <span class="string">'title'</span>: <span class="string">''</span>, <span class="string">'star'</span>: <span class="string">''</span>&#125;</span><br><span class="line">        movie_index = items.find(<span class="string">'i'</span>,class_ = <span class="string">"board-index"</span>)</span><br><span class="line">        dict[<span class="string">'index'</span>] = movie_index.get_text()</span><br><span class="line">        movie_title = items.find(<span class="string">'p'</span>,attrs = &#123;<span class="string">'class'</span>: <span class="string">'name'</span>&#125;)</span><br><span class="line">        dict[<span class="string">'title'</span>] = movie_title.find(<span class="string">'a'</span>).get_text()</span><br><span class="line">        movie_actor = items.find(<span class="string">'p'</span>,attrs = &#123;<span class="string">'class'</span>: <span class="string">'star'</span>&#125;)</span><br><span class="line">        dict[<span class="string">'star'</span>] = movie_actor.get_text().strip()</span><br><span class="line">        <span class="keyword">yield</span> dict</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">save_csv</span><span class="params">(content)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">"/Users/Rick7/Desktop/data.csv"</span>,<span class="string">'a'</span>,encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> csvfile:</span><br><span class="line">        fieldnames = [<span class="string">'index'</span>, <span class="string">'title'</span>, <span class="string">'star'</span>]</span><br><span class="line">        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)</span><br><span class="line">        writer.writeheader()</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> parse_onepage(content):</span><br><span class="line">            writer.writerow(item)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">(offset_number)</span>:</span></span><br><span class="line">    url = <span class="string">"http://maoyan.com/board/4?offset="</span>+str(offset_number)</span><br><span class="line">    html = get_onepage(url)</span><br><span class="line">    save_csv(html)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">        i=i*<span class="number">10</span></span><br><span class="line">        main(i)</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<h1 id="03x-总结"><a href="#03x-总结" class="headerlink" title="03x 总结"></a>03x 总结</h1><ul>
+<h1 id="0x02-总结"><a href="#0x02-总结" class="headerlink" title="0x02 总结"></a>0x02 总结</h1><ul>
 <li>这是最简单的爬虫小程序，从中要体会里面思路</li>
 <li>上面的小程序只针对静态页面，对于动态的Ajax加载，使用过selenium，不过感觉十分慢和不友好，建议抓包找去真实的URL比较实际</li>
 <li>比起beautifulsoap，感觉xpath提取数据更加高效简洁</li>
@@ -499,7 +499,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -555,7 +555,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#01x-前言"><span class="nav-number">1.</span> <span class="nav-text">01x 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#02x-简单编程套路"><span class="nav-number">2.</span> <span class="nav-text">02x 简单编程套路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#03x-总结"><span class="nav-number">3.</span> <span class="nav-text">03x 总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-简单编程套路"><span class="nav-number">2.</span> <span class="nav-text">0x01 简单编程套路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-总结"><span class="nav-number">3.</span> <span class="nav-text">0x02 总结</span></a></li></ol></div>
             
 
           </div>
@@ -587,7 +587,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">71k</span>
+    <span title="Symbols count total">72k</span>
   
 
   
@@ -596,7 +596,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">1:11</span>
+    <span title="Reading time total">1:12</span>
   
 </div>
 

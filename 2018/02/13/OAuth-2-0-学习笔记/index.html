@@ -103,19 +103,19 @@
   <meta name="keywords" content="Web security," />
 
 
-<meta name="description" content="x01 前言最近OAuth又出了一个漏洞，根据漏洞介绍这个漏洞不在OAuth协议，而在用户的部署上，等详细分析吧，漏洞链接如下，借此机会复习一下OAuth2.0 http://www.cnvd.org.cn/flaw/show/CNVD-2018-01622 x02 OAuth 2.0 流程详细的交换就不写了，网上一大堆，简单总结两句授权码模式（authorization code），包括了(用户">
+<meta name="description" content="0x00 前言最近OAuth又出了一个漏洞，根据漏洞介绍这个漏洞不在OAuth协议，而在用户的部署上，等详细分析吧，漏洞链接如下，借此机会复习一下OAuth2.0 http://www.cnvd.org.cn/flaw/show/CNVD-2018-01622 0x01 OAuth 2.0 流程详细的交换就不写了，网上一大堆，简单总结两句授权码模式（authorization code），包括了(">
 <meta name="keywords" content="Web security">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OAuth 2.0 学习笔记 ">
 <meta property="og:url" content="http://yoursite.com/2018/02/13/OAuth-2-0-学习笔记/index.html">
 <meta property="og:site_name" content="Rick7dology">
-<meta property="og:description" content="x01 前言最近OAuth又出了一个漏洞，根据漏洞介绍这个漏洞不在OAuth协议，而在用户的部署上，等详细分析吧，漏洞链接如下，借此机会复习一下OAuth2.0 http://www.cnvd.org.cn/flaw/show/CNVD-2018-01622 x02 OAuth 2.0 流程详细的交换就不写了，网上一大堆，简单总结两句授权码模式（authorization code），包括了(用户">
+<meta property="og:description" content="0x00 前言最近OAuth又出了一个漏洞，根据漏洞介绍这个漏洞不在OAuth协议，而在用户的部署上，等详细分析吧，漏洞链接如下，借此机会复习一下OAuth2.0 http://www.cnvd.org.cn/flaw/show/CNVD-2018-01622 0x01 OAuth 2.0 流程详细的交换就不写了，网上一大堆，简单总结两句授权码模式（authorization code），包括了(">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/CSRF%20OAuth.jpg">
-<meta property="og:updated_time" content="2018-02-14T03:54:36.000Z">
+<meta property="og:updated_time" content="2018-02-28T03:45:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OAuth 2.0 学习笔记 ">
-<meta name="twitter:description" content="x01 前言最近OAuth又出了一个漏洞，根据漏洞介绍这个漏洞不在OAuth协议，而在用户的部署上，等详细分析吧，漏洞链接如下，借此机会复习一下OAuth2.0 http://www.cnvd.org.cn/flaw/show/CNVD-2018-01622 x02 OAuth 2.0 流程详细的交换就不写了，网上一大堆，简单总结两句授权码模式（authorization code），包括了(用户">
+<meta name="twitter:description" content="0x00 前言最近OAuth又出了一个漏洞，根据漏洞介绍这个漏洞不在OAuth协议，而在用户的部署上，等详细分析吧，漏洞链接如下，借此机会复习一下OAuth2.0 http://www.cnvd.org.cn/flaw/show/CNVD-2018-01622 0x01 OAuth 2.0 流程详细的交换就不写了，网上一大堆，简单总结两句授权码模式（authorization code），包括了(">
 <meta name="twitter:image" content="http://yoursite.com/images/CSRF%20OAuth.jpg">
 
 
@@ -363,9 +363,9 @@
       
 
       
-        <h1 id="x01-前言"><a href="#x01-前言" class="headerlink" title="x01 前言"></a>x01 前言</h1><p>最近OAuth又出了一个漏洞，根据漏洞介绍这个漏洞不在OAuth协议，而在用户的部署上，等详细分析吧，漏洞链接如下，借此机会复习一下OAuth2.0</p>
+        <h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>最近OAuth又出了一个漏洞，根据漏洞介绍这个漏洞不在OAuth协议，而在用户的部署上，等详细分析吧，漏洞链接如下，借此机会复习一下OAuth2.0</p>
 <p><a href="http://www.cnvd.org.cn/flaw/show/CNVD-2018-01622" target="_blank" rel="noopener">http://www.cnvd.org.cn/flaw/show/CNVD-2018-01622</a></p>
-<h1 id="x02-OAuth-2-0-流程"><a href="#x02-OAuth-2-0-流程" class="headerlink" title="x02 OAuth 2.0 流程"></a>x02 OAuth 2.0 流程</h1><p>详细的交换就不写了，网上一大堆，简单总结两句授权码模式（authorization code），包括了(用户A，网站B，GitHub(信息提供者,resource owner))</p>
+<h1 id="0x01-OAuth-2-0-流程"><a href="#0x01-OAuth-2-0-流程" class="headerlink" title="0x01 OAuth 2.0 流程"></a>0x01 OAuth 2.0 流程</h1><p>详细的交换就不写了，网上一大堆，简单总结两句授权码模式（authorization code），包括了(用户A，网站B，GitHub(信息提供者,resource owner))</p>
 <p>前提：网站B要想得到GitHub认证，必须先和GitHub协商可以取得什么权限等事情，这时候GitHub认可了网站B的合法性并同意网站B可以使用GitHub的相关用户资料，并给了网站B：Client Id 和 Client Secret。</p>
 <ol>
 <li><p>用户A想登陆网站B，但不想注册，所以点击了下面的GitHub图标，想通过GitHub账号登陆网站B,这时候就触发了OAuth认证</p>
@@ -385,7 +385,7 @@
 <ol>
 <li>从上面的response中得到了access_token，相应的scope，网站B可以凭借这个token来取得用户在GitHub的信息，至于能够取得的信息范围就由scope来定义了，用户A可以使用GitHub的账号登陆网站B了。这就是授权码模式的简单描述。</li>
 </ol>
-<h1 id="x03-已知的安全问题-CSRF"><a href="#x03-已知的安全问题-CSRF" class="headerlink" title="x03 已知的安全问题-CSRF"></a>x03 已知的安全问题-CSRF</h1><ol>
+<h1 id="0x02-已知的安全问题-CSRF"><a href="#0x02-已知的安全问题-CSRF" class="headerlink" title="0x02 已知的安全问题-CSRF"></a>0x02 已知的安全问题-CSRF</h1><ol>
 <li>漏洞原理</li>
 </ol>
 <blockquote>
@@ -408,7 +408,7 @@
 <li>OAuth2提供者颁发的Authorization Code有效期很短，OAuth2官方推荐的时间是不大于10分钟，所以要快</li>
 <li>一个Authorization Code只能被使用一次</li>
 </ul>
-<h1 id="x04-如何防御"><a href="#x04-如何防御" class="headerlink" title="x04 如何防御"></a>x04 如何防御</h1><p>刚才提到了，既然这个漏洞本质是欺骗网站B，那么要做防御的当然在网站B了，网站B要确保用户发去GitHub的授权码(Authorization Code)申请和用户redirect回来的授权码是一致的，怎么做呢？就是加一个唯一的，随机的参数state来确保唯一性</p>
+<h1 id="0x03-如何防御"><a href="#0x03-如何防御" class="headerlink" title="0x03 如何防御"></a>0x03 如何防御</h1><p>刚才提到了，既然这个漏洞本质是欺骗网站B，那么要做防御的当然在网站B了，网站B要确保用户发去GitHub的授权码(Authorization Code)申请和用户redirect回来的授权码是一致的，怎么做呢？就是加一个唯一的，随机的参数state来确保唯一性</p>
 <ul>
 <li>首先，网站B redirect 用户A到GitHub申请授权码的时候带上”state=xyz“参数</li>
 </ul>
@@ -546,7 +546,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -602,7 +602,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#x01-前言"><span class="nav-number">1.</span> <span class="nav-text">x01 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#x02-OAuth-2-0-流程"><span class="nav-number">2.</span> <span class="nav-text">x02 OAuth 2.0 流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#x03-已知的安全问题-CSRF"><span class="nav-number">3.</span> <span class="nav-text">x03 已知的安全问题-CSRF</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#x04-如何防御"><span class="nav-number">4.</span> <span class="nav-text">x04 如何防御</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Refer-link"><span class="nav-number">5.</span> <span class="nav-text">Refer link</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-OAuth-2-0-流程"><span class="nav-number">2.</span> <span class="nav-text">0x01 OAuth 2.0 流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-已知的安全问题-CSRF"><span class="nav-number">3.</span> <span class="nav-text">0x02 已知的安全问题-CSRF</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03-如何防御"><span class="nav-number">4.</span> <span class="nav-text">0x03 如何防御</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Refer-link"><span class="nav-number">5.</span> <span class="nav-text">Refer link</span></a></li></ol></div>
             
 
           </div>
@@ -634,7 +634,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">71k</span>
+    <span title="Symbols count total">72k</span>
   
 
   
@@ -643,7 +643,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">1:11</span>
+    <span title="Reading time total">1:12</span>
   
 </div>
 

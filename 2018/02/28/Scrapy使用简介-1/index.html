@@ -103,20 +103,20 @@
   <meta name="keywords" content="Python," />
 
 
-<meta name="description" content="01x 前言上一篇笔记记录了学习Python爬虫的简单思路，然后就要对Python爬虫框架进行基本使用了，玩玩更健康 02x Scrapy基本介绍 基本数据流图解：    基本数据流程：   Spiders发送第一个URL给引擎 引擎从Spider中获取到第一个要爬取的URL后，在调度器(Scheduler)以Request调度 调度器把需要爬取的request返回给引擎 引擎将request通过">
+<meta name="description" content="0x00 前言上一篇笔记记录了学习Python爬虫的简单思路，然后就要对Python爬虫框架进行基本使用了，玩玩更健康 0x01 Scrapy基本介绍 基本数据流图解：    基本数据流程：   Spiders发送第一个URL给引擎 引擎从Spider中获取到第一个要爬取的URL后，在调度器(Scheduler)以Request调度 调度器把需要爬取的request返回给引擎 引擎将request">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Scrapy使用简介_1">
 <meta property="og:url" content="http://yoursite.com/2018/02/28/Scrapy使用简介-1/index.html">
 <meta property="og:site_name" content="Rick7dology">
-<meta property="og:description" content="01x 前言上一篇笔记记录了学习Python爬虫的简单思路，然后就要对Python爬虫框架进行基本使用了，玩玩更健康 02x Scrapy基本介绍 基本数据流图解：    基本数据流程：   Spiders发送第一个URL给引擎 引擎从Spider中获取到第一个要爬取的URL后，在调度器(Scheduler)以Request调度 调度器把需要爬取的request返回给引擎 引擎将request通过">
+<meta property="og:description" content="0x00 前言上一篇笔记记录了学习Python爬虫的简单思路，然后就要对Python爬虫框架进行基本使用了，玩玩更健康 0x01 Scrapy基本介绍 基本数据流图解：    基本数据流程：   Spiders发送第一个URL给引擎 引擎从Spider中获取到第一个要爬取的URL后，在调度器(Scheduler)以Request调度 调度器把需要爬取的request返回给引擎 引擎将request">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/scrapyworkflow.png">
 <meta property="og:image" content="http://yoursite.com/images/structure.png">
-<meta property="og:updated_time" content="2018-02-27T13:15:53.000Z">
+<meta property="og:updated_time" content="2018-02-28T03:44:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Scrapy使用简介_1">
-<meta name="twitter:description" content="01x 前言上一篇笔记记录了学习Python爬虫的简单思路，然后就要对Python爬虫框架进行基本使用了，玩玩更健康 02x Scrapy基本介绍 基本数据流图解：    基本数据流程：   Spiders发送第一个URL给引擎 引擎从Spider中获取到第一个要爬取的URL后，在调度器(Scheduler)以Request调度 调度器把需要爬取的request返回给引擎 引擎将request通过">
+<meta name="twitter:description" content="0x00 前言上一篇笔记记录了学习Python爬虫的简单思路，然后就要对Python爬虫框架进行基本使用了，玩玩更健康 0x01 Scrapy基本介绍 基本数据流图解：    基本数据流程：   Spiders发送第一个URL给引擎 引擎从Spider中获取到第一个要爬取的URL后，在调度器(Scheduler)以Request调度 调度器把需要爬取的request返回给引擎 引擎将request">
 <meta name="twitter:image" content="http://yoursite.com/images/scrapyworkflow.png">
 
 
@@ -364,8 +364,8 @@
       
 
       
-        <h1 id="01x-前言"><a href="#01x-前言" class="headerlink" title="01x 前言"></a>01x 前言</h1><p>上一篇笔记记录了学习Python爬虫的简单思路，然后就要对Python爬虫框架进行基本使用了，玩玩更健康</p>
-<h1 id="02x-Scrapy基本介绍"><a href="#02x-Scrapy基本介绍" class="headerlink" title="02x Scrapy基本介绍"></a>02x Scrapy基本介绍</h1><ul>
+        <h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>上一篇笔记记录了学习Python爬虫的简单思路，然后就要对Python爬虫框架进行基本使用了，玩玩更健康</p>
+<h1 id="0x01-Scrapy基本介绍"><a href="#0x01-Scrapy基本介绍" class="headerlink" title="0x01 Scrapy基本介绍"></a>0x01 Scrapy基本介绍</h1><ul>
 <li>基本数据流图解：</li>
 </ul>
 <p><img src="/images/scrapyworkflow.png" alt="数据流图"></p>
@@ -410,7 +410,7 @@
 <ul>
 <li>配置好setting文件激活管道，程序完成</li>
 </ul>
-<h1 id="03x-总结"><a href="#03x-总结" class="headerlink" title="03x 总结"></a>03x 总结</h1><ul>
+<h1 id="0x02-总结"><a href="#0x02-总结" class="headerlink" title="0x02 总结"></a>0x02 总结</h1><ul>
 <li>要学scrapy首先要搞清楚这个框架的数据流</li>
 <li>建议阅读官方文档了解其中的类和方法</li>
 <li>后面还会继续学习高级一点点的知识，例如url去重，中间件的使用等</li>
@@ -454,6 +454,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/01/SSL握手过程/" rel="prev" title="SSL握手过程">
+                SSL握手过程 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -531,7 +535,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -587,7 +591,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#01x-前言"><span class="nav-number">1.</span> <span class="nav-text">01x 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#02x-Scrapy基本介绍"><span class="nav-number">2.</span> <span class="nav-text">02x Scrapy基本介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#03x-总结"><span class="nav-number">3.</span> <span class="nav-text">03x 总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-Scrapy基本介绍"><span class="nav-number">2.</span> <span class="nav-text">0x01 Scrapy基本介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-总结"><span class="nav-number">3.</span> <span class="nav-text">0x02 总结</span></a></li></ol></div>
             
 
           </div>
@@ -619,7 +623,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">71k</span>
+    <span title="Symbols count total">72k</span>
   
 
   
@@ -628,7 +632,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">1:11</span>
+    <span title="Reading time total">1:12</span>
   
 </div>
 

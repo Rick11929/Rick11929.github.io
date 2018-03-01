@@ -103,18 +103,18 @@
   <meta name="keywords" content="Web security," />
 
 
-<meta name="description" content="前言在上一遍文章中提到了XML的格式定义DTD存在外部实体引用攻击，这次来学习一下主流的XML格式定义XML Schema，刚好最近上了java的spring培训，里面定义beans的时候主要配置的就是XML文档，所以也是时候再学学xml的相关知识了，网上很多相关文章，主要记录一些和安全相关的设置吧 x01 XML Schema 基础XML Schema 描述了 XML文档的结构，也是由 XML">
+<meta name="description" content="0x00 前言在上一遍文章中提到了XML的格式定义DTD存在外部实体引用攻击，这次来学习一下主流的XML格式定义XML Schema，刚好最近上了java的spring培训，里面定义beans的时候主要配置的就是XML文档，所以也是时候再学学xml的相关知识了，网上很多相关文章，主要记录一些和安全相关的设置吧 0x01 XML Schema 基础XML Schema 描述了 XML文档的结构，也是">
 <meta name="keywords" content="Web security">
 <meta property="og:type" content="article">
 <meta property="og:title" content="XXE 攻击(2)">
 <meta property="og:url" content="http://yoursite.com/2018/02/08/XXE-攻击——2/index.html">
 <meta property="og:site_name" content="Rick7dology">
-<meta property="og:description" content="前言在上一遍文章中提到了XML的格式定义DTD存在外部实体引用攻击，这次来学习一下主流的XML格式定义XML Schema，刚好最近上了java的spring培训，里面定义beans的时候主要配置的就是XML文档，所以也是时候再学学xml的相关知识了，网上很多相关文章，主要记录一些和安全相关的设置吧 x01 XML Schema 基础XML Schema 描述了 XML文档的结构，也是由 XML">
+<meta property="og:description" content="0x00 前言在上一遍文章中提到了XML的格式定义DTD存在外部实体引用攻击，这次来学习一下主流的XML格式定义XML Schema，刚好最近上了java的spring培训，里面定义beans的时候主要配置的就是XML文档，所以也是时候再学学xml的相关知识了，网上很多相关文章，主要记录一些和安全相关的设置吧 0x01 XML Schema 基础XML Schema 描述了 XML文档的结构，也是">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-02-07T14:00:09.000Z">
+<meta property="og:updated_time" content="2018-02-28T03:46:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XXE 攻击(2)">
-<meta name="twitter:description" content="前言在上一遍文章中提到了XML的格式定义DTD存在外部实体引用攻击，这次来学习一下主流的XML格式定义XML Schema，刚好最近上了java的spring培训，里面定义beans的时候主要配置的就是XML文档，所以也是时候再学学xml的相关知识了，网上很多相关文章，主要记录一些和安全相关的设置吧 x01 XML Schema 基础XML Schema 描述了 XML文档的结构，也是由 XML">
+<meta name="twitter:description" content="0x00 前言在上一遍文章中提到了XML的格式定义DTD存在外部实体引用攻击，这次来学习一下主流的XML格式定义XML Schema，刚好最近上了java的spring培训，里面定义beans的时候主要配置的就是XML文档，所以也是时候再学学xml的相关知识了，网上很多相关文章，主要记录一些和安全相关的设置吧 0x01 XML Schema 基础XML Schema 描述了 XML文档的结构，也是">
 
 
 
@@ -327,7 +327,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article&#58;</span>
                 
-                <span title="Symbols count in article">2.7k</span>
+                <span title="Symbols count in article">2.8k</span>
               
 
               
@@ -361,8 +361,8 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在上一遍文章中提到了XML的格式定义DTD存在外部实体引用攻击，这次来学习一下主流的XML格式定义XML Schema，刚好最近上了java的spring培训，里面定义beans的时候主要配置的就是XML文档，所以也是时候再学学xml的相关知识了，网上很多相关文章，主要记录一些和安全相关的设置吧</p>
-<h1 id="x01-XML-Schema-基础"><a href="#x01-XML-Schema-基础" class="headerlink" title="x01 XML Schema 基础"></a>x01 XML Schema 基础</h1><p>XML Schema 描述了 XML文档的结构，也是由 XML 编写，其中Schema可以理解为约束、概要，但不推荐使用中文进行记忆，Schema就是Schema</p>
+        <h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>在上一遍文章中提到了XML的格式定义DTD存在外部实体引用攻击，这次来学习一下主流的XML格式定义XML Schema，刚好最近上了java的spring培训，里面定义beans的时候主要配置的就是XML文档，所以也是时候再学学xml的相关知识了，网上很多相关文章，主要记录一些和安全相关的设置吧</p>
+<h1 id="0x01-XML-Schema-基础"><a href="#0x01-XML-Schema-基础" class="headerlink" title="0x01 XML Schema 基础"></a>0x01 XML Schema 基础</h1><p>XML Schema 描述了 XML文档的结构，也是由 XML 编写，其中Schema可以理解为约束、概要，但不推荐使用中文进行记忆，Schema就是Schema</p>
 <ul>
 <li>一个普通的xml文档：</li>
 </ul>
@@ -393,7 +393,7 @@
 </ol>
 <p>下来来自stackoverflow的详细解释，好明白的讲解：</p>
 <p><a href="https://stackoverflow.com/questions/34202967/xmlns-xmlnsxsi-xsischemalocation-and-targetnamespace" target="_blank" rel="noopener">https://stackoverflow.com/questions/34202967/xmlns-xmlnsxsi-xsischemalocation-and-targetnamespace</a></p>
-<h1 id="x02-XML-Schema攻击的分类"><a href="#x02-XML-Schema攻击的分类" class="headerlink" title="x02 XML Schema攻击的分类"></a>x02 XML Schema攻击的分类</h1><p>XML Schema攻击分为,下面的没有怎么研究，希望日后可以补充，都是看家人的总结来的</p>
+<h1 id="0x02-XML-Schema攻击的分类"><a href="#0x02-XML-Schema攻击的分类" class="headerlink" title="0x02 XML Schema攻击的分类"></a>0x02 XML Schema攻击的分类</h1><p>XML Schema攻击分为,下面的没有怎么研究，希望日后可以补充，都是看家人的总结来的</p>
 <p>1.schemaLocation</p>
 <p>2.noNamespaceSchemaLocation</p>
 <p>3.XInclude。</p>
@@ -520,7 +520,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -576,7 +576,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#x01-XML-Schema-基础"><span class="nav-number">2.</span> <span class="nav-text">x01 XML Schema 基础</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#x02-XML-Schema攻击的分类"><span class="nav-number">3.</span> <span class="nav-text">x02 XML Schema攻击的分类</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-XML-Schema-基础"><span class="nav-number">2.</span> <span class="nav-text">0x01 XML Schema 基础</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-XML-Schema攻击的分类"><span class="nav-number">3.</span> <span class="nav-text">0x02 XML Schema攻击的分类</span></a></li></ol></div>
             
 
           </div>
@@ -608,7 +608,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">71k</span>
+    <span title="Symbols count total">72k</span>
   
 
   
@@ -617,7 +617,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">1:11</span>
+    <span title="Reading time total">1:12</span>
   
 </div>
 
