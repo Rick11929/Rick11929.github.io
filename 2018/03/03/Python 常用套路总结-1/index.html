@@ -111,7 +111,7 @@
 <meta property="og:site_name" content="Rick7dology">
 <meta property="og:description" content="0x00 前言跟着“菜鸟学Python”这个我最喜欢的公众号文章做点练习和巩固基本套路 0x01 字符串(string)的使用 主要复习了字符串分割，字符串列表按长度排序的方法  text1=&apos;A dict that contains arbitrary metadata for this request. &apos; \      &apos;This dict is empty for new Requests">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-05T07:40:13.960Z">
+<meta property="og:updated_time" content="2018-03-05T08:01:34.047Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 常用套路总结_1">
 <meta name="twitter:description" content="0x00 前言跟着“菜鸟学Python”这个我最喜欢的公众号文章做点练习和巩固基本套路 0x01 字符串(string)的使用 主要复习了字符串分割，字符串列表按长度排序的方法  text1=&apos;A dict that contains arbitrary metadata for this request. &apos; \      &apos;This dict is empty for new Requests">
@@ -327,7 +327,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article&#58;</span>
                 
-                <span title="Symbols count in article">4.2k</span>
+                <span title="Symbols count in article">4.5k</span>
               
 
               
@@ -407,6 +407,11 @@
 </ul>
 <p>sorted()函数就可以对list进行排序,此外，sorted()函数也是一个高阶函数，它还可以接收一个key函数来实现自定义的排序</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">L = [(<span class="string">'Bob'</span>, <span class="number">75</span>), (<span class="string">'Adam'</span>, <span class="number">92</span>), (<span class="string">'Bart'</span>, <span class="number">66</span>), (<span class="string">'Lisa'</span>, <span class="number">88</span>)]</span><br><span class="line"></span><br><span class="line">print(sorted(L,key=<span class="keyword">lambda</span> x:x[<span class="number">1</span>],reverse=<span class="keyword">True</span>)) <span class="comment">#对数字又高到低排列</span></span><br><span class="line"></span><br><span class="line">print(sorted(L,key=<span class="keyword">lambda</span> x:str(x[<span class="number">0</span>].lower))) <span class="comment">#对名字进行大小写不敏感排列</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>zip()</li>
+</ul>
+<p>zip()是 Python 的一个内建函数，它接受一系列可迭代的对象作为参数，将对象中对应的元素打包成一个个tuple（元组），然后返回由这些tuples组成的list（列表）。若传入参数的长度不等，则返回 list 的长度和参数中长度最短的对象相同。利用*号操作符，可以将list unzip（解压）。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">l1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">l2 = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>]</span><br><span class="line"></span><br><span class="line">l4 = zip(l1,l2) </span><br><span class="line"></span><br><span class="line">print(l4)<span class="comment">#输出惰性序列</span></span><br><span class="line"></span><br><span class="line">l4 = tuple(zip(l1,l2)) <span class="comment">#使用tuple()函数遍历得到元组</span></span><br><span class="line"></span><br><span class="line">print(l4)</span><br><span class="line"></span><br><span class="line">l5 = dict(l4) <span class="comment">#转化为字典</span></span><br><span class="line"></span><br><span class="line">print(l5)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -611,7 +616,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">80k</span>
+    <span title="Symbols count total">81k</span>
   
 
   
@@ -620,7 +625,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">1:20</span>
+    <span title="Reading time total">1:21</span>
   
 </div>
 
