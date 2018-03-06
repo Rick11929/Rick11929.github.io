@@ -111,7 +111,7 @@
 <meta property="og:site_name" content="Rick7dology">
 <meta property="og:description" content="0x00 前言跟着“菜鸟学Python”这个我最喜欢的公众号文章做点练习和巩固基本套路 0x01 字符串(string)的使用 主要复习了字符串分割，字符串列表按长度排序的方法  text1=&apos;A dict that contains arbitrary metadata for this request. &apos; \      &apos;This dict is empty for new Requests">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-05T08:01:34.047Z">
+<meta property="og:updated_time" content="2018-03-05T13:47:59.350Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 常用套路总结_1">
 <meta name="twitter:description" content="0x00 前言跟着“菜鸟学Python”这个我最喜欢的公众号文章做点练习和巩固基本套路 0x01 字符串(string)的使用 主要复习了字符串分割，字符串列表按长度排序的方法  text1=&apos;A dict that contains arbitrary metadata for this request. &apos; \      &apos;This dict is empty for new Requests">
@@ -211,13 +211,13 @@
         
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-history"></i> <br />Archives</a>
+            <i class="menu-item-icon fa fa-fw fa-history"></i> <br />Archiv</a>
         </li>
       
         
@@ -294,7 +294,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-03T00:15:14+08:00">2018-03-02</time>
             
@@ -327,7 +327,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article&#58;</span>
                 
-                <span title="Symbols count in article">4.5k</span>
+                <span title="Symbols count in article">5.1k</span>
               
 
               
@@ -341,7 +341,7 @@
                 
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
-                <span title="Reading time">0:04</span>
+                <span title="Reading time">0:05</span>
               
             </div>
           
@@ -411,7 +411,9 @@
 <li>zip()</li>
 </ul>
 <p>zip()是 Python 的一个内建函数，它接受一系列可迭代的对象作为参数，将对象中对应的元素打包成一个个tuple（元组），然后返回由这些tuples组成的list（列表）。若传入参数的长度不等，则返回 list 的长度和参数中长度最短的对象相同。利用*号操作符，可以将list unzip（解压）。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">l1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">l2 = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>]</span><br><span class="line"></span><br><span class="line">l4 = zip(l1,l2) </span><br><span class="line"></span><br><span class="line">print(l4)<span class="comment">#输出惰性序列</span></span><br><span class="line"></span><br><span class="line">l4 = tuple(zip(l1,l2)) <span class="comment">#使用tuple()函数遍历得到元组</span></span><br><span class="line"></span><br><span class="line">print(l4)</span><br><span class="line"></span><br><span class="line">l5 = dict(l4) <span class="comment">#转化为字典</span></span><br><span class="line"></span><br><span class="line">print(l5)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">l1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">l2 = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>]</span><br><span class="line"></span><br><span class="line">l4 = zip(l1,l2) </span><br><span class="line"></span><br><span class="line">print(l4)<span class="comment">#输出惰性序列</span></span><br><span class="line"></span><br><span class="line">l4 = tuple(zip(l1,l2)) <span class="comment">#使用tuple()函数遍历得到元组</span></span><br><span class="line"></span><br><span class="line">print(l4)</span><br><span class="line"></span><br><span class="line">l5 = dict(l4) <span class="comment">#转化为字典</span></span><br><span class="line"></span><br><span class="line">print(l5)</span><br><span class="line"></span><br><span class="line"><span class="comment">#output</span></span><br><span class="line"></span><br><span class="line">&lt;zip object at <span class="number">0x1078e0848</span>&gt;</span><br><span class="line">((<span class="number">1</span>, <span class="string">'a'</span>), (<span class="number">2</span>, <span class="string">'b'</span>), (<span class="number">3</span>, <span class="string">'c'</span>), (<span class="number">4</span>, <span class="string">'d'</span>))</span><br><span class="line">&#123;<span class="number">1</span>: <span class="string">'a'</span>, <span class="number">2</span>: <span class="string">'b'</span>, <span class="number">3</span>: <span class="string">'c'</span>, <span class="number">4</span>: <span class="string">'d'</span>&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="0x04-枚举-enumerate-–-Python内置函数"><a href="#0x04-枚举-enumerate-–-Python内置函数" class="headerlink" title="0x04 枚举(enumerate) – Python内置函数"></a>0x04 枚举(enumerate) – Python内置函数</h1><p>常常会在别人的代码中看到它的身影,它允许我们遍历数据并自动计数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_list = [<span class="string">'apple'</span>, <span class="string">'banana'</span>, <span class="string">'grapes'</span>, <span class="string">'pear'</span>]</span><br><span class="line"><span class="keyword">for</span> c, value <span class="keyword">in</span> enumerate(my_list,<span class="number">1</span>):</span><br><span class="line">    print(c, value)</span><br><span class="line"></span><br><span class="line">print(enumerate(my_list,<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">print(dict(enumerate(my_list,<span class="number">1</span>)))</span><br><span class="line">print(list(enumerate(my_list,<span class="number">1</span>)))</span><br><span class="line">print(tuple(enumerate(my_list,<span class="number">1</span>)))</span><br><span class="line"></span><br><span class="line"><span class="comment">#output:</span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span> apple</span><br><span class="line"><span class="number">2</span> banana</span><br><span class="line"><span class="number">3</span> grapes</span><br><span class="line"><span class="number">4</span> pear</span><br><span class="line">&lt;enumerate object at <span class="number">0x103d10828</span>&gt; <span class="comment">#输出惰性序列</span></span><br><span class="line">&#123;<span class="number">1</span>: <span class="string">'apple'</span>, <span class="number">2</span>: <span class="string">'banana'</span>, <span class="number">3</span>: <span class="string">'grapes'</span>, <span class="number">4</span>: <span class="string">'pear'</span>&#125;</span><br><span class="line">[(<span class="number">1</span>, <span class="string">'apple'</span>), (<span class="number">2</span>, <span class="string">'banana'</span>), (<span class="number">3</span>, <span class="string">'grapes'</span>), (<span class="number">4</span>, <span class="string">'pear'</span>)]</span><br><span class="line">((<span class="number">1</span>, <span class="string">'apple'</span>), (<span class="number">2</span>, <span class="string">'banana'</span>), (<span class="number">3</span>, <span class="string">'grapes'</span>), (<span class="number">4</span>, <span class="string">'pear'</span>))</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -501,10 +503,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
+            Übersicht
           </li>
         </ul>
       
@@ -529,7 +531,7 @@
                   <a href="/archives/">
                 
                     <span class="site-state-item-count">26</span>
-                    <span class="site-state-item-name">posts</span>
+                    <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>
               
@@ -542,7 +544,7 @@
                 <div class="site-state-item site-state-tags">
                   <a href="/tags/index.html">
                     <span class="site-state-item-count">7</span>
-                    <span class="site-state-item-name">tags</span>
+                    <span class="site-state-item-name">Tags</span>
                   </a>
                 </div>
               
@@ -584,7 +586,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-字符串-string-的使用"><span class="nav-number">2.</span> <span class="nav-text">0x01 字符串(string)的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-字典-dict-的使用"><span class="nav-number">3.</span> <span class="nav-text">0x02 字典(dict)的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03-Python操作集合的三架马车-filter、map-reduce、sorted-zip"><span class="nav-number">4.</span> <span class="nav-text">0x03 Python操作集合的三架马车(filter、map/reduce、sorted)+zip()</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-字符串-string-的使用"><span class="nav-number">2.</span> <span class="nav-text">0x01 字符串(string)的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-字典-dict-的使用"><span class="nav-number">3.</span> <span class="nav-text">0x02 字典(dict)的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03-Python操作集合的三架马车-filter、map-reduce、sorted-zip"><span class="nav-number">4.</span> <span class="nav-text">0x03 Python操作集合的三架马车(filter、map/reduce、sorted)+zip()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04-枚举-enumerate-–-Python内置函数"><span class="nav-number">5.</span> <span class="nav-text">0x04 枚举(enumerate) – Python内置函数</span></a></li></ol></div>
             
 
           </div>
@@ -632,7 +634,7 @@
 
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
