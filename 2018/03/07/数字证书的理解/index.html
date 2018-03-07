@@ -115,7 +115,8 @@
 <meta property="og:image" content="http://yoursite.com/images/end-user.png">
 <meta property="og:image" content="http://yoursite.com/images/intermediates%20CA.png">
 <meta property="og:image" content="http://yoursite.com/images/root%20CA.png">
-<meta property="og:updated_time" content="2018-03-07T08:41:59.803Z">
+<meta property="og:image" content="http://yoursite.com/images/verify.png">
+<meta property="og:updated_time" content="2018-03-07T15:32:49.002Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数字证书的理解">
 <meta name="twitter:description" content="0x00 前言数字证书是公钥密码学的典型应用，是信息安全的基础，今日好好复习一下 0x01 简单应用原理最重要的一点，数字证书是保障公钥的可靠性 以下流程参考阮一峰老师的经典流程： 假设A给B写一份信。 那么这封将包含如下三部分内容： 1.信本身的内容（直接可以看到，未加密） 2.A的数字签名 （是由信本身的内容经过hash算法计算得到digest摘要，然后用 A的私钥 加密而来的） 3.A的数字">
@@ -332,7 +333,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article&#58;</span>
                 
-                <span title="Symbols count in article">1.9k</span>
+                <span title="Symbols count in article">2.2k</span>
               
 
               
@@ -396,9 +397,25 @@
 <p><img src="/images/certificate chain.png" alt="证书链图片"></p>
 <h2 id="如何验证证书链"><a href="#如何验证证书链" class="headerlink" title="如何验证证书链"></a>如何验证证书链</h2><p>链式向上验证证书，直到Root Certificates，先验证用intermediates CA 签发的end-user的证书的数字签名，再利用root CA验证intermediates CA的数字签名。下图就是访问百度获得的三张证书</p>
 <p><img src="/images/end-user.png" alt="证书链图片1"><br><img src="/images/intermediates CA.png" alt="证书链图片2"><br><img src="/images/root CA.png" alt="证书链图片3"></p>
+<p>下面的图片很好的表达了如何进行证书链的认证：</p>
+<p><img src="/images/verify.png" alt="证书链图片4"></p>
+<p>从哪获取非根证书的颁发者证书？</p>
+<p>网站的证书里是包含上级颁发机构的证书获取地址的</p>
+<h2 id="总体来说浏览器对证书的验证包括下面几项："><a href="#总体来说浏览器对证书的验证包括下面几项：" class="headerlink" title="总体来说浏览器对证书的验证包括下面几项："></a>总体来说浏览器对证书的验证包括下面几项：</h2><ol>
+<li><p>验证证书是否在有效期内</p>
+</li>
+<li><p>验证证书是否在有效期内</p>
+</li>
+</ol>
+<p>验证吊销有CRL和OCSP两种方法</p>
+<ol>
+<li>验证证书是否是上级CA签发的(上面讨论的重点)</li>
+</ol>
 <p>参考：</p>
 <p><a href="http://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html</a></p>
 <p><a href="https://www.jianshu.com/p/46e48bc517d0" target="_blank" rel="noopener">https://www.jianshu.com/p/46e48bc517d0</a></p>
+<p><a href="https://security.stackexchange.com/questions/56389/ssl-certificate-framework-101-how-does-the-browser-actually-verify-the-validity" target="_blank" rel="noopener">https://security.stackexchange.com/questions/56389/ssl-certificate-framework-101-how-does-the-browser-actually-verify-the-validity</a></p>
+<p><a href="https://www.zhihu.com/question/37370216" target="_blank" rel="noopener">https://www.zhihu.com/question/37370216</a></p>
 
       
     </div>
@@ -571,7 +588,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-简单应用原理"><span class="nav-number">2.</span> <span class="nav-text">0x01 简单应用原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-Https的应用"><span class="nav-number">3.</span> <span class="nav-text">0x02 Https的应用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03-问题的根源：-证书中的公钥的真实性和完整性）"><span class="nav-number">4.</span> <span class="nav-text">0x03 问题的根源：(证书中的公钥的真实性和完整性）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04-证书链"><span class="nav-number">5.</span> <span class="nav-text">0x04 证书链</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#证书链的构成："><span class="nav-number">5.1.</span> <span class="nav-text">证书链的构成：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何验证证书链"><span class="nav-number">5.2.</span> <span class="nav-text">如何验证证书链</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-简单应用原理"><span class="nav-number">2.</span> <span class="nav-text">0x01 简单应用原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-Https的应用"><span class="nav-number">3.</span> <span class="nav-text">0x02 Https的应用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03-问题的根源：-证书中的公钥的真实性和完整性）"><span class="nav-number">4.</span> <span class="nav-text">0x03 问题的根源：(证书中的公钥的真实性和完整性）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04-证书链"><span class="nav-number">5.</span> <span class="nav-text">0x04 证书链</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#证书链的构成："><span class="nav-number">5.1.</span> <span class="nav-text">证书链的构成：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何验证证书链"><span class="nav-number">5.2.</span> <span class="nav-text">如何验证证书链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总体来说浏览器对证书的验证包括下面几项："><span class="nav-number">5.3.</span> <span class="nav-text">总体来说浏览器对证书的验证包括下面几项：</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -603,7 +620,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">83k</span>
+    <span title="Symbols count total">84k</span>
   
 
   
@@ -612,7 +629,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">1:23</span>
+    <span title="Reading time total">1:24</span>
   
 </div>
 
