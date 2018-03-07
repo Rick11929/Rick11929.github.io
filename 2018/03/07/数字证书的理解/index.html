@@ -100,21 +100,26 @@
 
 
   
-  <meta name="keywords" content="Java," />
+  <meta name="keywords" content="Web security," />
 
 
-<meta name="description" content="1 什么是Java序列化和反序列化: Java 序列化是指把 Java 对象转换为字节序列的过程便于保存在内存、文件、数据库中，ObjectOutputStream类的 writeObject() 方法可以实现序列化。  Java 反序列化是指把字节序列恢复为 Java 对象的过程，ObjectInputStream 类的 readObject() 方法用于反序列化。  网络上传输和本地硬盘中存储">
-<meta name="keywords" content="Java">
+<meta name="description" content="0x00 前言数字证书是公钥密码学的典型应用，是信息安全的基础，今日好好复习一下 0x01 简单应用原理最重要的一点，数字证书是保障公钥的可靠性 以下流程参考阮一峰老师的经典流程： 假设A给B写一份信。 那么这封将包含如下三部分内容： 1.信本身的内容（直接可以看到，未加密） 2.A的数字签名 （是由信本身的内容经过hash算法计算得到digest摘要，然后用 A的私钥 加密而来的） 3.A的数字">
+<meta name="keywords" content="Web security">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java 反序列化漏洞学习笔记">
-<meta property="og:url" content="http://yoursite.com/2018/01/24/Java-反序列化漏洞学习笔记/index.html">
+<meta property="og:title" content="数字证书的理解">
+<meta property="og:url" content="http://yoursite.com/2018/03/07/数字证书的理解/index.html">
 <meta property="og:site_name" content="Rick7dology">
-<meta property="og:description" content="1 什么是Java序列化和反序列化: Java 序列化是指把 Java 对象转换为字节序列的过程便于保存在内存、文件、数据库中，ObjectOutputStream类的 writeObject() 方法可以实现序列化。  Java 反序列化是指把字节序列恢复为 Java 对象的过程，ObjectInputStream 类的 readObject() 方法用于反序列化。  网络上传输和本地硬盘中存储">
+<meta property="og:description" content="0x00 前言数字证书是公钥密码学的典型应用，是信息安全的基础，今日好好复习一下 0x01 简单应用原理最重要的一点，数字证书是保障公钥的可靠性 以下流程参考阮一峰老师的经典流程： 假设A给B写一份信。 那么这封将包含如下三部分内容： 1.信本身的内容（直接可以看到，未加密） 2.A的数字签名 （是由信本身的内容经过hash算法计算得到digest摘要，然后用 A的私钥 加密而来的） 3.A的数字">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-02-05T07:35:22.000Z">
+<meta property="og:image" content="http://yoursite.com/images/certificate%20chain.png">
+<meta property="og:image" content="http://yoursite.com/images/end-user.png">
+<meta property="og:image" content="http://yoursite.com/images/intermediates%20CA.png">
+<meta property="og:image" content="http://yoursite.com/images/root%20CA.png">
+<meta property="og:updated_time" content="2018-03-07T08:41:59.803Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java 反序列化漏洞学习笔记">
-<meta name="twitter:description" content="1 什么是Java序列化和反序列化: Java 序列化是指把 Java 对象转换为字节序列的过程便于保存在内存、文件、数据库中，ObjectOutputStream类的 writeObject() 方法可以实现序列化。  Java 反序列化是指把字节序列恢复为 Java 对象的过程，ObjectInputStream 类的 readObject() 方法用于反序列化。  网络上传输和本地硬盘中存储">
+<meta name="twitter:title" content="数字证书的理解">
+<meta name="twitter:description" content="0x00 前言数字证书是公钥密码学的典型应用，是信息安全的基础，今日好好复习一下 0x01 简单应用原理最重要的一点，数字证书是保障公钥的可靠性 以下流程参考阮一峰老师的经典流程： 假设A给B写一份信。 那么这封将包含如下三部分内容： 1.信本身的内容（直接可以看到，未加密） 2.A的数字签名 （是由信本身的内容经过hash算法计算得到digest摘要，然后用 A的私钥 加密而来的） 3.A的数字">
+<meta name="twitter:image" content="http://yoursite.com/images/certificate%20chain.png">
 
 
 
@@ -123,10 +128,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/24/Java-反序列化漏洞学习笔记/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/07/数字证书的理解/"/>
 
 
-  <title>Java 反序列化漏洞学习笔记 | Rick7dology</title>
+  <title>数字证书的理解 | Rick7dology</title>
   
 
 
@@ -267,7 +272,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/24/Java-反序列化漏洞学习笔记/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/07/数字证书的理解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Rick7">
@@ -284,7 +289,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java 反序列化漏洞学习笔记</h1>
+          <h1 class="post-title" itemprop="name headline">数字证书的理解</h1>
         
 
         <div class="post-meta">
@@ -296,7 +301,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-24T23:59:15+08:00">2018-01-24</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-07T19:27:18+08:00">2018-03-07</time>
             
 
             
@@ -327,7 +332,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article&#58;</span>
                 
-                <span title="Symbols count in article">2.6k</span>
+                <span title="Symbols count in article">1.9k</span>
               
 
               
@@ -341,7 +346,7 @@
                 
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
-                <span title="Reading time">0:03</span>
+                <span title="Reading time">0:02</span>
               
             </div>
           
@@ -361,50 +366,39 @@
       
 
       
-        <h1 id="1-什么是Java序列化和反序列化"><a href="#1-什么是Java序列化和反序列化" class="headerlink" title="1 什么是Java序列化和反序列化:"></a>1 什么是Java序列化和反序列化:</h1><ol>
-<li><p>Java 序列化是指把 Java 对象转换为字节序列的过程便于保存在内存、文件、数据库中，ObjectOutputStream类的 writeObject() 方法可以实现序列化。</p>
-</li>
-<li><p>Java 反序列化是指把字节序列恢复为 Java 对象的过程，ObjectInputStream 类的 readObject() 方法用于反序列化。</p>
-</li>
-<li><p>网络上传输和本地硬盘中存储的是字节流，即01010之类的数据，所以序列化在传输和存储中是必要的,问题的根源在于类ObjectInputStream在反序列化时，没有对生成的对象的类型做限制；</p>
-</li>
-<li><p>首先在序列化和反序列化的过程中，每个类都有自己的readObject与writeObject对应，很多类自己重写了自己的readObject与writeObject函数，是否有漏洞要看程序有没有用了一些指定的库</p>
-</li>
-<li><p>基本的序列化和反序列化代码：</p>
-</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> <span class="keyword">throws</span> Exception </span>&#123; </span><br><span class="line">    String obj = <span class="string">"hello world!"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将序列化对象写入文件object.db中</span></span><br><span class="line">    FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"object.db"</span>);</span><br><span class="line">    ObjectOutputStream os = <span class="keyword">new</span> ObjectOutputStream(fos);</span><br><span class="line">    os.writeObject(obj);</span><br><span class="line">    os.close();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 从文件object.db中读取数据</span></span><br><span class="line">    FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">"object.db"</span>);</span><br><span class="line">    ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(fis);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通过反序列化恢复对象obj</span></span><br><span class="line">    String obj2 = (String)ois.readObject();</span><br><span class="line">    ois.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="2-攻击方法"><a href="#2-攻击方法" class="headerlink" title="2 攻击方法:"></a>2 攻击方法:</h1><p>Java的某些库暴露或间接暴露反序列化API ，导致用户可以操作传入数据，两个或多个看似安全的模块在同一运行环境下，共同产生的安全问题，攻击者可以精心构造反序列化对象并执行恶意代码，主要方法是重写readObject()方法</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyObject</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="comment">//重写readObject()方法</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">readObject</span><span class="params">(java.io.ObjectInputStream in)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException</span>&#123;</span><br><span class="line">        <span class="comment">//执行默认的readObject()方法</span></span><br><span class="line">        in.defaultReadObject();</span><br><span class="line">        <span class="comment">//执行打开计算器程序命令</span></span><br><span class="line">        Runtime.getRuntime().exec(<span class="string">"open /Applications/Calculator.app/"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="3-经典漏洞："><a href="#3-经典漏洞：" class="headerlink" title="3 经典漏洞："></a>3 经典漏洞：</h1><ol>
-<li>使用了有安全缺陷的Apache Commons Collections jar包 ,调用关系好复杂，Java渣渣看不明白 ，简单总结几句：</li>
-</ol>
+        <h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>数字证书是公钥密码学的典型应用，是信息安全的基础，今日好好复习一下</p>
+<h1 id="0x01-简单应用原理"><a href="#0x01-简单应用原理" class="headerlink" title="0x01 简单应用原理"></a>0x01 简单应用原理</h1><p><strong>最重要的一点，数字证书是保障公钥的可靠性</strong></p>
+<p>以下流程参考阮一峰老师的经典流程：</p>
+<p>假设A给B写一份信。</p>
+<p>那么这封将包含如下三部分内容：</p>
+<p>1.信本身的内容（直接可以看到，未加密）</p>
+<p>2.A的数字签名 （是由信本身的内容经过hash算法计算得到digest摘要，然后用 A的私钥 加密而来的）</p>
+<p>3.A的数字证书 （是A 向数字证书中心（CA）申请的，是由 A的个人信息，A的公钥 等经过CA的私钥 加密而来的）</p>
+<p>然后B先用CA提供的公钥解开数字证书，根据得到的内容，如A的个人信息，确定是A发过来的，然后拿到了A的公钥。</p>
+<p>接着，用A的公钥解开A的数字签名 就能得到信本身内容的摘要。然后将信的第一部分，即信的本身内容 经hash计算得到一个新的摘要，将两个摘要比较，如果相同 说明信的内容没有被篡改。</p>
+<p><strong>这里B要做的就是查询CA是否可信，然后用可信CA的公钥解开A的数字证书，得到A的个人信息和公钥，然后利用A的可信公钥验证A的数字签名，可见，数字证书的最大作用就是保证A的公钥的真实性，抗抵赖</strong></p>
+<h1 id="0x02-Https的应用"><a href="#0x02-Https的应用" class="headerlink" title="0x02 Https的应用"></a>0x02 Https的应用</h1><p>https传输，访问google网站：<br>握手时用非对称加密传输对称加密的密码，数据传输时用对称加密的密码加密数据（对称加密解密速度比非对称加密快）</p>
+<p>过程：</p>
 <ul>
-<li><p>三个关键类：AnnotationInvocationHandler，TransformedMap.decorate，InvokerTransformer</p>
-</li>
-<li><p>Apache Commons Collections 序列化 RCE 漏洞问题主要出现在 org.apache.commons.collections.Transformer 接口上，<br>在 Apache Commons Collections 中有一个 InvokerTransformer 类实现了 Transformer 接口，主要作用是调用 Java 的反射机制来调用任意函数，只需要传入方法名、参数类型和参数，即可调用任意函数</p>
-</li>
+<li>浏览器发送自己支持的加密规则给google</li>
+<li>google选择一组加密算法和HASH算法，并将自己的数字证书发给浏览器</li>
+<li>浏览器验证数字证书的合法性（验证证书的数字签名），然后生成一个随机数，从google的数字证书里面获取google的公钥，用这个公钥加密随机数。用约定的hash算法生成握手消息的摘要，并用生成的随机数加密摘要。把握手消息、加密的摘要、加密的随机数发给google</li>
+<li>google用自己的私钥解密随机数，然后用随机数解密摘要，再用hash生成收到的握手消息的摘要与解密的摘要对比，验证正确性。</li>
+<li>google一样用hash算法生成握手消息的摘要，并用解密的随机数加密摘要。然后把握手消息、加密的摘要发给浏览器</li>
+<li>浏览器验证摘要成功后，握手完成。之后通信的数据用之前浏览器生成的随机密码加密后传输。</li>
 </ul>
-<ol>
-<li>2016 年的 Spring 框架的反序列化漏洞，该漏洞是利用了 RMI 以及 JNDI：</li>
-</ol>
-<ul>
-<li>问题的关键点在JtaTransactionManager 类的 readObject() 方法，然后一大堆调用，反正其中有个函数lookup()使用了用户的可控输入属性：userTransactionName ， 攻击者构造userTransactionName就ok</li>
-</ul>
-<h1 id="4-利用工具："><a href="#4-利用工具：" class="headerlink" title="4 利用工具："></a>4 利用工具：</h1><p><a href="https://github.com/frohoff/ysoserial" target="_blank" rel="noopener">https://github.com/frohoff/ysoserial</a></p>
-<h1 id="5-发现漏洞："><a href="#5-发现漏洞：" class="headerlink" title="5 发现漏洞："></a>5 发现漏洞：</h1><blockquote>
-<p>1 首先拿到一个Java应用，需要找到一个接受外部输入的序列化对象的接收点，即反序列化漏洞的触发点。我们可以通过审计源码中对反序列化函数的调用readObject来寻找，也可以直接通过对应用交互流量进行抓包，查看流量中是否包含java序列化数据来判断，java序列化数据的特征为以标记（ac ed 00 05）开头。</p>
-<p>2 确定了反序列化输入点后，再考察应用的Class Path中是否包含Apache Commons Collections库（ysoserial所支持的其他库亦可），如果是，就可以使用ysoserial来生成反序列化的payload</p>
-<p>3 从流量中发现序列化的痕迹，关键字：ac ed 00 05，rO0AB</p>
-<p>4 Java RMI 的传输 100% 基于反序列化，Java RMI 的默认端口是1099端口</p>
-<p>5 从源码入手，可以被序列化的类一定实现了Serializable接口<br>观察反序列化时的readObject()方法是否重写，重写中是否有设计不合理，可以被利用之处</p>
-</blockquote>
-<p>Refer link:</p>
-<ul>
-<li>[<a href="https://paper.seebug.org/312/" target="_blank" rel="noopener">https://paper.seebug.org/312/</a>]</li>
-<li>[<a href="http://www.cnblogs.com/alert123/p/5124637.html" target="_blank" rel="noopener">http://www.cnblogs.com/alert123/p/5124637.html</a>]</li>
-<li>[<a href="https://blog.chaitin.cn/2015-11-11_java_unserialize_rce/" target="_blank" rel="noopener">https://blog.chaitin.cn/2015-11-11_java_unserialize_rce/</a>]</li>
-</ul>
+<h1 id="0x03-问题的根源：-证书中的公钥的真实性和完整性）"><a href="#0x03-问题的根源：-证书中的公钥的真实性和完整性）" class="headerlink" title="0x03 问题的根源：(证书中的公钥的真实性和完整性）"></a>0x03 问题的根源：(证书中的公钥的真实性和完整性）</h1><p>由上面的例子中我们看到，https传输的过程中，Google会发来自己的证书，里面包含了Google的公钥，用户浏览器要使用这个公钥加密消息再发送到Google服务器进行协商，其中，这个公钥的完整性和真实性就是关键，如何保证这个证书里面的公钥真的是Google的呢？这就是为什么要验证证书的数字签名的理由，那么如何验证呢？就是通过CA了，CA会通过自己的私钥对可信的包含正确公钥的Google证书进行数字签名，用户浏览器要使用CA的公钥验证证书的数字签名。</p>
+<h1 id="0x04-证书链"><a href="#0x04-证书链" class="headerlink" title="0x04 证书链"></a>0x04 证书链</h1><p>根据上面的说明，证书的出现是为了保证双方的公钥是合法的，没有被篡改的，那么谁保证证书的合法性和完整呢？那就是CA，但是直接从知名的CA获得签名证书是昂贵的，所以，就出现了由知名CA签发了一个证书A，再又证书A签发证书B的方式，这就是证书链。<br><strong>本质来说，就是顶级CA认证了A的公钥，然后A的公钥再认证B的公钥。</strong> </p>
+<h2 id="证书链的构成："><a href="#证书链的构成：" class="headerlink" title="证书链的构成："></a>证书链的构成：</h2><p>end-user ：baidu.com 包含用来加密传输数据的公钥的证书，是HTTPS中使用的证书</p>
+<p>intermediates CA ：CA用来认证公钥持有者身份的证书，即确认HTTPS使用的end-user证书是属于baidu.com的证书。这类intermediates证书甚至可以有很多级。</p>
+<p>root CA ：用来认证intermediates证书是合法证书的证书。</p>
+<p>简单来说，end-user证书上面几级证书都是为了保证end-user证书未被篡改，保证是CA签发的合法证书，进而保证end-user证书中的公钥未被篡改</p>
+<p><img src="/images/certificate chain.png" alt="证书链图片"></p>
+<h2 id="如何验证证书链"><a href="#如何验证证书链" class="headerlink" title="如何验证证书链"></a>如何验证证书链</h2><p>链式向上验证证书，直到Root Certificates，先验证用intermediates CA 签发的end-user的证书的数字签名，再利用root CA验证intermediates CA的数字签名。下图就是访问百度获得的三张证书</p>
+<p><img src="/images/end-user.png" alt="证书链图片1"><br><img src="/images/intermediates CA.png" alt="证书链图片2"><br><img src="/images/root CA.png" alt="证书链图片3"></p>
+<p>参考：</p>
+<p><a href="http://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html</a></p>
+<p><a href="https://www.jianshu.com/p/46e48bc517d0" target="_blank" rel="noopener">https://www.jianshu.com/p/46e48bc517d0</a></p>
 
       
     </div>
@@ -422,7 +416,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag"># Java</a>
+            <a href="/tags/Web-security/" rel="tag"># Web security</a>
           
         </div>
       
@@ -435,8 +429,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/23/Python-MongoDB学习笔记/" rel="next" title="Python MongoDB学习笔记">
-                <i class="fa fa-chevron-left"></i> Python MongoDB学习笔记
+              <a href="/2018/03/03/Python 常用套路总结-1/" rel="next" title="Python 常用套路总结_1">
+                <i class="fa fa-chevron-left"></i> Python 常用套路总结_1
               </a>
             
           </div>
@@ -444,10 +438,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/25/Hexo-统计字数的新插件/" rel="prev" title="Hexo 统计字数的新插件">
-                Hexo 统计字数的新插件 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -581,7 +571,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-什么是Java序列化和反序列化"><span class="nav-number">1.</span> <span class="nav-text">1 什么是Java序列化和反序列化:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-攻击方法"><span class="nav-number">2.</span> <span class="nav-text">2 攻击方法:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-经典漏洞："><span class="nav-number">3.</span> <span class="nav-text">3 经典漏洞：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-利用工具："><span class="nav-number">4.</span> <span class="nav-text">4 利用工具：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-发现漏洞："><span class="nav-number">5.</span> <span class="nav-text">5 发现漏洞：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-简单应用原理"><span class="nav-number">2.</span> <span class="nav-text">0x01 简单应用原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-Https的应用"><span class="nav-number">3.</span> <span class="nav-text">0x02 Https的应用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03-问题的根源：-证书中的公钥的真实性和完整性）"><span class="nav-number">4.</span> <span class="nav-text">0x03 问题的根源：(证书中的公钥的真实性和完整性）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04-证书链"><span class="nav-number">5.</span> <span class="nav-text">0x04 证书链</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#证书链的构成："><span class="nav-number">5.1.</span> <span class="nav-text">证书链的构成：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何验证证书链"><span class="nav-number">5.2.</span> <span class="nav-text">如何验证证书链</span></a></li></ol></li></ol></div>
             
 
           </div>
