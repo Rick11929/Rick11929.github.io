@@ -105,20 +105,18 @@
   <meta name="keywords" content="Web security," />
 
 
-<meta name="description" content="0x00 前言最近OAuth又出了一个漏洞，根据漏洞介绍这个漏洞不在OAuth协议，而在用户的部署上，等详细分析吧，漏洞链接如下，借此机会复习一下OAuth2.0 http://www.cnvd.org.cn/flaw/show/CNVD-2018-01622 0x01 OAuth 2.0 流程详细的交换就不写了，网上一大堆，简单总结两句授权码模式（authorization code），包括了(">
+<meta name="description" content="0x00 前言在上一遍学习笔记中整理了授权码模式的交换流程和csrf攻击的知识，这次继续总结OAuth其他攻击面 0x01 “redirect uri”根据OAuth的认证流程,用户授权凭证会由服务器转发到redirect_uri对应的地址,如果攻击者伪造redirect_uri为自己的地址,然后诱导用户发送该请求,之后获取的凭证就会发送给攻击者伪造的回调地址.攻击者使用该凭证即可登录用户账号,造">
 <meta name="keywords" content="Web security">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OAuth 2.0 学习笔记 ">
-<meta property="og:url" content="http://yoursite.com/2018/02/13/OAuth-2-0-学习笔记/index.html">
+<meta property="og:title" content="OAuth2.0 笔记_2">
+<meta property="og:url" content="http://yoursite.com/2018/03/13/OAuth2-0-笔记2/index.html">
 <meta property="og:site_name" content="Rick7dology">
-<meta property="og:description" content="0x00 前言最近OAuth又出了一个漏洞，根据漏洞介绍这个漏洞不在OAuth协议，而在用户的部署上，等详细分析吧，漏洞链接如下，借此机会复习一下OAuth2.0 http://www.cnvd.org.cn/flaw/show/CNVD-2018-01622 0x01 OAuth 2.0 流程详细的交换就不写了，网上一大堆，简单总结两句授权码模式（authorization code），包括了(">
+<meta property="og:description" content="0x00 前言在上一遍学习笔记中整理了授权码模式的交换流程和csrf攻击的知识，这次继续总结OAuth其他攻击面 0x01 “redirect uri”根据OAuth的认证流程,用户授权凭证会由服务器转发到redirect_uri对应的地址,如果攻击者伪造redirect_uri为自己的地址,然后诱导用户发送该请求,之后获取的凭证就会发送给攻击者伪造的回调地址.攻击者使用该凭证即可登录用户账号,造">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/images/CSRF%20OAuth.jpg">
-<meta property="og:updated_time" content="2018-02-28T03:45:42.000Z">
+<meta property="og:updated_time" content="2018-03-15T07:56:40.349Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OAuth 2.0 学习笔记 ">
-<meta name="twitter:description" content="0x00 前言最近OAuth又出了一个漏洞，根据漏洞介绍这个漏洞不在OAuth协议，而在用户的部署上，等详细分析吧，漏洞链接如下，借此机会复习一下OAuth2.0 http://www.cnvd.org.cn/flaw/show/CNVD-2018-01622 0x01 OAuth 2.0 流程详细的交换就不写了，网上一大堆，简单总结两句授权码模式（authorization code），包括了(">
-<meta name="twitter:image" content="http://yoursite.com/images/CSRF%20OAuth.jpg">
+<meta name="twitter:title" content="OAuth2.0 笔记_2">
+<meta name="twitter:description" content="0x00 前言在上一遍学习笔记中整理了授权码模式的交换流程和csrf攻击的知识，这次继续总结OAuth其他攻击面 0x01 “redirect uri”根据OAuth的认证流程,用户授权凭证会由服务器转发到redirect_uri对应的地址,如果攻击者伪造redirect_uri为自己的地址,然后诱导用户发送该请求,之后获取的凭证就会发送给攻击者伪造的回调地址.攻击者使用该凭证即可登录用户账号,造">
 
 
 
@@ -127,10 +125,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/02/13/OAuth-2-0-学习笔记/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/13/OAuth2-0-笔记2/"/>
 
 
-  <title>OAuth 2.0 学习笔记  | Rick7dology</title>
+  <title>OAuth2.0 笔记_2 | Rick7dology</title>
   
 
 
@@ -272,7 +270,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/13/OAuth-2-0-学习笔记/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/13/OAuth2-0-笔记2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Rick7">
@@ -289,7 +287,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">OAuth 2.0 学习笔记 </h1>
+          <h1 class="post-title" itemprop="name headline">OAuth2.0 笔记_2</h1>
         
 
         <div class="post-meta">
@@ -301,7 +299,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-13T23:47:52+08:00">2018-02-13</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-13T03:27:59+08:00">2018-03-12</time>
             
 
             
@@ -332,7 +330,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article&#58;</span>
                 
-                <span title="Symbols count in article">3.1k</span>
+                <span title="Symbols count in article">553</span>
               
 
               
@@ -346,7 +344,7 @@
                 
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
-                <span title="Reading time">0:03</span>
+                <span title="Reading time">0:01</span>
               
             </div>
           
@@ -366,69 +364,14 @@
       
 
       
-        <h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>最近OAuth又出了一个漏洞，根据漏洞介绍这个漏洞不在OAuth协议，而在用户的部署上，等详细分析吧，漏洞链接如下，借此机会复习一下OAuth2.0</p>
-<p><a href="http://www.cnvd.org.cn/flaw/show/CNVD-2018-01622" target="_blank" rel="noopener">http://www.cnvd.org.cn/flaw/show/CNVD-2018-01622</a></p>
-<h1 id="0x01-OAuth-2-0-流程"><a href="#0x01-OAuth-2-0-流程" class="headerlink" title="0x01 OAuth 2.0 流程"></a>0x01 OAuth 2.0 流程</h1><p>详细的交换就不写了，网上一大堆，简单总结两句授权码模式（authorization code），包括了(用户A，网站B，GitHub(信息提供者,resource owner))</p>
-<p>前提：网站B要想得到GitHub认证，必须先和GitHub协商可以取得什么权限等事情，这时候GitHub认可了网站B的合法性并同意网站B可以使用GitHub的相关用户资料，并给了网站B：Client Id 和 Client Secret。</p>
-<ol>
-<li><p>用户A想登陆网站B，但不想注册，所以点击了下面的GitHub图标，想通过GitHub账号登陆网站B,这时候就触发了OAuth认证</p>
-</li>
-<li><p>网站带着GitHub颁发的Client Id 到 ”<a href="https://github.com/login/oauth/authorize“" target="_blank" rel="noopener">https://github.com/login/oauth/authorize“</a> 请求权限，这时候会显示网站B从GitHub会取得什么权限，如果用户觉得ok就点击授权，不ok就拒绝，认证结束</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">GET /authorize?response_type=code&amp;client_id=s6BhdRkqt3&amp;redirect_uri=https%3A%2F%2Fclient%2Eexample%2Ecom%2Fcb HTTP/1.1</span><br><span class="line">Host: github.com</span><br></pre></td></tr></table></figure>
-<ol>
-<li>当如何点击授权后，页面会跳转到网站B预先设定的 redirect_uri 并附带一个授权码(code)</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">HTTP/1.1 302 Found</span><br><span class="line">Location: https://client.example.com/cb?code=SplxlOBeZQQYbYS6WxSbIA</span><br></pre></td></tr></table></figure>
-<ol>
-<li>用户A的浏览器得到一个302的回复，然后重定向到网站B指定redirect_uri，网站B从而得到了code，然后网站B拿着 code 和能够标识个人身份的 “client_id “,client_secret“ 去拜访 github，拿到access_token，这里的“client_id “,client_secret“ 是Github判断这个请求的合法性依据，”,client_secret“这个是网站B独有的。</li>
-</ol>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">POST //github.com/login/oauth/access_token</span><br><span class="line">params = &#123;</span><br><span class="line">  code: "xxx",</span><br><span class="line">  client_id: "xxx",</span><br><span class="line">  client_secret: "xxx",</span><br><span class="line">  redirect_uri: "http://my-website.com"</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">response = &#123;</span><br><span class="line">  access_token: "e72e16c7e42f292c6912e7710c838347ae178b4a"</span><br><span class="line">  scope: "user,gist"</span><br><span class="line">  token_type: "bearer",</span><br><span class="line">  refresh_token: "xxxx"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>从上面的response中得到了access_token，相应的scope，网站B可以凭借这个token来取得用户在GitHub的信息，至于能够取得的信息范围就由scope来定义了，用户A可以使用GitHub的账号登陆网站B了。这就是授权码模式的简单描述。</li>
-</ol>
-<h1 id="0x02-已知的安全问题-CSRF"><a href="#0x02-已知的安全问题-CSRF" class="headerlink" title="0x02 已知的安全问题-CSRF"></a>0x02 已知的安全问题-CSRF</h1><ol>
-<li>漏洞原理</li>
-</ol>
-<blockquote>
-<p>这个问题的关键点在于，OAuth2的认证流程是分为好几步来完成的，在图1中的第4步，第三方应用在收到一个GET请求时，除了能知道当前用户的cookie，以及URL中的Authorization Code之外，难以分辨出这个请求到底是用户本人的意愿，还是攻击者利用用户的身份伪造出来的请求。 于是乎，攻击者就能使用移花接木的手段，提前准备一个含有自己的Authorization Code的请求，并让受害者的浏览器来接着完成后续的令牌申请流程。(知乎转载)</p>
-</blockquote>
-<ol>
-<li>详细分析</li>
-</ol>
-<p>回顾一下上面简单总结的第四步：</p>
-<blockquote>
-<p>用户A的浏览器得到一个302的回复，然后重定向到网站B指定redirect_uri，网站B从而得到了code，然后网站B拿着 code 和能够标识个人身份的 “client_id “,client_secret“ 去拜访 github，拿到access_token，这里的“client_id “,client_secret“ 是Github判断这个请求的合法性依据，”,client_secret“这个是网站B独有的。</p>
-</blockquote>
-<p>这里面有个问题就是用户A的浏览器根据302状态码把code redirect到网站B,这个code是和将要登录网站B的账号关联的，如果攻击者替换了用户A这个请求，把里面的code换成攻击者账号的，然后网站B继续完成OAuth的认证流程，这会造成用户A在网站B的账号和攻击者的GitHub账号绑定了，攻击者只要在网站B通过GitHub登录就能成功登录用户A在网站B的账号了。<strong>因此这个漏洞本质是欺骗网站B</strong></p>
-<p><img src="/images/CSRF OAuth.jpg" alt="攻击图"></p>
-<ol>
-<li>攻击成功条件</li>
-</ol>
-<ul>
-<li>用户A的User Session是valid的</li>
-<li>OAuth2提供者颁发的Authorization Code有效期很短，OAuth2官方推荐的时间是不大于10分钟，所以要快</li>
-<li>一个Authorization Code只能被使用一次</li>
-</ul>
-<h1 id="0x03-如何防御"><a href="#0x03-如何防御" class="headerlink" title="0x03 如何防御"></a>0x03 如何防御</h1><p>刚才提到了，既然这个漏洞本质是欺骗网站B，那么要做防御的当然在网站B了，网站B要确保用户发去GitHub的授权码(Authorization Code)申请和用户redirect回来的授权码是一致的，怎么做呢？就是加一个唯一的，随机的参数state来确保唯一性</p>
-<ul>
-<li>首先，网站B redirect 用户A到GitHub申请授权码的时候带上”state=xyz“参数</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">GET /authorize?response_type=code&amp;client_id=s6BhdRkqt3&amp;state=xyz</span><br><span class="line">        &amp;redirect_uri=https%3A%2F%2Fclient%2Eexample%2Ecom%2Fcb HTTP/1.1</span><br><span class="line">Host: server.example.com</span><br></pre></td></tr></table></figure>
-<ul>
-<li>然后，用户A的浏览器收到GitHub发来的302带着授权码redirect回到B网站时，GitHub会根据申请code时的请求在302的location中带上”state=xyz“</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">HTTP/1.1 302 Found</span><br><span class="line">Location: https://B.com/cb?code=SplxlOBeZQQYbYS6WxSbIA</span><br><span class="line">          &amp;state=xyz</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>这样网站B就可以根据state参数确认这个code对应哪一个用户了</p>
-</li>
-<li><p>要避免遭受本文提到的CSRF攻击问题，需要第三方应用正确的使用state参数</p>
-</li>
-</ul>
-<h1 id="Refer-link"><a href="#Refer-link" class="headerlink" title="Refer link"></a>Refer link</h1><p><a href="http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html</a></p>
-<p><a href="https://aaronparecki.com/oauth-2-simplified/" target="_blank" rel="noopener">https://aaronparecki.com/oauth-2-simplified/</a></p>
-<p><a href="https://www.zhihu.com/question/19781476" target="_blank" rel="noopener">https://www.zhihu.com/question/19781476</a></p>
+        <h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>在上一遍学习笔记中整理了授权码模式的交换流程和csrf攻击的知识，这次继续总结OAuth其他攻击面</p>
+<h1 id="0x01-“redirect-uri”"><a href="#0x01-“redirect-uri”" class="headerlink" title="0x01 “redirect uri”"></a>0x01 “redirect uri”</h1><p>根据OAuth的认证流程,用户授权凭证会由服务器转发到redirect_uri对应的地址,如果攻击者伪造redirect_uri为自己的地址,然后诱导用户发送该请求,之后获取的凭证就会发送给攻击者伪造的回调地址.攻击者使用该凭证即可登录用户账号,造成授权劫持.</p>
+<p>近日有安全测试团队又发布了一些关于redirect_url过滤不严格的问题，详情看下面的链接，就是redirect_uri只过滤了主域名，而没有对子域名进行过滤，如果子域名存在漏洞，攻击者则可以通过子域名构造构造恶意的redirect_uri，从refer头部盗取用户的 “authorization code”</p>
+<p><a href="https://bbs.ichunqiu.com/thread-34168-1-1.html" target="_blank" rel="noopener">https://bbs.ichunqiu.com/thread-34168-1-1.html</a></p>
+<p>Refer:</p>
+<p><a href="http://www.freebuf.com/articles/web/110757.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/110757.html</a></p>
+<p><a href="https://dhavalkapil.com/blogs/Attacking-the-OAuth-Protocol/" target="_blank" rel="noopener">https://dhavalkapil.com/blogs/Attacking-the-OAuth-Protocol/</a></p>
+<p><a href="https://sakurity.com/oauth" target="_blank" rel="noopener">https://sakurity.com/oauth</a></p>
 
       
     </div>
@@ -459,8 +402,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/09/Same-Origin-Protection-SOP/" rel="next" title="Same-Origin Protection (SOP)">
-                <i class="fa fa-chevron-left"></i> Same-Origin Protection (SOP)
+              <a href="/2018/03/09/经典sqlmap命令/" rel="next" title="经典sqlmap命令">
+                <i class="fa fa-chevron-left"></i> 经典sqlmap命令
               </a>
             
           </div>
@@ -468,10 +411,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/28/Python爬虫小总结/" rel="prev" title="Python爬虫小总结">
-                Python爬虫小总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -549,7 +488,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-count">29</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -605,7 +544,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-OAuth-2-0-流程"><span class="nav-number">2.</span> <span class="nav-text">0x01 OAuth 2.0 流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-已知的安全问题-CSRF"><span class="nav-number">3.</span> <span class="nav-text">0x02 已知的安全问题-CSRF</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03-如何防御"><span class="nav-number">4.</span> <span class="nav-text">0x03 如何防御</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Refer-link"><span class="nav-number">5.</span> <span class="nav-text">Refer link</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-“redirect-uri”"><span class="nav-number">2.</span> <span class="nav-text">0x01 “redirect uri”</span></a></li></ol></div>
             
 
           </div>
@@ -637,7 +576,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">85k</span>
+    <span title="Symbols count total">86k</span>
   
 
   
@@ -646,7 +585,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">1:25</span>
+    <span title="Reading time total">1:26</span>
   
 </div>
 
