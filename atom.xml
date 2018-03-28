@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-03-15T07:56:40.349Z</updated>
+  <updated>2018-03-26T02:48:10.004Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,44 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android开发基础复习_1</title>
+    <link href="http://yoursite.com/2018/03/23/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E5%A4%8D%E4%B9%A0_1/"/>
+    <id>http://yoursite.com/2018/03/23/Android开发基础复习_1/</id>
+    <published>2018-03-22T23:46:54.000Z</published>
+    <updated>2018-03-26T02:48:10.004Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>英文面试速背指南_持续更新</title>
+    <link href="http://yoursite.com/2018/03/21/%E8%8B%B1%E6%96%87%E9%9D%A2%E8%AF%95%E9%80%9F%E8%83%8C%E6%8C%87%E5%8D%97/"/>
+    <id>http://yoursite.com/2018/03/21/英文面试速背指南/</id>
+    <published>2018-03-20T18:04:27.000Z</published>
+    <updated>2018-03-23T06:20:54.637Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>为了面试外企做准备的速背表，一定要精简,精简，再精简，每个概念尽量一到两句话进行速记</p><h1 id="0x01-What-is-Penetration-Testing"><a href="#0x01-What-is-Penetration-Testing" class="headerlink" title="0x01 What is Penetration Testing?"></a>0x01 What is Penetration Testing?</h1><p>Penetration testing is a type of security testing that is used to test the insecurity of an application. It is conducted to find the security risk which might be present in the system.</p><h1 id="0x02-Penetration-Testing-Methodologies-seven-steps"><a href="#0x02-Penetration-Testing-Methodologies-seven-steps" class="headerlink" title="0x02 Penetration Testing Methodologies (seven steps)"></a>0x02 Penetration Testing Methodologies (seven steps)</h1><p>Penetration Testing Execution Standard (PTES) defines penetration testing as 7 phases.</p><ul><li><p>Pre-engagement Interactions<br>It includes gathering the required tools, OS, and software to start the penetration testing. In addition, there are some basic tools that are required to complete penetration testing with expected results.</p></li><li><p>Intelligence Gathering (Information Gathering)(DNS,IP,Email,Google hacking,etc…)<br>The data is collected to help in completing the assessment actions. The information is gathered using a process that helps us to get access to any information that is relevant to the target.</p></li></ul><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tools：</span><br><span class="line">1.theHarvester is a tool for gathering e-mail accounts, subdomain names, virtual</span><br><span class="line">hosts, open ports/ banners, and employee names from different public sources</span><br><span class="line">(search engines, pgp key servers).</span><br><span class="line">https://github.com/laramies/theHarvester</span><br><span class="line">2.Social Engineer Toolkit</span><br><span class="line">Social Engineer Toolkit (SET) is an open source Python-based tool aimed at penetration testing around Social Engineering.</span><br></pre></td></tr></table></figure><ul><li><p>Threat Modeling<br>Threat modeling allows you to strengthen network security by tracking the vulnerabilities and then defining measures to prevent or reduce the effect of the threat.</p></li><li><p>Vulnerability Analysis(Scanning,manual testing)<br>Identification: Vulnerabilities are discovered<br>Validation: Validate the identified vulnerabilities</p></li></ul><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tools:</span><br><span class="line">1.OpenVAS</span><br><span class="line">2.Nexpose/Nessus</span><br><span class="line">3.Netsparker </span><br><span class="line">4.Acunetix(AWS)</span><br></pre></td></tr></table></figure><ul><li>Exploitation<br>The identified vulnerabilities are exploited to breach the security</li></ul><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tools:</span><br><span class="line">1.BeEF(Browser Exploitation Framework (Beef))</span><br><span class="line">2.Metasploit</span><br><span class="line">3.sqlmap</span><br></pre></td></tr></table></figure><ul><li>Post Exploitation<br>In this phase, the compromised machine’s value is determined by the sensitivity of the data stored on it. It also evaluates the machine usefulness in further exploiting the network.</li></ul><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tools:</span><br><span class="line">1.PowerShell Empire</span><br><span class="line">2.Meterpreter</span><br><span class="line">3.Netcat</span><br></pre></td></tr></table></figure><ul><li>Reporting<br>The findings are reported in a way that is easily understandable. </li></ul><h1 id="0x03-Web-Vulnerability"><a href="#0x03-Web-Vulnerability" class="headerlink" title="0x03 Web Vulnerability"></a>0x03 Web Vulnerability</h1><h2 id="What-is-SQLinjection-attack"><a href="#What-is-SQLinjection-attack" class="headerlink" title="What is SQLinjection attack"></a>What is SQLinjection attack</h2><p>A SQL injection attack consists of insertion or “injection” of a SQL query via the input data from the client to the application. A successful SQL injection exploit can read sensitive data from the database, modify database data (Insert/Update/Delete), execute administration operations on the database (such as shutdown the DBMS), recover the content of a given file present on the DBMS file system and in some cases issue commands to the operating system. SQL injection attacks are a type of injection attack, in which SQL commands are injected into data-plane input in order to effect the execution of predefined SQL commands.</p><ul><li>In-band SQLi (Classic SQLi):Error-based SQLi and Union-based SQLi.</li><li>Inferential SQLi (Blind SQLi):Boolean-based (content-based) Blind SQLi and Time-based Blind SQLi</li></ul><h2 id="What-is-Cross-site-Scripting-XSS-attack"><a href="#What-is-Cross-site-Scripting-XSS-attack" class="headerlink" title="What is Cross-site Scripting (XSS) attack"></a>What is Cross-site Scripting (XSS) attack</h2><p>Cross-Site Scripting (XSS) attacks are a type of injection, in which malicious scripts are injected into otherwise benign and trusted web sites. XSS attacks occur when an attacker uses a web application to send malicious code, generally in the form of a browser side script, to a different end user. Flaws that allow these attacks to succeed are quite widespread and occur anywhere a web application uses input from a user within the output it generates without validating or encoding it.</p><ul><li>Reflected XSS Attacks</li><li>Stored XSS Attacks</li><li>DOM Based XSS </li></ul><h2 id="OWASP-top-10-2017"><a href="#OWASP-top-10-2017" class="headerlink" title="OWASP top 10 2017"></a>OWASP top 10 2017</h2><p>Top 10<br>A1:2017-Injection (SQL, LDAP, XPath, or NoSQL queries, OS commands, XML parsers, SMTP headers, expression languages, and ORM queries.)</p><p>A2:2017-Broken Authentication</p><p>A3:2017-Sensitive Data Exposure</p><p>A4:2017-XML External Entities (XXE) Any of the XML processors in the application or SOAP based web services has document type definitions (DTDs) enabled.</p><p>A5:2017-Broken Access Control</p><p>A6:2017-Security Misconfiguration</p><p>A7:2017-Cross-Site Scripting (XSS)</p><p>A8:2017-Insecure Deserialization</p><p>A9:2017-Using Components with Known Vulnerabilities</p><p>A10:2017-Insufficient Logging&amp;Monitoring</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;0x00-前言&quot;&gt;&lt;a href=&quot;#0x00-前言&quot; class=&quot;headerlink&quot; title=&quot;0x00 前言&quot;&gt;&lt;/a&gt;0x00 前言&lt;/h1&gt;&lt;p&gt;为了面试外企做准备的速背表，一定要精简,精简，再精简，每个概念尽量一到两句话进行速记&lt;/p&gt;
+&lt;h1
+      
+    
+    </summary>
+    
+    
+      <category term="其他" scheme="http://yoursite.com/tags/%E5%85%B6%E4%BB%96/"/>
+    
+  </entry>
   
   <entry>
     <title>OAuth2.0 笔记_2</title>
@@ -443,53 +481,6 @@
     
     
       <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java 反序列化漏洞_利用原理</title>
-    <link href="http://yoursite.com/2018/01/24/Java-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>http://yoursite.com/2018/01/24/Java-反序列化漏洞学习笔记/</id>
-    <published>2018-01-24T15:59:15.000Z</published>
-    <updated>2018-03-20T08:20:13.848Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>对 Java Deserialization 进行一些复习，感觉这个漏洞还是不能全面理解，java渣渣的痛啊，今次主要阅读以下“NickstaDB”的文章并归纳一些观点，这个文章主要概括了如何在渗透测试中利用这个漏洞</p><h1 id="0x01-序列化与反序列化"><a href="#0x01-序列化与反序列化" class="headerlink" title="0x01 序列化与反序列化"></a>0x01 序列化与反序列化</h1><p>序列化就是把java运行时的变量或者对象转换为一种特定的序列格式，可以用于储存和传输。反序列化就是这个过程的逆向，把序列化后的数据恢复为java运行时的变量和对象。序列化的格式可以基于文本，例如json，xml或者是二进制格式。Nick的文章只专注于java内建的序列化格式，其他格式的序列化漏洞自行查询了^_^</p><h1 id="0x02-面向属性编程-property-oriented-programming"><a href="#0x02-面向属性编程-property-oriented-programming" class="headerlink" title="0x02 面向属性编程(property-oriented programming)"></a>0x02 面向属性编程(property-oriented programming)</h1><p>这里的意思大概就是通过控制对象属性从而影响程序行为，这里原文作者提到了一个概念:”POP gadget”,我的理解应该是java调用链，反序列攻击中攻击者不会发送涉及对象或者代码给服务器执行，而是仅仅发送一些服务器而知的类属性，从而更改受这些属性决定的代码片段。大部分的反序列攻击都会用到‘readObject‘函数，因为可以保证代码在反序列化中会被执行</p><h1 id="0x03-反序列化攻击"><a href="#0x03-反序列化攻击" class="headerlink" title="0x03 反序列化攻击"></a>0x03 反序列化攻击</h1><p>文章列出了反序列化攻击的两个条件：</p><ol><li>入口点：一个允许攻击者发送定制化对象给目标进行反序列的入口点</li><li>一个或者多个允许攻击者通过反序列来更改的代码片段：POP Gadgets</li></ol><h2 id="入口点的判断"><a href="#入口点的判断" class="headerlink" title="入口点的判断"></a>入口点的判断</h2><ul><li>检查代码中的‘java.io.ObjectInputStream’ 对象和具体的‘readObject’ 方法，判断攻击者是否可以修改它们的输入数据</li><li>通过本地储存或者网上流量判断，头四个字节：魔术数字+版本号：AC ED 00 05 。然后后面的一个字节 range 是 0x70 to 0x7E，总的来说类似 0xAC ED 00 05 77 ，<strong>但要注意，这4个字节只会在序列化流开始的阶段出现一次，也就是说那些保持连接的序列化数据流是难以捉到这个数据头的</strong></li><li>当观察不到头4个字节的时候，可以借助另外一个特征，就是在十六进制的流中观察是否出现类名，例如L开头，结尾是分号’;’，slash作为分隔符，(e.g. ‘Ljava/rmi/dgc/VMID;’)</li></ul><h2 id="入口点的利用，payload插入点"><a href="#入口点的利用，payload插入点" class="headerlink" title="入口点的利用，payload插入点"></a>入口点的利用，payload插入点</h2><ul><li>最简单的例子是判断4字节后面的对象类型，如果第5个字节是一个具体的类型，则‘readObject’ 方法会直接读取第5个字节，这里就是payload的插入点，如何判断第5个字节是什么类型？Nick给出了一份表格参考,如果第5个字节是下面的类型，则插入点payload插入点就在第4个字节后面，第5个字节前面</li></ul><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0x70 – TC_NULL</span><br><span class="line">0x71 – TC_REFERENCE</span><br><span class="line">0x72 – TC_CLASSDESC</span><br><span class="line">0x73 – TC_OBJECT</span><br><span class="line">0x74 – TC_STRING</span><br><span class="line">0x75 – TC_ARRAY</span><br><span class="line">0x76 – TC_CLASS</span><br><span class="line">0x7B – TC_EXCEPTION</span><br><span class="line">0x7C – TC_LONGSTRING</span><br><span class="line">0x7D – TC_PROXYCLASSDESC</span><br><span class="line">0x7E – TC_ENUM</span><br></pre></td></tr></table></figure><ul><li>其余的情况，第5个字节则会是 TC_BLOCKDATA element (0x77) or a TC_BLOCKDATALONG element (0x7A).这两个代表后面的是数据块，攻击者要寻找数据块中支持上述类型的字节，例如：</li></ul><p>ACED00057708af743f8c1d120cb974000441424344</p><ol><li>首先分析头5个字节：ACED000577，头4个字节外加一个0x77，代表后面跟着一个数据模块，不是直接一个对象</li><li>74000441424344：0x74 – TC_STRING，找到一个STRING对象了</li></ol><p><strong>为了简化这个流程，Nick给出了一个简单的小工具：SerializationDumper</strong></p><p><a href="https://github.com/NickstaDB/SerializationDumper" target="_blank" rel="noopener">https://github.com/NickstaDB/SerializationDumper</a></p><ul><li>对象在序列化流中是会马上得到实例化的，不用等到整个序列化流都接收完成后才实例化，所以我们插入payload是不用考虑其余的码流的，攻击者的payload会在其他数据流到达和解释前得到实例化和执行。</li></ul><h2 id="POP-Gadgets"><a href="#POP-Gadgets" class="headerlink" title="POP Gadgets"></a>POP Gadgets</h2><p>这里Nick的文章直接提议使用“ysoserial”来生成相应的payload，这样比较容易搞吧，还给出了针对java Runtime的命令执行缺点以及解决办法的工具，下面的链接就是分别对应的两个工具：</p><p>ysoserial deserialization payload generator (<a href="https://github.com/frohoff/ysoserial/" target="_blank" rel="noopener">https://github.com/frohoff/ysoserial/</a>)</p><p>Runtime.exec() payload encoder (<a href="http://jackson.thuraisamy.me/runtime-exec-payloads.html" target="_blank" rel="noopener">http://jackson.thuraisamy.me/runtime-exec-payloads.html</a>)</p><h1 id="自己搭建环境和使用Nick的自动化工具"><a href="#自己搭建环境和使用Nick的自动化工具" class="headerlink" title="自己搭建环境和使用Nick的自动化工具"></a>自己搭建环境和使用Nick的自动化工具</h1><p>文章最后Nick给出了一个测试环境：‘DeserLab‘ 和一个自动化的测试工具 ‘SerialBrute’ , 博客回复中有人做了跟进实验，参考以下链接：</p><p><a href="http://randomlinuxtech.blogspot.com/2017/08/java-deserialization-howto.html" target="_blank" rel="noopener">http://randomlinuxtech.blogspot.com/2017/08/java-deserialization-howto.html</a></p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>读了Nick的文章后加深了对java反序列的理解，当然其他语言例如PHP都会存在这类漏洞，但原理应该是相通的。至于一些具体漏洞的调用链研究就以后再继续吧</p><p>参考链接:</p><p><a href="https://nickbloor.co.uk/2017/08/13/attacking-java-deserialization/" target="_blank" rel="noopener">https://nickbloor.co.uk/2017/08/13/attacking-java-deserialization/</a></p><p><a href="https://github.com/NickstaDB/SerialBrute/" target="_blank" rel="noopener">https://github.com/NickstaDB/SerialBrute/</a></p><p><a href="https://github.com/GrrrDog/Java-Deserialization-Cheat-Sheet" target="_blank" rel="noopener">https://github.com/GrrrDog/Java-Deserialization-Cheat-Sheet</a></p><p>SerializationDumper (<a href="https://github.com/NickstaDB/SerializationDumper" target="_blank" rel="noopener">https://github.com/NickstaDB/SerializationDumper</a>)</p><p>SerialBrute (<a href="https://github.com/NickstaDB/SerialBrute/" target="_blank" rel="noopener">https://github.com/NickstaDB/SerialBrute/</a>)</p><p>DeserLab (<a href="https://github.com/NickstaDB/DeserLab" target="_blank" rel="noopener">https://github.com/NickstaDB/DeserLab</a>)</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;0x00-前言&quot;&gt;&lt;a href=&quot;#0x00-前言&quot; class=&quot;headerlink&quot; title=&quot;0x00 前言&quot;&gt;&lt;/a&gt;0x00 前言&lt;/h1&gt;&lt;p&gt;对 Java Deserialization 进行一些复习，感觉这个漏洞还是不能全面理解，java渣
-      
-    
-    </summary>
-    
-    
-      <category term="漏洞学习" scheme="http://yoursite.com/tags/%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python MongoDB学习笔记</title>
-    <link href="http://yoursite.com/2018/01/23/Python-MongoDB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>http://yoursite.com/2018/01/23/Python-MongoDB学习笔记/</id>
-    <published>2018-01-23T14:51:08.000Z</published>
-    <updated>2018-01-24T06:57:49.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="1-MongoDB-常用函数实例代码"><a href="#1-MongoDB-常用函数实例代码" class="headerlink" title="1 MongoDB 常用函数实例代码"></a>1 MongoDB 常用函数实例代码</h1><ol><li><p>连接 MongoDB 我们需要使用 PyMongo 库里面的 MongoClient，一般来说传入 MongoDB 的 IP 及端口即可，第一个参数为地址 host，第二个参数为端口 port，端口如果不传默认是 27017</p></li><li><p>MongoDB 中还分为一个个数据库，我们接下来的一步就是指定要操作哪个数据库，在这里我以 test 数据库为例进行说明，所以下一步我们需要在程序中指定要使用的数据库</p></li><li><p>MongoDB 的每个数据库又包含了许多集合 Collection，也就类似与关系型数据库中的表，下一步我们需要指定要操作的集合</p></li><li><p>在 MongoDB 中，每条数据其实都有一个 _id 属性来唯一标识，如果没有显式指明 _id，MongoDB 会自动产生一个 ObjectId 类型的 _id 属性。insert() 方法会在执行后返回的 _id 值</p></li></ol><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pymongo</span><br><span class="line">client = pymongo.MongoClient(host=<span class="string">'localhost'</span>, port=<span class="number">27017</span>) <span class="comment"># 链接数据库，得到数据库对象“client"</span></span><br><span class="line">db = client.test <span class="comment"># 新建或者选择”test“数据库</span></span><br><span class="line"><span class="comment"># db = client['test']</span></span><br><span class="line">collection = db.students <span class="comment"># 新建或者选择”students“ collection对象</span></span><br><span class="line"><span class="comment"># collection = db['students']</span></span><br><span class="line"></span><br><span class="line">student1 = &#123;</span><br><span class="line">    <span class="string">'id'</span>: <span class="string">'20170101'</span>,</span><br><span class="line">    <span class="string">'name'</span>: <span class="string">'Jordan'</span>,</span><br><span class="line">    <span class="string">'age'</span>: <span class="number">20</span>,</span><br><span class="line">    <span class="string">'gender'</span>: <span class="string">'male'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">student2 = &#123;</span><br><span class="line">    <span class="string">'id'</span>: <span class="string">'20170202'</span>,</span><br><span class="line">    <span class="string">'name'</span>: <span class="string">'Mike'</span>,</span><br><span class="line">    <span class="string">'age'</span>: <span class="number">21</span>,</span><br><span class="line">    <span class="string">'gender'</span>: <span class="string">'male'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># result = collection.insert(student) 官方不推荐用这个方法</span></span><br><span class="line"><span class="comment"># print(result)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># result = collection.insert_one(student) # 对collection对象进行数据插入</span></span><br><span class="line"><span class="comment"># print(result)</span></span><br><span class="line"><span class="comment"># print(result.inserted_id)</span></span><br><span class="line"></span><br><span class="line">result = collection.insert_many([student1, student2]) <span class="comment"># 对collection对象进行多个数据插入</span></span><br><span class="line">print(result)</span><br><span class="line">print(result.inserted_ids)</span><br><span class="line"></span><br><span class="line">result = collection.find_one(&#123;<span class="string">'name'</span>: <span class="string">'Mike'</span>&#125;) <span class="comment"># 对collection对象进行查找</span></span><br><span class="line">print(type(result))</span><br><span class="line">print(result) <span class="comment"># 可以发现它多了一个 _id 属性，这就是 MongoDB 在插入的过</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;1-MongoDB-常用函数实例代码&quot;&gt;&lt;a href=&quot;#1-MongoDB-常用函数实例代码&quot; class=&quot;headerlink&quot; title=&quot;1 MongoDB 常用函数实例代码&quot;&gt;&lt;/a&gt;1 MongoDB 常用函数实例代码&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
     
   </entry>
   
