@@ -113,12 +113,12 @@
 <meta property="og:site_name" content="Rick7dology">
 <meta property="og:description" content="0x00 前言又看了一遍“第一行代码”的第二版，这次跟着书里面的代码随便敲了一下，顺便写一遍读书笔记 0x01 Android项目中的资源src: 各种java程序在此，包括主程序gen: 最重要的是R.java，所有res资源都在这里编号，通过R.xx.xx或@xx查询res: 各种资源都在这里，包括drawable, layout, values等另外还有menifest文件，统筹兼顾全局的，">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/2018/03/23/Android开发基础复习_1/activity生存周期.png">
-<meta property="og:updated_time" content="2018-03-28T03:33:00.509Z">
+<meta property="og:image" content="http://yoursite.com/images/activity生存周期.png">
+<meta property="og:updated_time" content="2018-03-28T03:36:10.011Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android开发基础读书笔记">
 <meta name="twitter:description" content="0x00 前言又看了一遍“第一行代码”的第二版，这次跟着书里面的代码随便敲了一下，顺便写一遍读书笔记 0x01 Android项目中的资源src: 各种java程序在此，包括主程序gen: 最重要的是R.java，所有res资源都在这里编号，通过R.xx.xx或@xx查询res: 各种资源都在这里，包括drawable, layout, values等另外还有menifest文件，统筹兼顾全局的，">
-<meta name="twitter:image" content="http://yoursite.com/2018/03/23/Android开发基础复习_1/activity生存周期.png">
+<meta name="twitter:image" content="http://yoursite.com/images/activity生存周期.png">
 
 
 
@@ -369,7 +369,6 @@
         <h2 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h2><p>又看了一遍“第一行代码”的第二版，这次跟着书里面的代码随便敲了一下，顺便写一遍读书笔记</p>
 <h2 id="0x01-Android项目中的资源"><a href="#0x01-Android项目中的资源" class="headerlink" title="0x01 Android项目中的资源"></a>0x01 Android项目中的资源</h2><p>src: 各种java程序在此，包括主程序<br>gen: 最重要的是R.java，所有res资源都在这里编号，通过R.xx.xx或@xx查询<br>res: 各种资源都在这里，包括drawable, layout, values等<br>另外还有menifest文件，统筹兼顾全局的，Android四大组件都要在此注册。</p>
 <p><strong>重点说一下gradle，这里有两个build.gradle目录，一个在项目的最外层，负责项目全局的构建，另外一个build.gradle在app模块的构建脚本，里面有超级多的构建配置，关于gradle会另外在自行学习一点</strong></p>
-<p><img src="" alt=""></p>
 <h2 id="0x02-Activity"><a href="#0x02-Activity" class="headerlink" title="0x02 Activity"></a>0x02 Activity</h2><p>创建Activity步骤：<br>1、首先，在app目录右击创建一个空的activity，重写Activity的onCreate()方法<br>2、建立布局文件并关联，用setContentView(R.layout.myactivity)将布局加载进来。<br>3、所有四大组件的使用，都需要在AndroidManifest.xml文件中注册。AS自动帮我解决了，下面是手动方式<br>注册方法为：<br>在<application>中添加<activity>标签，将需要注册的activity使用android:name=”.MainActivity”注册。如果是主activity，即打开application时看到的activity，则需要添加</activity></application></p>
 <p><action android:name="android.intent.action.MAIN"></action></p>
 <p><category android:name="android.intent.category.LAUNCHER"><br>4、加一个button到新创建的activity，然后用toast对象的show方法进行输出提示</category></p>
@@ -394,7 +393,7 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//使用隐式Intent调用系统浏览器界面并打开百度，并传输数据到BrowserActivity</span></span><br><span class="line">        Button button4 = (Button)findViewById(R.id.button_4);</span><br><span class="line">        button4.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span></span>&#123;</span><br><span class="line">                String data = <span class="string">"i want to open baidu"</span>;</span><br><span class="line">                Intent intent= <span class="keyword">new</span> Intent(Intent.ACTION_VIEW);<span class="comment">//传入系统内置动作ACTION_VIEW</span></span><br><span class="line">                intent.setData(Uri.parse(<span class="string">"http://www.baidu.com"</span>));<span class="comment">//设置Intent携带的数据</span></span><br><span class="line">                intent.putExtra(<span class="string">"extra_data"</span>,data);</span><br><span class="line">                startActivity(intent);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
 <h2 id="0x04-activity生存期"><a href="#0x04-activity生存期" class="headerlink" title="0x04 activity生存期"></a>0x04 activity生存期</h2><p>完整生存期：onCreate() -&gt; onDestory()<br>可见生存期：onStart() -&gt; onStop()<br>前台生存期：onResume() -&gt; onPause()</p>
-<p><img src="activity生存周期.png" alt="生存周期"></p>
+<p><img src="/images/activity生存周期.png" alt="生存周期"></p>
 <h2 id="0x05-activity的启动模式"><a href="#0x05-activity的启动模式" class="headerlink" title="0x05 activity的启动模式"></a>0x05 activity的启动模式</h2><p>四种启动模式，可以在<activity>标签中android:launchMode定义。</activity></p>
 <ul>
 <li>standard：打开activity，就放入栈顶</li>
@@ -402,7 +401,6 @@
 <li>singleTask：检查整个返回栈，如果存在某个activity，则不会重新创建。</li>
 <li>singleInstance：创建一个activity，重新在一个新的返回栈(或Task)中创建，该activity与其他activity不在同一个Task中，其他程序也可以调用这个activity的实例。</li>
 </ul>
-<p>rick.j q ou</p>
 
       
     </div>
