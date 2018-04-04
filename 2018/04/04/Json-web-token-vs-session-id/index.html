@@ -102,21 +102,23 @@
 
 
   
-  <meta name="keywords" content="Web security," />
+  <meta name="keywords" content="Web Security," />
 
 
-<meta name="description" content="记录一下SSL的握手过程，里面涉及到了很多基础概念，例如密码学，证书，PKI等 详细叙述： 1、浏览器将自己支持的加密规则(也就是 CipherSuite )发给服务器 2、服务器端收到请求，然后从客户支持的 CipherSuite 中选出一个应答,并发送给客户端公钥证书和选用的 HASH 算法 3、客户端收到公钥之后,利用自己的信任的根证书对收到的公钥进行验证.若通过,客户端随机生成对称密钥 (">
-<meta name="keywords" content="Web security">
+<meta name="description" content="0x00 前言JWT是现代web中常见的持续认证手段，也是针对http无状态的其中一个认证的解决方案，今日特地看了写JWT和传统的session id方案作比较的文章 0x01 Json Web TokenJWT是开发的标准，主要的特点是简洁，自包含。通过数字签名确保信息的完整性，真实性 JWT的结构主要包括三大块：header, payload and signature。 详细的信息主要参考官">
+<meta name="keywords" content="Web Security">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SSL握手过程">
-<meta property="og:url" content="http://yoursite.com/2018/03/01/SSL握手过程/index.html">
+<meta property="og:title" content="Json web token vs session id">
+<meta property="og:url" content="http://yoursite.com/2018/04/04/Json-web-token-vs-session-id/index.html">
 <meta property="og:site_name" content="Rick7dology">
-<meta property="og:description" content="记录一下SSL的握手过程，里面涉及到了很多基础概念，例如密码学，证书，PKI等 详细叙述： 1、浏览器将自己支持的加密规则(也就是 CipherSuite )发给服务器 2、服务器端收到请求，然后从客户支持的 CipherSuite 中选出一个应答,并发送给客户端公钥证书和选用的 HASH 算法 3、客户端收到公钥之后,利用自己的信任的根证书对收到的公钥进行验证.若通过,客户端随机生成对称密钥 (">
+<meta property="og:description" content="0x00 前言JWT是现代web中常见的持续认证手段，也是针对http无状态的其中一个认证的解决方案，今日特地看了写JWT和传统的session id方案作比较的文章 0x01 Json Web TokenJWT是开发的标准，主要的特点是简洁，自包含。通过数字签名确保信息的完整性，真实性 JWT的结构主要包括三大块：header, payload and signature。 详细的信息主要参考官">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-01T07:26:15.000Z">
+<meta property="og:image" content="http://yoursite.com/images/JWT_workflow.png">
+<meta property="og:updated_time" content="2018-04-04T12:35:41.530Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SSL握手过程">
-<meta name="twitter:description" content="记录一下SSL的握手过程，里面涉及到了很多基础概念，例如密码学，证书，PKI等 详细叙述： 1、浏览器将自己支持的加密规则(也就是 CipherSuite )发给服务器 2、服务器端收到请求，然后从客户支持的 CipherSuite 中选出一个应答,并发送给客户端公钥证书和选用的 HASH 算法 3、客户端收到公钥之后,利用自己的信任的根证书对收到的公钥进行验证.若通过,客户端随机生成对称密钥 (">
+<meta name="twitter:title" content="Json web token vs session id">
+<meta name="twitter:description" content="0x00 前言JWT是现代web中常见的持续认证手段，也是针对http无状态的其中一个认证的解决方案，今日特地看了写JWT和传统的session id方案作比较的文章 0x01 Json Web TokenJWT是开发的标准，主要的特点是简洁，自包含。通过数字签名确保信息的完整性，真实性 JWT的结构主要包括三大块：header, payload and signature。 详细的信息主要参考官">
+<meta name="twitter:image" content="http://yoursite.com/images/JWT_workflow.png">
 
 
 
@@ -125,10 +127,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/03/01/SSL握手过程/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/04/04/Json-web-token-vs-session-id/"/>
 
 
-  <title>SSL握手过程 | Rick7dology</title>
+  <title>Json web token vs session id | Rick7dology</title>
   
 
 
@@ -270,7 +272,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/01/SSL握手过程/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/04/Json-web-token-vs-session-id/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Rick7">
@@ -287,7 +289,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">SSL握手过程</h1>
+          <h1 class="post-title" itemprop="name headline">Json web token vs session id</h1>
         
 
         <div class="post-meta">
@@ -299,7 +301,7 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-01T23:22:25+08:00">2018-03-01</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-04T05:58:19+08:00">2018-04-03</time>
             
 
             
@@ -330,7 +332,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article&#58;</span>
                 
-                <span title="Symbols count in article">639</span>
+                <span title="Symbols count in article">1.1k</span>
               
 
               
@@ -364,17 +366,27 @@
       
 
       
-        <p>记录一下SSL的握手过程，里面涉及到了很多基础概念，例如密码学，证书，PKI等</p>
-<p>详细叙述：</p>
-<p>1、浏览器将自己支持的加密规则(也就是 CipherSuite )发给服务器</p>
-<p>2、服务器端收到请求，然后从客户支持的 CipherSuite 中选出一个应答,并发送给客户端公钥证书和选用的 HASH 算法</p>
-<p>3、客户端收到公钥之后,利用自己的信任的根证书对收到的公钥进行验证.若通过,客户端随机生成对称密钥 (Pre-Master secret),然后使用公钥对对称密钥进行加密,并计算连接中全部报文信息的 hash ,再利用生成的对称密钥对 hash 值加密,然后把公钥加密的对称密钥及对称密钥加密的 hash 值发送给服务器.</p>
-<p>4、服务器利用自己的私钥对利用公钥加密的对称密钥进行解密,得到对称密钥. 再利用对称密钥解密 hash 值,对 hash 值进行验证.在验证成功后，会返回给客户端 Finish 报文。（至此，ssl 连接建立成功）</p>
-<p>5、ssl 连接建立完成之后信息的传输加密过程是这样的:</p>
-<p>客户端:先用对称密钥加密要传输的信息,再利用 hash 算法得出加了密的信息的 hash 值.再利用公钥对 hash 值进行加密,之后把对称密钥加密了的信息和利用公钥加密后信息的 hash 值,传输给服务器. </p>
-<p>服务器: 与客户端基本相同，不过把公钥加密换做私钥加密。</p>
-<p>refer:</p>
-<p><a href="http://mp.weixin.qq.com/s/W620Pdu6qvoqjacSRPRVyg" target="_blank" rel="noopener">http://mp.weixin.qq.com/s/W620Pdu6qvoqjacSRPRVyg</a></p>
+        <h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>JWT是现代web中常见的持续认证手段，也是针对http无状态的其中一个认证的解决方案，今日特地看了写JWT和传统的session id方案作比较的文章</p>
+<h1 id="0x01-Json-Web-Token"><a href="#0x01-Json-Web-Token" class="headerlink" title="0x01 Json Web Token"></a>0x01 Json Web Token</h1><p>JWT是开发的标准，主要的特点是简洁，自包含。通过数字签名确保信息的完整性，真实性</p>
+<h2 id="JWT的结构"><a href="#JWT的结构" class="headerlink" title="JWT的结构"></a>JWT的结构</h2><p>主要包括三大块：header, payload and signature。</p>
+<p>详细的信息主要参考官方说明：</p>
+<p><a href="https://jwt.io/introduction/" target="_blank" rel="noopener">https://jwt.io/introduction/</a></p>
+<h2 id="JWT的认证过程"><a href="#JWT的认证过程" class="headerlink" title="JWT的认证过程"></a>JWT的认证过程</h2><p>当然登录应用成功后，应用会返回一个JWT给用户保存，用户后续的请求都会带上这个JWT作为token取得授权的资源。常见的JWT会以以下的请求头部出现：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Authorization: Bearer &lt;token&gt;</span><br></pre></td></tr></table></figure>
+<p>具体的认证过程如下：</p>
+<p><img src="/images/JWT_workflow.png" alt="JWT认证图"></p>
+<h1 id="0x02-与传统session-id的比较"><a href="#0x02-与传统session-id的比较" class="headerlink" title="0x02 与传统session id的比较"></a>0x02 与传统session id的比较</h1><ul>
+<li>在扩展性上，JWT的扩展性比session更加好，毕竟session需要存储在服务器，如果需要做服务器迁移或者扩展，JWT的基于token认证的无状态显示出了优势。</li>
+<li>在安全性上，本人感觉JWT没有比session更加有优势，JWT使用了数字签名确保了数据的完整性和防篡改，但还是要存储在用户本地，这样和普通cookie一样会受到XSS攻击的威胁，有被盗取的风险。而却JWT对于防CSRF也是显得力不从心的，特别在攻击者诱骗授权用户点击操作的场景，还是需要CSRF token。在重放攻击(replay attack)中，JWT也是不能防止这类攻击的。</li>
+<li>在 RESTful API Services 上，JWT简直是为这个而生，无状态的最佳实现，再配合(CORS)进行跨越，这样调用API就更加方便了</li>
+</ul>
+<h1 id="0x03-JWT已知漏洞"><a href="#0x03-JWT已知漏洞" class="headerlink" title="0x03 JWT已知漏洞"></a>0x03 JWT已知漏洞</h1><ul>
+<li>NONE hashing algorithm ：某些JWT库对token的验证出现了bug，详细资料参考以下链接：</li>
+</ul>
+<p><a href="https://auth0.com/blog/critical-vulnerabilities-in-json-web-token-libraries/" target="_blank" rel="noopener">https://auth0.com/blog/critical-vulnerabilities-in-json-web-token-libraries/</a></p>
+<h1 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h1><p><a href="https://ponyfoo.com/articles/json-web-tokens-vs-session-cookies" target="_blank" rel="noopener">https://ponyfoo.com/articles/json-web-tokens-vs-session-cookies</a></p>
+<p><a href="https://github.com/teesloane/Auth-Boss" target="_blank" rel="noopener">https://github.com/teesloane/Auth-Boss</a></p>
+<p><a href="https://www.owasp.org/index.php/JSON_Web_Token_(JWT)_Cheat_Sheet_for_Java#Issues" target="_blank" rel="noopener">https://www.owasp.org/index.php/JSON_Web_Token_(JWT)_Cheat_Sheet_for_Java#Issues</a></p>
 
       
     </div>
@@ -392,7 +404,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Web-security/" rel="tag"># Web security</a>
+            <a href="/tags/Web-Security/" rel="tag"># Web Security</a>
           
         </div>
       
@@ -405,8 +417,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/28/Scrapy使用简介-1/" rel="next" title="Scrapy使用简介_1">
-                <i class="fa fa-chevron-left"></i> Scrapy使用简介_1
+              <a href="/2018/03/23/Android开发基础复习_1/" rel="next" title="Android开发基础读书笔记_1">
+                <i class="fa fa-chevron-left"></i> Android开发基础读书笔记_1
               </a>
             
           </div>
@@ -414,10 +426,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/02/Scrapy使用简介-2/" rel="prev" title="Scrapy使用简介_2">
-                Scrapy使用简介_2 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -466,8 +474,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -532,6 +549,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-Json-Web-Token"><span class="nav-number">2.</span> <span class="nav-text">0x01 Json Web Token</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JWT的结构"><span class="nav-number">2.1.</span> <span class="nav-text">JWT的结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JWT的认证过程"><span class="nav-number">2.2.</span> <span class="nav-text">JWT的认证过程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-与传统session-id的比较"><span class="nav-number">3.</span> <span class="nav-text">0x02 与传统session id的比较</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03-JWT已知漏洞"><span class="nav-number">4.</span> <span class="nav-text">0x03 JWT已知漏洞</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接："><span class="nav-number">5.</span> <span class="nav-text">参考链接：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
