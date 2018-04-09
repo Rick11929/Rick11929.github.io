@@ -45,7 +45,7 @@
     <link href="http://yoursite.com/2018/04/04/Json-web-token-vs-session-id/"/>
     <id>http://yoursite.com/2018/04/04/Json-web-token-vs-session-id/</id>
     <published>2018-04-03T21:58:19.000Z</published>
-    <updated>2018-04-09T10:13:55.423Z</updated>
+    <updated>2018-04-09T10:16:31.615Z</updated>
     
     <content type="html"><![CDATA[<h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>JWT是现代web中常见的持续认证手段，也是针对http无状态的其中一个认证的解决方案，今日特地看了写JWT和传统的session id方案作比较的文章</p><h1 id="0x01-Json-Web-Token"><a href="#0x01-Json-Web-Token" class="headerlink" title="0x01 Json Web Token"></a>0x01 Json Web Token</h1><p>JWT是开发的标准，主要的特点是简洁，自包含。通过数字签名确保信息的完整性，真实性</p><h2 id="JWT的结构"><a href="#JWT的结构" class="headerlink" title="JWT的结构"></a>JWT的结构</h2><p>主要包括三大块：header, payload and signature。</p><p>详细的信息主要参考官方说明：</p><p><a href="https://jwt.io/introduction/" target="_blank" rel="noopener">https://jwt.io/introduction/</a></p><h2 id="JWT的认证过程"><a href="#JWT的认证过程" class="headerlink" title="JWT的认证过程"></a>JWT的认证过程</h2><p>当然登录应用成功后，应用会返回一个JWT给用户保存，用户后续的请求都会带上这个JWT作为token取得授权的资源。常见的JWT会以以下的请求头部出现：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Authorization: Bearer &lt;token&gt;</span><br></pre></td></tr></table></figure><p>具体的认证过程如下：</p><p><img src="/images/JWT_workflow.png" alt="JWT认证图"></p><h1 id="0x02-与传统session-id的比较"><a href="#0x02-与传统session-id的比较" class="headerlink" title="0x02 与传统session id的比较"></a>0x02 与传统session id的比较</h1><ul><li>在扩展性上，JWT的扩展性比session更加好，毕竟session需要存储在服务器，如果需要做服务器迁移或者扩展，JWT的基于token认证的无状态显示出了优势。</li><li>在安全性上，本人感觉JWT没有比session更加有优势，JWT使用了数字签名确保了数据的完整性和防篡改，但还是要存储在用户本地，这样和普通cookie一样会受到XSS攻击的威胁，有被盗取的风险。而却JWT对于防CSRF也是显得力不从心的，特别在攻击者诱骗授权用户点击操作的场景，还是需要CSRF token。在重放攻击(replay attack)中，JWT也是不能防止这类攻击的。</li><li>在 RESTful API Services 上，JWT简直是为这个而生，无状态的最佳实现，再配合(CORS)进行跨越，这样调用API就更加方便了</li></ul><h1 id="0x03-JWT已知漏洞"><a href="#0x03-JWT已知漏洞" class="headerlink" title="0x03 JWT已知漏洞"></a>0x03 JWT已知漏洞</h1><ul><li>NONE hashing algorithm ：某些JWT库对token的验证出现了bug，详细资料参考以下链接：</li></ul><p><a href="https://auth0.com/blog/critical-vulnerabilities-in-json-web-token-libraries/" target="_blank" rel="noopener">https://auth0.com/blog/critical-vulnerabilities-in-json-web-token-libraries/</a></p><h1 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h1><p><a href="https://ponyfoo.com/articles/json-web-tokens-vs-session-cookies" target="_blank" rel="noopener">https://ponyfoo.com/articles/json-web-tokens-vs-session-cookies</a></p><p><a href="https://github.com/teesloane/Auth-Boss" target="_blank" rel="noopener">https://github.com/teesloane/Auth-Boss</a></p><p><a href="https://www.owasp.org/index.php/JSON_Web_Token_(JWT)_Cheat_Sheet_for_Java#Issues" target="_blank" rel="noopener">https://www.owasp.org/index.php/JSON_Web_Token_(JWT)_Cheat_Sheet_for_Java#Issues</a></p>]]></content>
     
@@ -59,7 +59,7 @@
     </summary>
     
     
-      <category term="Web Security" scheme="http://yoursite.com/tags/Web-Security/"/>
+      <category term="Web security" scheme="http://yoursite.com/tags/Web-security/"/>
     
   </entry>
   
