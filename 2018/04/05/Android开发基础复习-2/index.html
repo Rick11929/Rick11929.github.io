@@ -102,21 +102,21 @@
 
 
   
-  <meta name="keywords" content="Web security," />
+  <meta name="keywords" content="Android," />
 
 
-<meta name="description" content="0x00 前言在上一遍学习笔记中整理了授权码模式的交换流程和csrf攻击的知识，这次继续总结OAuth其他攻击面 0x01 “redirect uri”根据OAuth的认证流程,用户授权凭证会由服务器转发到redirect_uri对应的地址,如果攻击者伪造redirect_uri为自己的地址,然后诱导用户发送该请求,之后获取的凭证就会发送给攻击者伪造的回调地址.攻击者使用该凭证即可登录用户账号,造">
-<meta name="keywords" content="Web security">
+<meta name="description" content="0x00 前言继续写“第一行代码”的读书笔记，这次看看Android的广播机制 0x01 广播机制广播机制分为两类：  标准广播：异步的，广播发送之后，所有的广播接收器几乎同时接受广播，广播效率比较高。但不能截断。  有序广播：同步执行的，优先级高的先接受到，之前的广播接收器可以截断广播。   0x02 动态注册广播接收器和静态注册广播接收器先来看如何写动态注册，关键函数是：registerRec">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OAuth2.0 笔记_2">
-<meta property="og:url" content="http://yoursite.com/2018/03/13/OAuth2-0-笔记2/index.html">
+<meta property="og:title" content="Android开发基础复习_2">
+<meta property="og:url" content="http://yoursite.com/2018/04/05/Android开发基础复习-2/index.html">
 <meta property="og:site_name" content="Rick7dology">
-<meta property="og:description" content="0x00 前言在上一遍学习笔记中整理了授权码模式的交换流程和csrf攻击的知识，这次继续总结OAuth其他攻击面 0x01 “redirect uri”根据OAuth的认证流程,用户授权凭证会由服务器转发到redirect_uri对应的地址,如果攻击者伪造redirect_uri为自己的地址,然后诱导用户发送该请求,之后获取的凭证就会发送给攻击者伪造的回调地址.攻击者使用该凭证即可登录用户账号,造">
+<meta property="og:description" content="0x00 前言继续写“第一行代码”的读书笔记，这次看看Android的广播机制 0x01 广播机制广播机制分为两类：  标准广播：异步的，广播发送之后，所有的广播接收器几乎同时接受广播，广播效率比较高。但不能截断。  有序广播：同步执行的，优先级高的先接受到，之前的广播接收器可以截断广播。   0x02 动态注册广播接收器和静态注册广播接收器先来看如何写动态注册，关键函数是：registerRec">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-15T07:56:40.349Z">
+<meta property="og:updated_time" content="2018-04-05T15:04:19.012Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OAuth2.0 笔记_2">
-<meta name="twitter:description" content="0x00 前言在上一遍学习笔记中整理了授权码模式的交换流程和csrf攻击的知识，这次继续总结OAuth其他攻击面 0x01 “redirect uri”根据OAuth的认证流程,用户授权凭证会由服务器转发到redirect_uri对应的地址,如果攻击者伪造redirect_uri为自己的地址,然后诱导用户发送该请求,之后获取的凭证就会发送给攻击者伪造的回调地址.攻击者使用该凭证即可登录用户账号,造">
+<meta name="twitter:title" content="Android开发基础复习_2">
+<meta name="twitter:description" content="0x00 前言继续写“第一行代码”的读书笔记，这次看看Android的广播机制 0x01 广播机制广播机制分为两类：  标准广播：异步的，广播发送之后，所有的广播接收器几乎同时接受广播，广播效率比较高。但不能截断。  有序广播：同步执行的，优先级高的先接受到，之前的广播接收器可以截断广播。   0x02 动态注册广播接收器和静态注册广播接收器先来看如何写动态注册，关键函数是：registerRec">
 
 
 
@@ -125,10 +125,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/03/13/OAuth2-0-笔记2/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/04/05/Android开发基础复习-2/"/>
 
 
-  <title>OAuth2.0 笔记_2 | Rick7dology</title>
+  <title>Android开发基础复习_2 | Rick7dology</title>
   
 
 
@@ -270,7 +270,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/13/OAuth2-0-笔记2/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/05/Android开发基础复习-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Rick7">
@@ -287,7 +287,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">OAuth2.0 笔记_2</h1>
+          <h1 class="post-title" itemprop="name headline">Android开发基础复习_2</h1>
         
 
         <div class="post-meta">
@@ -299,7 +299,7 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-13T03:27:59+08:00">2018-03-12</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-05T06:58:40+08:00">2018-04-04</time>
             
 
             
@@ -330,7 +330,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article&#58;</span>
                 
-                <span title="Symbols count in article">553</span>
+                <span title="Symbols count in article">2.6k</span>
               
 
               
@@ -344,7 +344,7 @@
                 
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
-                <span title="Reading time">0:01</span>
+                <span title="Reading time">0:03</span>
               
             </div>
           
@@ -364,14 +364,26 @@
       
 
       
-        <h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>在上一遍学习笔记中整理了授权码模式的交换流程和csrf攻击的知识，这次继续总结OAuth其他攻击面</p>
-<h1 id="0x01-“redirect-uri”"><a href="#0x01-“redirect-uri”" class="headerlink" title="0x01 “redirect uri”"></a>0x01 “redirect uri”</h1><p>根据OAuth的认证流程,用户授权凭证会由服务器转发到redirect_uri对应的地址,如果攻击者伪造redirect_uri为自己的地址,然后诱导用户发送该请求,之后获取的凭证就会发送给攻击者伪造的回调地址.攻击者使用该凭证即可登录用户账号,造成授权劫持.</p>
-<p>近日有安全测试团队又发布了一些关于redirect_url过滤不严格的问题，详情看下面的链接，就是redirect_uri只过滤了主域名，而没有对子域名进行过滤，如果子域名存在漏洞，攻击者则可以通过子域名构造构造恶意的redirect_uri，从refer头部盗取用户的 “authorization code”</p>
-<p><a href="https://bbs.ichunqiu.com/thread-34168-1-1.html" target="_blank" rel="noopener">https://bbs.ichunqiu.com/thread-34168-1-1.html</a></p>
-<p>Refer:</p>
-<p><a href="http://www.freebuf.com/articles/web/110757.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/110757.html</a></p>
-<p><a href="https://dhavalkapil.com/blogs/Attacking-the-OAuth-Protocol/" target="_blank" rel="noopener">https://dhavalkapil.com/blogs/Attacking-the-OAuth-Protocol/</a></p>
-<p><a href="https://sakurity.com/oauth" target="_blank" rel="noopener">https://sakurity.com/oauth</a></p>
+        <h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>继续写“第一行代码”的读书笔记，这次看看Android的广播机制</p>
+<h1 id="0x01-广播机制"><a href="#0x01-广播机制" class="headerlink" title="0x01 广播机制"></a>0x01 广播机制</h1><p>广播机制分为两类：</p>
+<ul>
+<li><p>标准广播：异步的，广播发送之后，所有的广播接收器几乎同时接受广播，广播效率比较高。但不能截断。</p>
+</li>
+<li><p>有序广播：同步执行的，优先级高的先接受到，之前的广播接收器可以截断广播。</p>
+</li>
+</ul>
+<h1 id="0x02-动态注册广播接收器和静态注册广播接收器"><a href="#0x02-动态注册广播接收器和静态注册广播接收器" class="headerlink" title="0x02 动态注册广播接收器和静态注册广播接收器"></a>0x02 动态注册广播接收器和静态注册广播接收器</h1><p>先来看如何写动态注册，关键函数是：registerReceiver(networkChangReceiver,intentFilter)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    private IntentFilter intentFilter;</span><br><span class="line">    private NetworkChangReceiver networkChangReceiver;</span><br><span class="line"></span><br><span class="line">    class NetworkChangReceiver extends BroadcastReceiver &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void onReceive(Context context,Intent intent) &#123;</span><br><span class="line">            Toast.makeText(context,&quot;Netwokchange&quot;,Toast.LENGTH_SHORT).show();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    protected void onDestroy() &#123;</span><br><span class="line">        super.onDestroy();</span><br><span class="line">        unregisterReceiver(networkChangReceiver);//注销广播接收器</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.first_layout);</span><br><span class="line">        Button button1 = (Button) findViewById(R.id.button_1);</span><br><span class="line">        intentFilter = new IntentFilter();</span><br><span class="line">        intentFilter.addAction(&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;);//定义广播接收器的接收动作</span><br><span class="line">        networkChangReceiver = new NetworkChangReceiver();//新建一个广播接收器</span><br><span class="line">        registerReceiver(networkChangReceiver,intentFilter);//动态注册广播接收器</span><br></pre></td></tr></table></figure>
+<p>静态注册的编写方法就简单多了，直接定义一个接收类，</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyReceiver</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// <span class="doctag">TODO:</span> This method is called when the BroadcastReceiver is receiving</span></span><br><span class="line">        <span class="comment">// an Intent broadcast.</span></span><br><span class="line">        Toast.makeText(context, <span class="string">"开机 "</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"Not yet implemented"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在AndroidManifest.xml中注册,添加Intentfileter；并且开启权限:RECEIVE_BOOT_COMPLETED</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.RECEIVE_BOOT_COMPLETED"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">receiver</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">".MyReceiver"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:enabled</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:exported</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.BOOT_COMPLETED"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="0x03-发送广播"><a href="#0x03-发送广播" class="headerlink" title="0x03 发送广播"></a>0x03 发送广播</h1><ul>
+<li>发送标准广播</li>
+</ul>
+<p>基本步骤为：新建一个广播接收器，在然后AndroidManifest.xml中注册,添加Intentfileter，发送自定义广播，也就是Intent。</p>
+<p>这里的广播接收器我用上面的就OK了，只需要添加一个Intentfileter就完成。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//发送标准广播到我们定义的广播接收器</span></span><br><span class="line">        Button button5 = (Button) findViewById(R.id.button_5);</span><br><span class="line">        button3.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">                Intent intent=<span class="keyword">new</span> Intent(<span class="string">"com.example.broadcastdemo.MY_BROADCAST"</span>);<span class="comment">//还是要用到Intent</span></span><br><span class="line">                sendBroadcast(intent);</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -389,7 +401,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Web-security/" rel="tag"># Web security</a>
+            <a href="/tags/Android/" rel="tag"># Android</a>
           
         </div>
       
@@ -402,8 +414,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/09/经典sqlmap命令/" rel="next" title="经典sqlmap命令">
-                <i class="fa fa-chevron-left"></i> 经典sqlmap命令
+              <a href="/2018/04/04/Json-web-token-vs-session-id/" rel="next" title="Json web token vs session id">
+                <i class="fa fa-chevron-left"></i> Json web token vs session id
               </a>
             
           </div>
@@ -411,10 +423,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/21/英文面试速背指南/" rel="prev" title="英文面试速背指南_持续更新">
-                英文面试速背指南_持续更新 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -548,7 +556,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-“redirect-uri”"><span class="nav-number">2.</span> <span class="nav-text">0x01 “redirect uri”</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-广播机制"><span class="nav-number">2.</span> <span class="nav-text">0x01 广播机制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-动态注册广播接收器和静态注册广播接收器"><span class="nav-number">3.</span> <span class="nav-text">0x02 动态注册广播接收器和静态注册广播接收器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03-发送广播"><span class="nav-number">4.</span> <span class="nav-text">0x03 发送广播</span></a></li></ol></div>
             
 
           </div>

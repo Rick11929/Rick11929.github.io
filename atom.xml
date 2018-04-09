@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-04-04T12:35:41.530Z</updated>
+  <updated>2018-04-05T15:04:19.012Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,35 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Android开发基础复习_2</title>
+    <link href="http://yoursite.com/2018/04/05/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E5%A4%8D%E4%B9%A0-2/"/>
+    <id>http://yoursite.com/2018/04/05/Android开发基础复习-2/</id>
+    <published>2018-04-04T22:58:40.000Z</published>
+    <updated>2018-04-05T15:04:19.012Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>继续写“第一行代码”的读书笔记，这次看看Android的广播机制</p><h1 id="0x01-广播机制"><a href="#0x01-广播机制" class="headerlink" title="0x01 广播机制"></a>0x01 广播机制</h1><p>广播机制分为两类：</p><ul><li><p>标准广播：异步的，广播发送之后，所有的广播接收器几乎同时接受广播，广播效率比较高。但不能截断。</p></li><li><p>有序广播：同步执行的，优先级高的先接受到，之前的广播接收器可以截断广播。</p></li></ul><h1 id="0x02-动态注册广播接收器和静态注册广播接收器"><a href="#0x02-动态注册广播接收器和静态注册广播接收器" class="headerlink" title="0x02 动态注册广播接收器和静态注册广播接收器"></a>0x02 动态注册广播接收器和静态注册广播接收器</h1><p>先来看如何写动态注册，关键函数是：registerReceiver(networkChangReceiver,intentFilter)</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    private IntentFilter intentFilter;</span><br><span class="line">    private NetworkChangReceiver networkChangReceiver;</span><br><span class="line"></span><br><span class="line">    class NetworkChangReceiver extends BroadcastReceiver &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void onReceive(Context context,Intent intent) &#123;</span><br><span class="line">            Toast.makeText(context,&quot;Netwokchange&quot;,Toast.LENGTH_SHORT).show();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    protected void onDestroy() &#123;</span><br><span class="line">        super.onDestroy();</span><br><span class="line">        unregisterReceiver(networkChangReceiver);//注销广播接收器</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.first_layout);</span><br><span class="line">        Button button1 = (Button) findViewById(R.id.button_1);</span><br><span class="line">        intentFilter = new IntentFilter();</span><br><span class="line">        intentFilter.addAction(&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;);//定义广播接收器的接收动作</span><br><span class="line">        networkChangReceiver = new NetworkChangReceiver();//新建一个广播接收器</span><br><span class="line">        registerReceiver(networkChangReceiver,intentFilter);//动态注册广播接收器</span><br></pre></td></tr></table></figure><p>静态注册的编写方法就简单多了，直接定义一个接收类，</p><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyReceiver</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// <span class="doctag">TODO:</span> This method is called when the BroadcastReceiver is receiving</span></span><br><span class="line">        <span class="comment">// an Intent broadcast.</span></span><br><span class="line">        Toast.makeText(context, <span class="string">"开机 "</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"Not yet implemented"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>在AndroidManifest.xml中注册,添加Intentfileter；并且开启权限:RECEIVE_BOOT_COMPLETED</p><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.RECEIVE_BOOT_COMPLETED"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">receiver</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">".MyReceiver"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:enabled</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:exported</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.BOOT_COMPLETED"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br></pre></td></tr></table></figure><h1 id="0x03-发送广播"><a href="#0x03-发送广播" class="headerlink" title="0x03 发送广播"></a>0x03 发送广播</h1><ul><li>发送标准广播</li></ul><p>基本步骤为：新建一个广播接收器，在然后AndroidManifest.xml中注册,添加Intentfileter，发送自定义广播，也就是Intent。</p><p>这里的广播接收器我用上面的就OK了，只需要添加一个Intentfileter就完成。</p><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//发送标准广播到我们定义的广播接收器</span></span><br><span class="line">        Button button5 = (Button) findViewById(R.id.button_5);</span><br><span class="line">        button3.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">                Intent intent=<span class="keyword">new</span> Intent(<span class="string">"com.example.broadcastdemo.MY_BROADCAST"</span>);<span class="comment">//还是要用到Intent</span></span><br><span class="line">                sendBroadcast(intent);</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;0x00-前言&quot;&gt;&lt;a href=&quot;#0x00-前言&quot; class=&quot;headerlink&quot; title=&quot;0x00 前言&quot;&gt;&lt;/a&gt;0x00 前言&lt;/h1&gt;&lt;p&gt;继续写“第一行代码”的读书笔记，这次看看Android的广播机制&lt;/p&gt;
+&lt;h1 id=&quot;0x01-
+      
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Json web token vs session id</title>
     <link href="http://yoursite.com/2018/04/04/Json-web-token-vs-session-id/"/>
     <id>http://yoursite.com/2018/04/04/Json-web-token-vs-session-id/</id>
     <published>2018-04-03T21:58:19.000Z</published>
-    <updated>2018-04-04T12:35:41.530Z</updated>
+    <updated>2018-04-09T10:13:55.423Z</updated>
     
     <content type="html"><![CDATA[<h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>JWT是现代web中常见的持续认证手段，也是针对http无状态的其中一个认证的解决方案，今日特地看了写JWT和传统的session id方案作比较的文章</p><h1 id="0x01-Json-Web-Token"><a href="#0x01-Json-Web-Token" class="headerlink" title="0x01 Json Web Token"></a>0x01 Json Web Token</h1><p>JWT是开发的标准，主要的特点是简洁，自包含。通过数字签名确保信息的完整性，真实性</p><h2 id="JWT的结构"><a href="#JWT的结构" class="headerlink" title="JWT的结构"></a>JWT的结构</h2><p>主要包括三大块：header, payload and signature。</p><p>详细的信息主要参考官方说明：</p><p><a href="https://jwt.io/introduction/" target="_blank" rel="noopener">https://jwt.io/introduction/</a></p><h2 id="JWT的认证过程"><a href="#JWT的认证过程" class="headerlink" title="JWT的认证过程"></a>JWT的认证过程</h2><p>当然登录应用成功后，应用会返回一个JWT给用户保存，用户后续的请求都会带上这个JWT作为token取得授权的资源。常见的JWT会以以下的请求头部出现：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Authorization: Bearer &lt;token&gt;</span><br></pre></td></tr></table></figure><p>具体的认证过程如下：</p><p><img src="/images/JWT_workflow.png" alt="JWT认证图"></p><h1 id="0x02-与传统session-id的比较"><a href="#0x02-与传统session-id的比较" class="headerlink" title="0x02 与传统session id的比较"></a>0x02 与传统session id的比较</h1><ul><li>在扩展性上，JWT的扩展性比session更加好，毕竟session需要存储在服务器，如果需要做服务器迁移或者扩展，JWT的基于token认证的无状态显示出了优势。</li><li>在安全性上，本人感觉JWT没有比session更加有优势，JWT使用了数字签名确保了数据的完整性和防篡改，但还是要存储在用户本地，这样和普通cookie一样会受到XSS攻击的威胁，有被盗取的风险。而却JWT对于防CSRF也是显得力不从心的，特别在攻击者诱骗授权用户点击操作的场景，还是需要CSRF token。在重放攻击(replay attack)中，JWT也是不能防止这类攻击的。</li><li>在 RESTful API Services 上，JWT简直是为这个而生，无状态的最佳实现，再配合(CORS)进行跨越，这样调用API就更加方便了</li></ul><h1 id="0x03-JWT已知漏洞"><a href="#0x03-JWT已知漏洞" class="headerlink" title="0x03 JWT已知漏洞"></a>0x03 JWT已知漏洞</h1><ul><li>NONE hashing algorithm ：某些JWT库对token的验证出现了bug，详细资料参考以下链接：</li></ul><p><a href="https://auth0.com/blog/critical-vulnerabilities-in-json-web-token-libraries/" target="_blank" rel="noopener">https://auth0.com/blog/critical-vulnerabilities-in-json-web-token-libraries/</a></p><h1 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h1><p><a href="https://ponyfoo.com/articles/json-web-tokens-vs-session-cookies" target="_blank" rel="noopener">https://ponyfoo.com/articles/json-web-tokens-vs-session-cookies</a></p><p><a href="https://github.com/teesloane/Auth-Boss" target="_blank" rel="noopener">https://github.com/teesloane/Auth-Boss</a></p><p><a href="https://www.owasp.org/index.php/JSON_Web_Token_(JWT)_Cheat_Sheet_for_Java#Issues" target="_blank" rel="noopener">https://www.owasp.org/index.php/JSON_Web_Token_(JWT)_Cheat_Sheet_for_Java#Issues</a></p>]]></content>
     
@@ -462,32 +486,6 @@
     
     
       <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo 奇怪的错误</title>
-    <link href="http://yoursite.com/2018/01/27/Hexo-%E5%A5%87%E6%80%AA%E7%9A%84%E9%94%99%E8%AF%AF/"/>
-    <id>http://yoursite.com/2018/01/27/Hexo-奇怪的错误/</id>
-    <published>2018-01-26T17:26:23.000Z</published>
-    <updated>2018-01-26T09:29:09.000Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>升级后遇到了一个奇怪的错误,在Hexo目录下“hexo”命令失效了：</li></ul><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo</span><br><span class="line">ERROR Local hexo not found in ~/Hexo</span><br><span class="line">ERROR Try running: &apos;npm install hexo --save&apos;</span><br></pre></td></tr></table></figure><ul><li>解决方法如下：</li></ul><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rm -rf node_modules/ &amp;&amp; npm install</span><br></pre></td></tr></table></figure><ul><li>错误原因：</li></ul><p>Unknown</p><ul><li>Refer link:</li></ul><p><a href="https://github.com/hexojs/hexo/issues/2076" target="_blank" rel="noopener">https://github.com/hexojs/hexo/issues/2076</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ul&gt;
-&lt;li&gt;升级后遇到了一个奇怪的错误,在Hexo目录下“hexo”命令失效了：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$
-      
-    
-    </summary>
-    
-    
-      <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
     
   </entry>
   

@@ -5,13 +5,30 @@
     
   <url>
     <loc>http://yoursite.com/2018/04/04/Json-web-token-vs-session-id/</loc>
-    <lastmod>2018-04-04T12:35:41.530Z</lastmod>
+    <lastmod>2018-04-09T10:13:55.423Z</lastmod>
     <data>
         <display>
         <title>Json web token vs session id</title>
         <pubTime>2018-04-03T21:58:19.000Z</pubTime>
         
         <tag>Web Security</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/04/05/Android%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E5%A4%8D%E4%B9%A0-2/</loc>
+    <lastmod>2018-04-05T15:04:19.012Z</lastmod>
+    <data>
+        <display>
+        <title>Android开发基础复习_2</title>
+        <pubTime>2018-04-04T22:58:40.000Z</pubTime>
+        
+        <tag>Android</tag>
          
          
            
