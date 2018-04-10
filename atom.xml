@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-04-10T12:49:49.953Z</updated>
+  <updated>2018-04-10T12:52:48.323Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>乱序执行与预测执行</title>
+    <title>Meltdown（熔毁）和Spectre（幽灵）</title>
     <link href="http://yoursite.com/2018/04/10/Meltdown%EF%BC%88%E7%86%94%E6%AF%81%EF%BC%89%E5%92%8CSpectre%EF%BC%88%E5%B9%BD%E7%81%B5%EF%BC%89/"/>
     <id>http://yoursite.com/2018/04/10/Meltdown（熔毁）和Spectre（幽灵）/</id>
     <published>2018-04-10T15:01:09.000Z</published>
-    <updated>2018-04-10T12:49:49.953Z</updated>
+    <updated>2018-04-10T12:52:48.323Z</updated>
     
     <content type="html"><![CDATA[<h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>领导要求简单解释一下这个CPU级别的漏洞，只能上网找找资料学习一下原理，为了速度学习注意考虑了freebuf的文章</p><h1 id="0x01-乱序执行与预测执行"><a href="#0x01-乱序执行与预测执行" class="headerlink" title="0x01 乱序执行与预测执行"></a>0x01 乱序执行与预测执行</h1><p>传统CPU的指令是一条一条执行的，但现代的高性能CPU为了提高指令的执行效率，引入了一些新特性，其中就有指令的乱序执行和预测执行。</p><ul><li>乱序执行</li></ul><blockquote><p>比如当处理器中的某些指令需要等待某些资源，处理器不会真的在这里等待而停止指令的执行，而是利用等待资源的时间继续执行后续的指令。在支持乱序执行的CPU中，后面的指令可能在前面指令执行结束前就开始执行了。</p></blockquote><ul><li>预测执行</li></ul><blockquote><p>预测执行涉及到程序的控制流，现在处理器不是去解析所有分支指令后然后决定执行哪个操作，而是预测哪个控制流会更有可能被运行再提取相应的指令代码执行。如果预测正确的话，会带来很高的性能提升并提高处理器的并行性。如果预测错误，那些被预测执行的不正确结果会被丢弃，处理器会将状态恢复到预测执行行前的正确状态，再重新跳转到正确执行的分支或指令中运行。与乱序执行类似，预测执行对处理器缓存的操作会被保留。</p></blockquote><h1 id="0x02-问题点：CPU的缓存没有安全检查"><a href="#0x02-问题点：CPU的缓存没有安全检查" class="headerlink" title="0x02 问题点：CPU的缓存没有安全检查"></a>0x02 问题点：CPU的缓存没有安全检查</h1><p>乱序执行和预测执行这两个CPU的性能都有一个共同点，就是会提前把要准备要执行的，预测要执行的指令缓存到CPU的缓存上，然后再缓存到寄存器去执行指令。但由于处理器的缓存（cache）机制，那些被预测执行或乱序执行的指令会被先加载到缓存中，但在处理器恢复状态时并不会恢复处理器缓存的内容。这里就存在了一个致命的安全问题：<strong>在CPU缓存的指令是不用经过安全检查的，没有任何权限的检查，只有由缓存加载到寄存器的指令才会执行访问权限和地址合法性检查</strong></p><h1 id="0x03-缓存侧信道攻击"><a href="#0x03-缓存侧信道攻击" class="headerlink" title="0x03 缓存侧信道攻击"></a>0x03 缓存侧信道攻击</h1><p>既然CPU的缓存没有安全检查，那就成为了攻击的对象。这里在漏洞发现者的论文中都有提到，无时间继续研究了，水平所限，哈哈，希望以后有机会继续这个漏洞的学习</p><h1 id="0x04-TotalMeltdown"><a href="#0x04-TotalMeltdown" class="headerlink" title="0x04 TotalMeltdown"></a>0x04 TotalMeltdown</h1><p>微软2018年1月和2月的Windows7 x64 和 Windows Server 2008 R2 关于Meltdown安全补丁中被发现存在严重漏洞(Total Meltdown)，补丁中错误地将PML4权限设定成用户级，导致任意用户态进程可对系统内核进行任意读写。</p><p>关于这个可以看一下链接：</p><p><a href="http://blog.frizk.net/" target="_blank" rel="noopener">http://blog.frizk.net/</a></p><p><a href="https://github.com/ufrisk/pcileech" target="_blank" rel="noopener">https://github.com/ufrisk/pcileech</a></p><p><a href="https://www.anquanke.com/post/id/103324" target="_blank" rel="noopener">https://www.anquanke.com/post/id/103324</a></p><h1 id="本文参考链接："><a href="#本文参考链接：" class="headerlink" title="本文参考链接："></a>本文参考链接：</h1><p><a href="https://meltdownattack.com/" target="_blank" rel="noopener">https://meltdownattack.com/</a></p><p><a href="http://www.freebuf.com/vuls/159269.html" target="_blank" rel="noopener">http://www.freebuf.com/vuls/159269.html</a></p><p><a href="http://www.freebuf.com/articles/system/159811.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/system/159811.html</a></p>]]></content>
     

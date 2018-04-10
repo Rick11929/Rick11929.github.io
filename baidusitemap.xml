@@ -5,10 +5,10 @@
     
   <url>
     <loc>http://yoursite.com/2018/04/10/Meltdown%EF%BC%88%E7%86%94%E6%AF%81%EF%BC%89%E5%92%8CSpectre%EF%BC%88%E5%B9%BD%E7%81%B5%EF%BC%89/</loc>
-    <lastmod>2018-04-10T12:49:49.953Z</lastmod>
+    <lastmod>2018-04-10T12:52:48.323Z</lastmod>
     <data>
         <display>
-        <title>乱序执行与预测执行</title>
+        <title>Meltdown（熔毁）和Spectre（幽灵）</title>
         <pubTime>2018-04-10T15:01:09.000Z</pubTime>
         
         <tag>漏洞学习</tag>
