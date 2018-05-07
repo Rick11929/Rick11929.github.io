@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta name="google-site-verification" content="v9b2wIkqq3ZSQacPFS5xxRt8RHzkK6SMyz1nReigq10" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/Logo_new.jpg?v=6.0.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/Logo_new.jpg?v=6.0.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/Logo_new.jpg?v=6.0.2">
+
+
+  <link rel="mask-icon" href="/images/Logo_new.jpg?v=6.0.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.0.2',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="iOS," />
+
+
+<meta name="description" content="0x00 前言抽空看一下Apple的iOS11的安全文档，并做简单笔记  0x01 System security Secure boot chain  这个特性就是由bootloader开始对每一步启动都验证签名,如果验证失败了就会去到recovery mode了  The Boot ROM code contains the Apple Root CA public key, which is">
+<meta name="keywords" content="iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 安全特性学习简单">
+<meta property="og:url" content="http://yoursite.com/2018/04/20/iOS-安全特性学习笔记/index.html">
+<meta property="og:site_name" content="Rick7dology">
+<meta property="og:description" content="0x00 前言抽空看一下Apple的iOS11的安全文档，并做简单笔记  0x01 System security Secure boot chain  这个特性就是由bootloader开始对每一步启动都验证签名,如果验证失败了就会去到recovery mode了  The Boot ROM code contains the Apple Root CA public key, which is">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/images/Security%20architecture%20diagram%20of%20iOS.png">
+<meta property="og:updated_time" content="2018-04-23T09:56:20.348Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS 安全特性学习简单">
+<meta name="twitter:description" content="0x00 前言抽空看一下Apple的iOS11的安全文档，并做简单笔记  0x01 System security Secure boot chain  这个特性就是由bootloader开始对每一步启动都验证签名,如果验证失败了就会去到recovery mode了  The Boot ROM code contains the Apple Root CA public key, which is">
+<meta name="twitter:image" content="http://yoursite.com/images/Security%20architecture%20diagram%20of%20iOS.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Rick7dology" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/20/iOS-安全特性学习笔记/"/>
+
+
+  <title>iOS 安全特性学习简单 | Rick7dology</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <meta name="google-site-verification" content="v9b2wIkqq3ZSQacPFS5xxRt8RHzkK6SMyz1nReigq10" />
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Rick7dology</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-history"></i> <br />Archives</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/20/iOS-安全特性学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Rick7">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/Logo_new.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rick7dology">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS 安全特性学习简单</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-20T01:59:07+08:00">2018-04-19</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Symbols count in article&#58;</span>
+                
+                <span title="Symbols count in article">2.2k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">0:02</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h1><p>抽空看一下Apple的iOS11的安全文档，并做简单笔记</p>
+<p><img src="/images/Security architecture diagram of iOS.png" alt="iOS安全架构"></p>
+<h1 id="0x01-System-security"><a href="#0x01-System-security" class="headerlink" title="0x01 System security"></a>0x01 System security</h1><ul>
+<li>Secure boot chain</li>
+</ul>
+<p>这个特性就是由bootloader开始对每一步启动都验证签名,如果验证失败了就会去到recovery mode了</p>
+<blockquote>
+<p>The Boot ROM code contains the Apple Root CA public key, which is used to verify that the iBoot bootloader is signed by Apple before allowing it to load</p>
+</blockquote>
+<ul>
+<li>System Software Authorization server</li>
+</ul>
+<p>这个好贱，防止你downgrade的一个远程服务器，还有一个叫nonce的机制防止服务器的应答被存储，从而绕过验证。。。</p>
+<blockquote>
+<p>The nonce prevents an attacker from saving the server’s response and using it to tamper with a device or otherwise alter the system software.</p>
+</blockquote>
+<ul>
+<li>Secure Enclave</li>
+</ul>
+<p>Secure Enclave是一个协调处理器焊接在A11芯片中，主要用于加密数据，还内置了一个硬件随机数生成器。Secure Enclave的内部有一个4MB的闪存，储存椭圆曲线算法的私钥，操作系统不能直接访问这个私钥，只能把要加密或者解密的数据传给SE，然后SE返回结果。并且处理器和SE的通讯是独立隔离的。这里有个名词叫：interrupt-driven mailbox，不是太懂。</p>
+<p>同时，第三方应用也是可以SE中创建和保存private key，但永远不能访问，只能把需要加解密的数据发送到SE，让SE进行处理得出结果</p>
+<p>参考链接：</p>
+<p><a href="https://www.howtogeek.com/339705/what-is-apples-secure-enclave-and-how-does-it-protect-my-iphone-or-mac/" target="_blank" rel="noopener">https://www.howtogeek.com/339705/what-is-apples-secure-enclave-and-how-does-it-protect-my-iphone-or-mac/</a></p>
+<p><a href="https://developer.apple.com/documentation/security/certificate_key_and_trust_services/keys/storing_keys_in_the_secure_enclave" target="_blank" rel="noopener">https://developer.apple.com/documentation/security/certificate_key_and_trust_services/keys/storing_keys_in_the_secure_enclave</a></p>
+<ul>
+<li>Touch ID, Face ID,</li>
+</ul>
+<p>Touch ID, Face ID的解锁都是借助Secure Enclave来解密的，这个就不细看了，以后用到再查，下面是知乎(Kvenux Sun)的简单解释</p>
+<blockquote>
+<ol>
+<li>Touch ID的数据读进来，处理器转发给Secure Enclave，处理器读不到这部分数据</li>
+<li>SE(Secure Enclave)读取数据，通过密钥加解密，比对本地数据（SE自身密钥加密）</li>
+<li>SE将结果返回给处理器这个过程中的密钥只有Touch ID和SE能知道，它们通过预设的key来协商得到这个密钥。可以看到这个过程中，处理器只转发了数据，它一方面没有办法拿到数据，另一方面也没有处理这部分数据的密钥，从硬件层面杜绝了外界截获Touch ID的可能。</li>
+</ol>
+</blockquote>
+<h1 id="0x02-Encryption-and-Data-Protection"><a href="#0x02-Encryption-and-Data-Protection" class="headerlink" title="0x02 Encryption and Data Protection"></a>0x02 Encryption and Data Protection</h1><p>这部分的硬件加密和文件系统加密略过</p>
+<ul>
+<li>keychain</li>
+</ul>
+<p>说到底keychain就是一个小型SQLite数据库，用于储存APP的password等敏感信息。在iOS中，手机unlock了，keychain也会跟着unlock的。所有APP公用一个keychain，但每个一个app只能访问自己的keychain item，这是由securityd daemon所管理的。os x 和 iCloud keychain就不深究了</p>
+<p>参考链接：</p>
+<p><a href="https://medium.com/ios-os-x-development/securing-user-data-with-keychain-for-ios-e720e0f9a8e2" target="_blank" rel="noopener">https://medium.com/ios-os-x-development/securing-user-data-with-keychain-for-ios-e720e0f9a8e2</a></p>
+<p><a href="https://developer.apple.com/library/content/documentation/Security/Conceptual/keychainServConcepts/02concepts/concepts.html#//apple_ref/doc/uid/TP30000897-CH204-TP9" target="_blank" rel="noopener">https://developer.apple.com/library/content/documentation/Security/Conceptual/keychainServConcepts/02concepts/concepts.html#//apple_ref/doc/uid/TP30000897-CH204-TP9</a></p>
+<h1 id="0x03-App-Security"><a href="#0x03-App-Security" class="headerlink" title="0x03 App Security"></a>0x03 App Security</h1><ul>
+<li>App code signing</li>
+</ul>
+<p>应用代码签名特性，由系统启动开始，内核就会验证运行的应用是否经过Apple的certificate签名，包括iOS的内置应用和第三方应用。所以如果开发者想开发苹果应用，就必须要参加苹果的开发者计划，目的就是要得到有Apple签发的证书，从而使用这个证书为自己的应用进行签名。所以能够上架App Store的应用都是有名有姓的，有效的防止了恶意应用。当然，应用被苹果审查是难免的了，规则由别人制定。</p>
+<p>详解的苹果开发者计划参考下面的链接：</p>
+<p><a href="https://developer.apple.com/support/compare-memberships/" target="_blank" rel="noopener">https://developer.apple.com/support/compare-memberships/</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/10/Meltdown（熔毁）和Spectre（幽灵）/" rel="next" title="Meltdown（熔毁）和Spectre（幽灵）">
+                <i class="fa fa-chevron-left"></i> Meltdown（熔毁）和Spectre（幽灵）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/21/SS和锐速的配置链接/" rel="prev" title="SS和锐速的配置链接">
+                SS和锐速的配置链接 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/Logo_new.jpg"
+                alt="Rick7" />
+            
+              <p class="site-author-name" itemprop="name">Rick7</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-System-security"><span class="nav-number">2.</span> <span class="nav-text">0x01 System security</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-Encryption-and-Data-Protection"><span class="nav-number">3.</span> <span class="nav-text">0x02 Encryption and Data Protection</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03-App-Security"><span class="nav-number">4.</span> <span class="nav-text">0x03 App Security</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rick7</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="Symbols count total">105k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="Reading time total">1:45</span>
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.0.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.2"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

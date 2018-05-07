@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="Rick7dology">
 <meta property="og:description" content="0x00 前言继续写“第一行代码”的读书笔记，这次看看Android的广播机制 0x01 广播机制广播机制分为两类：  标准广播：异步的，广播发送之后，所有的广播接收器几乎同时接受广播，广播效率比较高。但不能截断。  有序广播：同步执行的，优先级高的先接受到，之前的广播接收器可以截断广播。   0x02 动态注册广播接收器和静态注册广播接收器先来看如何写动态注册，关键函数是：registerRec">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-04-05T15:04:19.012Z">
+<meta property="og:updated_time" content="2018-04-11T15:22:02.697Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android开发基础复习_2">
 <meta name="twitter:description" content="0x00 前言继续写“第一行代码”的读书笔记，这次看看Android的广播机制 0x01 广播机制广播机制分为两类：  标准广播：异步的，广播发送之后，所有的广播接收器几乎同时接受广播，广播效率比较高。但不能截断。  有序广播：同步执行的，优先级高的先接受到，之前的广播接收器可以截断广播。   0x02 动态注册广播接收器和静态注册广播接收器先来看如何写动态注册，关键函数是：registerRec">
@@ -330,7 +330,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article&#58;</span>
                 
-                <span title="Symbols count in article">2.6k</span>
+                <span title="Symbols count in article">4.5k</span>
               
 
               
@@ -344,7 +344,7 @@
                 
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
-                <span title="Reading time">0:03</span>
+                <span title="Reading time">0:05</span>
               
             </div>
           
@@ -383,7 +383,22 @@
 </ul>
 <p>基本步骤为：新建一个广播接收器，在然后AndroidManifest.xml中注册,添加Intentfileter，发送自定义广播，也就是Intent。</p>
 <p>这里的广播接收器我用上面的就OK了，只需要添加一个Intentfileter就完成。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//发送标准广播到我们定义的广播接收器</span></span><br><span class="line">        Button button5 = (Button) findViewById(R.id.button_5);</span><br><span class="line">        button3.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">                Intent intent=<span class="keyword">new</span> Intent(<span class="string">"com.example.broadcastdemo.MY_BROADCAST"</span>);<span class="comment">//还是要用到Intent</span></span><br><span class="line">                sendBroadcast(intent);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//发送标准广播到我们定义的广播接收器</span><br><span class="line">        Button button5 = (Button) findViewById(R.id.button_5);</span><br><span class="line">        button3.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View v) &#123;</span><br><span class="line">                Intent intent=new Intent(&quot;com.example.broadcastdemo.MY_BROADCAST&quot;);//还是要用到Intent</span><br><span class="line">                sendBroadcast(intent);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>发送有序广播</li>
+</ul>
+<p>发送广播方式改为：sendOrderedBroadcast(intent, null);</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Button button5 = (Button) findViewById(R.id.button_5);</span><br><span class="line">        button3.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">                Intent intent=<span class="keyword">new</span> Intent(<span class="string">"com.example.broadcastdemo.MY_BROADCAST"</span>);</span><br><span class="line">                sendOrderedBroadcast(intent,<span class="keyword">null</span>);<span class="comment">//发送有序广播</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+<p>广播截断:abortBroadcast();</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyReceiver</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span> </span>&#123;</span><br><span class="line">    <span class="comment">//自定义的广播接收器</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// <span class="doctag">TODO:</span> This method is called when the BroadcastReceiver is receiving</span></span><br><span class="line">        <span class="comment">// an Intent broadcast.</span></span><br><span class="line">        Toast.makeText(context, <span class="string">"接收信息成功"</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">        abortBroadcast(); <span class="comment">//截断广播</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>本地广播</li>
+</ul>
+<p>前面解释的都是全局广播，其他应用程序可以接收，本地广播只能够在应用程序的内部进行传递，有效更加安全性。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Override</span><br><span class="line">   protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">       super.onCreate(savedInstanceState);</span><br><span class="line">       setContentView(R.layout.second_layout);</span><br><span class="line">       localBroadcastManager = LocalBroadcastManager.getInstance(this);</span><br><span class="line">       Button button5 = (Button) findViewById(R.id.button_5);</span><br><span class="line">       button5.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">           @Override</span><br><span class="line">           public void onClick(View v) &#123;</span><br><span class="line">               Intent intent=new Intent(&quot;com.example.broadcastdemo.MY_BROADCAST_LOCAL&quot;);</span><br><span class="line">               //发送本地广播</span><br><span class="line">               localBroadcastManager.sendBroadcast(intent);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure>
+<hr>
+<p>静态注册本地广播接收器：localBroadcastManager.registerReceiver(localReceiver,intentFilter);</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">intentFilter = <span class="keyword">new</span> IntentFilter();</span><br><span class="line">        <span class="comment">//定义广播接收器的接收动作</span></span><br><span class="line">        intentFilter.addAction(<span class="string">"com.example.broadcastdemo.MY_BROADCAST_LOCAL"</span>);</span><br><span class="line"></span><br><span class="line">        localReceiver = <span class="keyword">new</span> LocalReceiver();</span><br><span class="line">        <span class="comment">//静态注册本地广播接收器</span></span><br><span class="line">        localBroadcastManager.registerReceiver(localReceiver,intentFilter);</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -504,7 +519,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -517,7 +532,7 @@
                 
                 <div class="site-state-item site-state-tags">
                   <a href="/tags/index.html">
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -592,7 +607,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">100k</span>
+    <span title="Symbols count total">105k</span>
   
 
   
@@ -601,7 +616,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">1:40</span>
+    <span title="Reading time total">1:45</span>
   
 </div>
 
